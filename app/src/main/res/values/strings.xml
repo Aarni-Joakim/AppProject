@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HyTeProject</string>
+    <string name="title_workout">Workout</string>
+    <string name="title_exercise">Exercise</string>
+    <string name="title_calendar">Calendar</string>
+    <string name="title_profile">Profile</string>
+    <string name="workout">Generated workout will be listed here</string>
+    <string name="workoutImageContent">Simple list icon for empty workout fragment</string>
+
+</resources>
