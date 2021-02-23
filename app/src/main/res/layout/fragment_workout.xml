@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+
     tools:context=".ui.workout.WorkoutFragment">
 
     <ImageView
@@ -29,47 +31,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:backgroundTint="@color/blue_munsell"
-        android:tint="@color/black_coffee"
-        android:src="@drawable/ic_fab_add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/floatingActionsMenu"
+        android:layout_width="326dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:fab_expandDirection="up"
+        app:fab_labelStyle="@style/FabLabelStyle"
+        app:fab_labelsPosition="left"
+        app:layout_constraintBottom_toTopOf="@+id/guideHoriBottomWorkout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideVertLeftWorkout"
+        app:layout_constraintTop_toTopOf="@+id/guideHoriMiddleWorkout">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabCreateCustomWorkout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:backgroundTint="@color/blue_munsell"
-        android:tint="@color/black_coffee"
-        android:src="@drawable/ic_fab_create_custom"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/fabMenu"
-        app:layout_constraintEnd_toEndOf="@+id/fabMenu" />
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/blue_munsell"
+            app:fab_title="Create Own Workout" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabCreateOwnWorkout"
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/blue_munsell"
+            app:fab_title="Create New Workout" />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideHoriBottomWorkout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:backgroundTint="@color/blue_munsell"
-        android:tint="@color/black_coffee"
-        android:src="@drawable/ic_fab_create_workout"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/fabCreateCustomWorkout"
-        app:layout_constraintEnd_toEndOf="@+id/fabCreateCustomWorkout" />
-</android.support.constraint.ConstraintLayout>
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideVertLeftWorkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideHoriMiddleWorkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+</androidx.constraintlayout.widget.ConstraintLayout>
