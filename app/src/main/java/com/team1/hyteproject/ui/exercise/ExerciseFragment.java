@@ -1,27 +1,27 @@
 package com.team1.hyteproject.ui.exercise;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.team1.hyteproject.R;
 
 public class ExerciseFragment extends Fragment {
 
-    private FloatingActionButton fabMenu;
-    private FloatingActionButton fabCreateExercise;
-    private FloatingActionButton fabEditExercise;
-
+    private static final String TAG = "ExerciseFragment";
     private ExerciseViewModel exerciseViewModel;
+
+    private FloatingActionButton addExercise;
+    private FloatingActionButton modifyExercise;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -29,6 +29,24 @@ public class ExerciseFragment extends Fragment {
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(ExerciseViewModel.class);
         View view = inflater.inflate(R.layout.fragment_exercise, container, false);
         TextView textView = view.findViewById(R.id.textViewExercise);
+        Log.d(TAG, "onCreateView: start.");
+
+        addExercise = view.findViewById(R.id.addExercise);
+        modifyExercise = view.findViewById(R.id.modifyExercise);
+
+        addExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "addExercise clicked.");
+            }
+        });
+
+        modifyExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "modifyExercise clicked.");
+            }
+        });
 
         exerciseViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

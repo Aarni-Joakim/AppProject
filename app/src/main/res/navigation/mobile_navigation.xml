@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/navigation_exercise"
         android:name="com.team1.hyteproject.ui.exercise.ExerciseFragment"
-        android:label="@string/title_workout"
+        android:label="@string/title_exercise"
         tools:layout="@layout/fragment_workout" />
 
     <fragment

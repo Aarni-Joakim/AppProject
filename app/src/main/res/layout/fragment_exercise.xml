@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.calendar.CalendarFragment">
+    tools:context=".ui.exercise.ExerciseFragment">
 
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
@@ -20,20 +20,24 @@
         app:fab_labelsPosition="left"
         app:layout_constraintBottom_toTopOf="@+id/guideHoriBottomExercise"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideVertLeftExercise"
         app:layout_constraintTop_toTopOf="@+id/guideHoriMiddleExercise">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/modifyExercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/blue_munsell"
+            app:fab_icon="@drawable/ic_fab_create_workout"
             app:fab_title="Modify Exercise" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addExercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/blue_munsell"
-            app:fab_title="Create New Exercise" />
+            app:fab_icon="@drawable/ic_exercise"
+            app:fab_title="Add New Exercise" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
@@ -75,7 +79,7 @@
         app:layout_constraintGuide_percent="0.7" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
+        android:id="@+id/guideVertLeftExercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"

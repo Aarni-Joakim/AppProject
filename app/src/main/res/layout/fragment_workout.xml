@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="#161616"
 
     tools:context=".ui.workout.WorkoutFragment">
 
@@ -48,15 +48,19 @@
         app:layout_constraintTop_toTopOf="@+id/guideHoriMiddleWorkout">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/createWorkout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/blue_munsell"
+            app:fab_icon="@drawable/ic_fab_create_workout"
             app:fab_title="Create Own Workout" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/generateWorkout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/blue_munsell"
+            app:fab_icon="@drawable/ic_fab_create_custom"
             app:fab_title="Create New Workout" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
