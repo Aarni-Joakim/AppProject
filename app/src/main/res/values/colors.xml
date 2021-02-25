@@ -12,5 +12,6 @@
     <color name="light_green">#81E979</color>
     <color name="blue_munsell">#3891A6</color>
     <color name="steel_teal">#739691</color>
+    <color name="dark_test">#161616</color>
 
 </resources>

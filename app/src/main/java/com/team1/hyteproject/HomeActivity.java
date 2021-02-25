@@ -10,12 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class HomeActivity extends AppCompatActivity {
-/*
-    private Animation rotateOpen = AnimationUtils.loadAnimation(this, R.anim.rotate_open);
-    private Animation rotateClose = AnimationUtils.loadAnimation(this, R.anim.rotate_close);
-    private Animation expandBottom = AnimationUtils.loadAnimation(this, R.anim.expand_bottom);
-    private Animation collapseBottom = AnimationUtils.loadAnimation(this, R.anim.collapse_bottom);
-*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

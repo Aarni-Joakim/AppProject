@@ -33,12 +33,8 @@
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/floatingActionsMenu"
-        android:layout_width="326dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:fab_expandDirection="up"
         app:fab_labelStyle="@style/FabLabelStyle"
         app:fab_labelsPosition="left"
@@ -49,16 +45,16 @@
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/createWorkout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:fab_colorNormal="@color/blue_munsell"
             app:fab_icon="@drawable/ic_fab_create_workout"
             app:fab_title="Create Own Workout" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/generateWorkout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:fab_colorNormal="@color/blue_munsell"
             app:fab_icon="@drawable/ic_fab_create_custom"
             app:fab_title="Create New Workout" />
@@ -70,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.7" />
+        app:layout_constraintGuide_percent="0.97" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideVertLeftWorkout"
