@@ -31,7 +31,7 @@ public class WorkoutFragment extends Fragment {
 
     private FloatingActionButton generateWorkout;
     private FloatingActionButton createWorkout;
-    private Activity activity;
+    //private Activity activity;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,12 +56,14 @@ public class WorkoutFragment extends Fragment {
                 intent.putExtra(CalendarContract.Events.EVENT_LOCATION, TAG);
                 intent.putExtra(CalendarContract.Events.ALL_DAY, true);
 
+                getActivity().startActivity(intent);
+                /*
                 if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    startActivity(intent);
+                    getActivity().startActivity(intent);
                 } else {
                     Log.d(TAG, "No compatible calendar app found");
                     Toast.makeText(getActivity(), "There is no compatible calendar app!", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
             });
 
