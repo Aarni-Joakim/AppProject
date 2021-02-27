@@ -2,6 +2,8 @@ package com.team1.hyteproject;
 
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.team1.hyteproject.program.ProgramGenerator;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.navigation.NavController;
@@ -24,7 +26,6 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
 
     }
 

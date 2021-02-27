@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Workout {
 
-    private ArrayList<Exercise> exercises;
+    private ArrayList<BaseExercise> exercises;
 
     private String workoutType;
     private long workoutDate;               // or String?
@@ -15,14 +15,14 @@ public class Workout {
 
     public Workout() {
 
-        exercises = new ArrayList<Exercise>();
+        exercises = new ArrayList<>();
     }
 
-    public ArrayList<Exercise> getExerciseList() { return exercises; }
+    public ArrayList<BaseExercise> getExerciseList() { return exercises; }
 
-    public Exercise getExercise(int index) { return exercises.get(index); }
+    public BaseExercise getExercise(int index) { return exercises.get(index); }
 
-    public void addExercise() { exercises.add(new Exercise()); } // input parameters
+    public void addExercise() { exercises.add(new BaseExercise()); } // input parameters
 
     public void removeExercise(int index) { exercises.remove(index); }
 

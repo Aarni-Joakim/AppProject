@@ -6,6 +6,8 @@ public class Program {
     private ArrayList<Workout> workouts;
     private ArrayList<Workout> workoutHistory;
 
+    private ArrayList<BaseExercise> programExercises;
+
     private String programName;
     private String programType;              // toning, power building, muscle mass, strength
     private long creationDate;               // date the program was generated
@@ -17,12 +19,14 @@ public class Program {
 
     public Program() {
 
-        workouts = new ArrayList<Workout>();
+        workouts = new ArrayList<>();
     }
 
     public ArrayList<Workout> getWorkoutList() { return workouts; }
 
     public Workout getWorkout(int index) { return workouts.get(index); }
+
+    public BaseExercise getProgramExercise (int index) { return programExercises.get(index); }
 
     public void addWorkout() { workouts.add(new Workout()); } // input parameters!
 
