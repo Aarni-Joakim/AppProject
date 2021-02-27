@@ -1,6 +1,8 @@
 package com.team1.hyteproject.ui.exercise;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +47,17 @@ public class ExerciseFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "modifyExercise clicked.");
+
+                Log.d(TAG, "generateWorkout clicked. Trying to add calendar event");
+
+                Intent intent = new Intent(Intent.ACTION_INSERT);
+                intent.setData(CalendarContract.Events.CONTENT_URI);
+                intent.putExtra(CalendarContract.Events.TITLE, TAG);
+                intent.putExtra(CalendarContract.Events.DESCRIPTION, TAG);
+                intent.putExtra(CalendarContract.Events.EVENT_LOCATION, TAG);
+                intent.putExtra(CalendarContract.Events.ALL_DAY, true);
+
+                getActivity().startActivity(intent);
             }
         });
 
