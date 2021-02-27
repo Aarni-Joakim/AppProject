@@ -2,6 +2,7 @@ package com.team1.hyteproject;
 
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.team1.hyteproject.program.ExerciseList;
 import com.team1.hyteproject.program.ProgramGenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        //
     }
 
 }

@@ -21,6 +21,11 @@ import androidx.lifecycle.ViewModelProvider;
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
+import com.team1.hyteproject.enums.Experience;
+import com.team1.hyteproject.enums.Focus;
+import com.team1.hyteproject.enums.Goal;
+import com.team1.hyteproject.program.ExerciseList;
+import com.team1.hyteproject.program.ProgramGenerator;
 
 import java.util.Calendar;
 
@@ -70,7 +75,11 @@ public class WorkoutFragment extends Fragment {
         createWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                ExerciseList exerciseList = ExerciseList.getInstance();
+
                 Log.d(TAG, "createWorkout clicked.");
+                ProgramGenerator programGenerator = new ProgramGenerator("testing", Focus.CHEST, Goal.STRENGTH, 17, 5, Experience.BEGINNER, 8, 3);
             }
         });
 
