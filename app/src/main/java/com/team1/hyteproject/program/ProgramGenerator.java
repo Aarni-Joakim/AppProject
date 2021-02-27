@@ -37,8 +37,10 @@ public class ProgramGenerator {
     private int numberOfIsolationExercises;
 
     private int index;
+    private int exerciseIndex;                  // used to set exercise priorities
 
     private ArrayList<BaseExercise> programExercises;
+    private BaseExercise baseExercise;
 
     //TODO: Correct compound/isolation exercise amounts for each split
 
@@ -56,7 +58,7 @@ public class ProgramGenerator {
 
         programExercises = new ArrayList<>();
 
-        Log.d(TAG, "program generation started");
+        Log.d(TAG, "Program generation started.");
 
         programVolume = getProgramVolume();
         split = getSplit();
@@ -64,12 +66,15 @@ public class ProgramGenerator {
         Log.d(TAG, programVolume + " " + split);
 
         getExerciseDistribution();
-        getProgramExercises();
+        getCompoundExercises();
+        resetIsSelected();
+        getIsolationExercises();
+        resetIsSelected();
     }
 
 
     private Split getSplit() {
-        Log.d(TAG, "determineProgramSplit() called.");
+        Log.d(TAG, "getSplit() called.");
 
         if (exercisesPerWeek < 3)
             split = Split.FULL_BODY;
@@ -82,7 +87,7 @@ public class ProgramGenerator {
     }
 
     private ProgramVolume getProgramVolume() {
-        Log.d(TAG, "determineProgramVolume() called.");
+        Log.d(TAG, "getProgramVolume() called.");
 
         if (desiredIntensity < 3)
             intensityMultiplier -= 0.3 / desiredIntensity;
@@ -115,6 +120,7 @@ public class ProgramGenerator {
     }
 
     private void getExerciseDistribution() {
+        Log.d(TAG, "getExerciseDistribution() called.");
 
         switch (split) {
             case FULL_BODY: {
@@ -186,24 +192,94 @@ public class ProgramGenerator {
 
     }
 
-        private void getProgramExercises() {
+        /*private void getProgramExercises2() {
 
 
             Log.d(TAG, "determineProgramExercises() called");
 
             for (index = 0; index < ExerciseList.getInstance().getAllUpperBodyExercises().size(); index++)
                 Log.d(TAG, ExerciseList.getInstance().getUpperBodyExercise(index).getName());
+                baseExercise = ExerciseList.getInstance().stream();
 
-
-            //programExercises.add(index, null);
+            programExercises.set(index, baseExercise);
             //programExercises.add(ExerciseList.getInstance().getAllUpperBodyExercises().get(index));
-            //Log.d(TAG, programExercises.get(index).getName());
+            Log.d(TAG, programExercises.get(index).getName());
+
+        }*/
+
+    /*private void getProgramExercises() {
+
+
+        Log.d(TAG, "getProgramExercises2() called");
+        Log.d(TAG, "Compound Exercises: " + numberOfCompoundExercises + ". Isolation exercises: " +numberOfIsolationExercises);
+
+
+        baseExercise = ExerciseList.getInstance().getAllUpperBodyExercises().stream().filter(BaseExercise -> BaseExercise.getPriority() == 3 && !BaseExercise.getIsCompound() && !BaseExercise.getIsSelected()).findFirst().get();
+        exerciseIndex = ExerciseList.getInstance().getAllUpperBodyExercises().indexOf(baseExercise);
+        if (baseExercise != null)
+            programExercises.add(baseExercise);
+
+        ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).setIsSelected(true);
+        Log.d(TAG, "Priority of " +ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getName() + " set to: " + ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getPriority());
+        Log.d(TAG, programExercises.get(index).getName());
+
+        baseExercise = ExerciseList.getInstance().getAllUpperBodyExercises().stream().filter(BaseExercise -> BaseExercise.getPriority() == 3 && BaseExercise.getIsCompound() && !BaseExercise.getIsSelected()).findFirst().get();
+        exerciseIndex = ExerciseList.getInstance().getAllUpperBodyExercises().indexOf(baseExercise);
+        if (baseExercise != null)
+            programExercises.add(baseExercise);
+
+        ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).setIsSelected(true);
+        Log.d(TAG, "Priority of " +ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getName() + " set to: " + ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getPriority());
+        Log.d(TAG, programExercises.get(index+1).getName());
+
+    }*/
+
+    private void getCompoundExercises() {
+
+
+        Log.d(TAG, "getCompoundExercises() called");
+        Log.d(TAG, "Compound Exercises: " + numberOfCompoundExercises + ".");
+
+        for (int index = 0; index < numberOfCompoundExercises; index++) {
+            baseExercise = ExerciseList.getInstance().getAllUpperBodyExercises().stream().filter(BaseExercise -> BaseExercise.getPriority() == 3 && BaseExercise.getIsCompound() && !BaseExercise.getIsSelected()).findFirst().get();
+            exerciseIndex = ExerciseList.getInstance().getAllUpperBodyExercises().indexOf(baseExercise);
+            if (baseExercise != null)
+                programExercises.add(baseExercise);
+
+            ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).setIsSelected(true);
+            Log.d(TAG, "Priority of " + ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getName() + " set to: " + ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getPriority());
+            Log.d(TAG, programExercises.get(index).getName());
+        }
+    }
+
+        private void getIsolationExercises () {
+
+            //TODO: Optional isPresent check
+
+            Log.d(TAG, "getIsolationExercises() called");
+            Log.d(TAG, "Compound Exercises: " + numberOfIsolationExercises + ".");
+
+            for (int index = 0; index < numberOfIsolationExercises; index++) {
+                baseExercise = ExerciseList.getInstance().getAllUpperBodyExercises().stream().filter(BaseExercise -> BaseExercise.getPriority() == 3 && !BaseExercise.getIsCompound() && !BaseExercise.getIsSelected()).findFirst().get();
+                exerciseIndex = ExerciseList.getInstance().getAllUpperBodyExercises().indexOf(baseExercise);
+                if (baseExercise != null)
+                    programExercises.add(baseExercise);
+
+                ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).setIsSelected(true);
+                Log.d(TAG, "Priority of " + ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getName() + " set to: " + ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getPriority());
+                Log.d(TAG, programExercises.get(index).getName());
+            }
 
         }
+        public ArrayList<BaseExercise> getProgramExerciseList () {
+            Log.d(TAG, "getProgramExerciseList called");
 
-        //public ArrayList<BaseExercise> getProgramExerciseList() {
-            //Log.d(TAG, "getProgramExerciseList called");
+            return programExercises;
+        }
 
-            //return programExercises;
-
+        private void resetIsSelected () {
+            for (int index = 0; index < ExerciseList.getInstance().getAllUpperBodyExercises().size(); index++) {
+                ExerciseList.getInstance().getUpperBodyExercise(index).setIsSelected(false);
+            }
+        }
     }

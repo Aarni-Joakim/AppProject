@@ -22,9 +22,12 @@ public class ExerciseList {
         upperBodyExercises = new ArrayList<>();
         lowerBodyExercises = new ArrayList<>();
         coreExercises = new ArrayList<>();
-        upperBodyExercises.add(new BaseExercise("Dead Lift", 5, 5, true, TargetMuscleGroup.BACK));
+        upperBodyExercises.add(new BaseExercise("Deadlift", 5, 5, true, TargetMuscleGroup.BACK));
+        upperBodyExercises.add(new BaseExercise("Deadlift2", 5, 5, true, TargetMuscleGroup.BACK));
+        upperBodyExercises.add(new BaseExercise("Deadlift3", 5, 5, true, TargetMuscleGroup.BACK));
         upperBodyExercises.add(new BaseExercise("Bench Press", 3, 3, true, TargetMuscleGroup.CHEST));
         upperBodyExercises.add(new BaseExercise("Barbell Bicep Curl", 1, 2, false, TargetMuscleGroup.BICEPS));
+        upperBodyExercises.add(new BaseExercise("Tricep Pushdown", 1, 2, false, TargetMuscleGroup.TRICEPS));
         upperBodyExercises.add(new BaseExercise("Bodyweight Dip", 2, 3, true, TargetMuscleGroup.TRICEPS));
         lowerBodyExercises.add(new BaseExercise("Barbell Squat", 4, 4, true, TargetMuscleGroup.LEGS));
         lowerBodyExercises.add(new BaseExercise("Standing Calf Raise", 2, 2, false, TargetMuscleGroup.CALVES));
@@ -36,7 +39,7 @@ public class ExerciseList {
     public ArrayList<BaseExercise> getAllLowerBodyExercises() { return lowerBodyExercises; }
     public ArrayList<BaseExercise> getAllCoreExercises() { return coreExercises; }
 
-    public void addUpperBodyExercise(String name, int recoveryDays, int exerciseIntensity, boolean isCompound, TargetMuscleGroup targetMuscleGroup) {
+    /*public void addUpperBodyExercise(String name, int recoveryDays, int exerciseIntensity, boolean isCompound, TargetMuscleGroup targetMuscleGroup) {
         upperBodyExercises.add(new BaseExercise(name, recoveryDays, exerciseIntensity, isCompound, targetMuscleGroup));
     }
     public void addLowerBodyExercise(String name, int recoveryDays, int exerciseIntensity, boolean isCompound, TargetMuscleGroup targetMuscleGroup) {
@@ -44,7 +47,7 @@ public class ExerciseList {
     }
     public void addCoreExercise(String name, int recoveryDays, int exerciseIntensity, boolean isCompound, TargetMuscleGroup targetMuscleGroup) {
         coreExercises.add(new BaseExercise(name, recoveryDays, exerciseIntensity, isCompound, targetMuscleGroup));
-    }
+    }*/
 
     public BaseExercise getUpperBodyExercise(int index) {
         return upperBodyExercises.get(index);

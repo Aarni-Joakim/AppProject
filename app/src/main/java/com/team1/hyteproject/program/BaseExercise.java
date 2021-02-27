@@ -5,6 +5,7 @@ import com.team1.hyteproject.enums.TargetMuscleGroup;
 public class BaseExercise {
 
     private TargetMuscleGroup targetMuscleGroup;
+    private int testMuscleGroup;
     private String name;
     private String tag;
     private double weight;
@@ -12,9 +13,10 @@ public class BaseExercise {
     private int exerciseIntensity;
     private int reps;
     private int sets;
-    private int priority;
-    private boolean preference;
+    private int priority = 3;
+    private boolean preference = false;
     private boolean isCompound;
+    private boolean isSelected = false;
 
     private String[] tags;              // tags could be used to assists program generator in exercise selection
 
@@ -39,6 +41,8 @@ public class BaseExercise {
 
     public void setRecoveryDays (int recoveryDays) { this.recoveryDays = recoveryDays; }
 
+    public void setIsSelected(boolean isSelected) { this.isSelected = isSelected; }
+
     public void addTag(String tag) {
         if (tags == null)
         tags = new String[5];
@@ -49,6 +53,26 @@ public class BaseExercise {
 
     public String getName (){
         return name;
+    }
+
+    public int getPriority (){
+        return priority;
+    }
+
+    public TargetMuscleGroup getTargetMuscleGroup() {
+        return targetMuscleGroup;
+    }
+
+    public int getExerciseIntensity() {
+        return exerciseIntensity;
+    }
+
+    public boolean getIsCompound() {
+        return isCompound;
+    }
+
+    public boolean getIsSelected(){
+        return isSelected;
     }
 }
 
