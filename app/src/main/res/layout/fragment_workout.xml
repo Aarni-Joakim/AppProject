@@ -37,6 +37,7 @@
         app:fab_expandDirection="up"
         app:fab_labelStyle="@style/FabLabelStyle"
         app:fab_labelsPosition="left"
+        app:fab_addButtonColorNormal="@color/calendar_green"
         app:layout_constraintBottom_toTopOf="@+id/guideHoriBottomWorkout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideVertLeftWorkout"
@@ -46,7 +47,7 @@
             android:id="@+id/createWorkout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:fab_colorNormal="@color/blue_munsell"
+            app:fab_colorNormal="@color/calendar_green"
             app:fab_icon="@drawable/ic_fab_create_workout"
             app:fab_title="Create Own Workout" />
 
@@ -54,7 +55,7 @@
             android:id="@+id/generateProgram"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:fab_colorNormal="@color/blue_munsell"
+            app:fab_colorNormal="@color/calendar_green"
             app:fab_icon="@drawable/ic_fab_create_custom"
             app:fab_title="Create New Workout" />
 

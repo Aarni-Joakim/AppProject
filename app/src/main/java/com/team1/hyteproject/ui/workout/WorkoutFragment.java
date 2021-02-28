@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
 
 public class WorkoutFragment extends Fragment {
@@ -36,6 +37,8 @@ public class WorkoutFragment extends Fragment {
 
         generateProgram = view.findViewById(R.id.generateProgram);
         createWorkout = view.findViewById(R.id.createWorkout);
+
+        ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
 
         generateProgram.setOnClickListener(new View.OnClickListener() {
             @Override

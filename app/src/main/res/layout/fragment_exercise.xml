@@ -14,6 +14,7 @@
         app:fab_expandDirection="up"
         app:fab_labelStyle="@style/FabLabelStyle"
         app:fab_labelsPosition="left"
+        app:fab_addButtonColorNormal="@color/calendar_green"
         app:layout_constraintBottom_toTopOf="@+id/guideHoriBottomExercise"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideVertLeftExercise"
@@ -23,16 +24,16 @@
             android:id="@+id/modifyExercise"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:fab_colorNormal="@color/blue_munsell"
             app:fab_icon="@drawable/ic_fab_create_workout"
+            app:fab_colorNormal="@color/calendar_green"
             app:fab_title="Modify Exercise" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/addExercise"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:fab_colorNormal="@color/blue_munsell"
             app:fab_icon="@drawable/ic_exercise"
+            app:fab_colorNormal="@color/calendar_green"
             app:fab_title="Add New Exercise" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>

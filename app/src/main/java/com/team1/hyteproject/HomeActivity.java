@@ -1,6 +1,11 @@
 package com.team1.hyteproject;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.team1.hyteproject.program.ExerciseList;
 import com.team1.hyteproject.program.ProgramGenerator;
@@ -28,5 +33,9 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
     }
-
+    public void updateStatusBarColor(String color) {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.parseColor(color));
+    }
 }

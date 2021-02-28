@@ -189,7 +189,7 @@ public class ProgramGenerator {
     }
 
     private void getExercisesPerMuscleGroup() {
-
+        // TODO:
     }
 
         /*private void getProgramExercises2() {
@@ -281,5 +281,17 @@ public class ProgramGenerator {
             for (int index = 0; index < ExerciseList.getInstance().getAllUpperBodyExercises().size(); index++) {
                 ExerciseList.getInstance().getUpperBodyExercise(index).setIsSelected(false);
             }
+        }
+
+        private void setExercisePriorities() {
+        // TODO: Based on goals, focus, split etc
+        }
+
+        private void getWorkoutDates() {
+        // TODO: Need calendar arrays or get dates directly from calendar?
+        }
+
+        private void getWorkoutExercises() {
+        // TODO: Put exercises in each daily workout-list
         }
     }
