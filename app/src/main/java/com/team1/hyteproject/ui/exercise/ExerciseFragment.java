@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.team1.hyteproject.R;
@@ -58,6 +59,15 @@ public class ExerciseFragment extends Fragment {
                 intent.putExtra(CalendarContract.Events.ALL_DAY, true);
 
                 getActivity().startActivity(intent);
+            }
+        });
+
+        addExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "generateProgram clicked.");
+
+                Navigation.findNavController(view).navigate(R.id.action_navigation_exercise_to_navigation_add_exercise);
             }
         });
 

@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_navigation_exercise_to_navigation_profile"
             app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_navigation_exercise_to_navigation_add_exercise"
+            app:destination="@id/navigation_add_exercise" />
     </fragment>
 
     <fragment
@@ -74,7 +77,17 @@
 
     <fragment
         android:id="@+id/navigation_new_program"
-        android:name="com.team1.hyteproject.ui.programGenerator.NewProgramFragment"
+        android:name="com.team1.hyteproject.ui.createProgram.NewProgramFragment"
         android:label="@string/title_new_program"
         tools:layout="@layout/fragment_new_program" />
+
+    <fragment
+        android:id="@+id/navigation_add_exercise"
+        android:name="com.team1.hyteproject.ui.addExercise.AddExerciseFragment"
+        android:label="@string/title_add_exercise"
+        tools:layout="@layout/fragment_add_exercise" >
+        <action
+            android:id="@+id/action_navigation_add_exercise_to_navigation_exercise"
+            app:destination="@id/navigation_exercise" />
+    </fragment>
 </navigation>

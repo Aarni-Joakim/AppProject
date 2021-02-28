@@ -5,6 +5,7 @@
     <string name="title_calendar">Calendar</string>
     <string name="title_profile">Profile</string>
     <string name="title_new_program">Create New Program</string>
+    <string name="title_add_exercise">Add New Exercise</string>
     <string name="workout">Generated workouts will be listed here</string>
     <string name="workoutImageContent">Simple list icon for empty workout fragment</string>
 
