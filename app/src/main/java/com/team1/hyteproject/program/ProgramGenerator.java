@@ -17,9 +17,9 @@ public class ProgramGenerator {
     // user input fields
     private String programName;
 
-    private Goal goal;                        // muscle mass, strength, power building, toning
-    private Focus focus;                       // Adds volume/frequency for selected muscle group. Can be null/none.
-    private Experience experience;              // replaced int with enum
+    private String goal;                        // muscle mass, strength, power building, toning
+    private String focus;                       // Adds volume/frequency for selected muscle group. Can be null/none.
+    private String experience;                  // from enum toString()
 
     private int age;                            // from user input
     private int desiredIntensity;               // from user input desiredIntensity
@@ -27,7 +27,7 @@ public class ProgramGenerator {
     private int exercisesPerWeek;               // from user input
 
     // fields determined based on user input
-    private double intensityMultiplier = 1.0;   // calculated from age, experience and desiredIntensity, used to determine program volume
+    private double intensityMultiplier = 1.0;   // calculated from age, experience and desiredIntensity, used to determine program volume (later also frequency)
     private Split split;                        // determined by exercises per week
     private ProgramVolume programVolume;        // replaced int with enum: LOW(iM < 0.75), LOW-MED(iM < 1), HIGH-MED(iM < 1.25), HIGH(iM > 1.25)
     private boolean startRampUp = false;        // true if experience = 0
@@ -44,14 +44,14 @@ public class ProgramGenerator {
 
     //TODO: Correct compound/isolation exercise amounts for each split
 
-    public ProgramGenerator(String programName, Focus focus, Goal goal, int age, int desiredIntensity, Experience experience, int lengthInWeeks, int exercisesPerWeek) {
+    public ProgramGenerator(String programName, String focus, String goal, int age, int desiredIntensity, String experience, int lengthInWeeks, int exercisesPerWeek) {
         this.programName = programName;
         this.focus = focus;
         this.goal = goal;
         this.age = age;
         this.desiredIntensity = desiredIntensity;
         this.experience = experience;
-        if (experience == Experience.BEGINNER)
+        if (experience.equals("Beginner"))
             startRampUp = true;
         this.lengthInWeeks = lengthInWeeks;
         this.exercisesPerWeek = exercisesPerWeek;
@@ -70,6 +70,13 @@ public class ProgramGenerator {
         resetIsSelected();
         getIsolationExercises();
         resetIsSelected();
+        Log.d(TAG, "Program name is:" + programName);
+        Log.d(TAG, "Exercises per week: " + exercisesPerWeek);
+        Log.d(TAG, "Program length in weeks: " + lengthInWeeks);
+        Log.d(TAG, "Program intensity is:" + desiredIntensity);
+        Log.d(TAG, "int mult: " + intensityMultiplier);
+        Log.d(TAG, "Training experience:" + experience);
+        Log.d(TAG, "Age: " +age);
     }
 
 
@@ -94,17 +101,23 @@ public class ProgramGenerator {
         else if (desiredIntensity > 3)
             intensityMultiplier += (0.15 * (desiredIntensity - 3));
 
-        if (experience == Experience.ADVANCED)
+        if (experience.equals("Beginner")) {
+            intensityMultiplier *= 0.9;
+        } else if (experience.equals("Intermediate")) {
+            intensityMultiplier *= 1.1;
+        } else if (experience.equals("Advanced")) {
             intensityMultiplier *= 1.2;
+        }
 
-        if (age > 17)
+
+        if (age < 17)
             intensityMultiplier *= 0.8;
         else if (age > 35 && age < 41)
             intensityMultiplier *= 0.9;
         else if (age > 40 && age < 51)
             intensityMultiplier *= 0.8;
         else if (age > 50 && age < 61)
-            intensityMultiplier *= 0.6;
+            intensityMultiplier *= 0.7;
 
         if (intensityMultiplier < 0.75)
             programVolume = ProgramVolume.LOW;
@@ -112,7 +125,7 @@ public class ProgramGenerator {
             programVolume = ProgramVolume.MED_LOW;
         else if (intensityMultiplier < 1.25)
             programVolume = ProgramVolume.MED_HIGH;
-        else if (intensityMultiplier > 1.25)
+        else if (intensityMultiplier > 1.4)
             programVolume = ProgramVolume.HIGH;
 
         Log.d(TAG, "programVolume is " + programVolume);
@@ -126,13 +139,13 @@ public class ProgramGenerator {
             case FULL_BODY: {
                 Log.d(TAG, "Picking full body split exercises.");
 
-                if (goal == Goal.MUSCLE) {
+                if (goal.equals("Muscle mass")) {
                     numberOfCompoundExercises = 3;
                     numberOfIsolationExercises = 4;
-                } else if (goal == Goal.STRENGTH) {
+                } else if (goal.equals("Strength")) {
                     numberOfCompoundExercises = 4;
                     numberOfIsolationExercises = 2;
-                } else if (goal == Goal.POWER_BUILDING) {
+                } else if (goal.equals("Power building")) {
                     numberOfCompoundExercises = 3;
                     numberOfIsolationExercises = 3;
                 } else {
@@ -145,13 +158,13 @@ public class ProgramGenerator {
             case UPPER_LOWER: {
                 Log.d(TAG, "Picking upper/lower split exercises.");
 
-                if (goal == Goal.MUSCLE) {
+                if (goal.equals("Muscle mass")) {
                     numberOfCompoundExercises = 3;
                     numberOfIsolationExercises = 4;
-                } else if (goal == Goal.STRENGTH) {
+                } else if (goal.equals("Strength")) {
                     numberOfCompoundExercises = 4;
                     numberOfIsolationExercises = 2;
-                } else if (goal == Goal.POWER_BUILDING) {
+                } else if (goal.equals("Power building")) {
                     numberOfCompoundExercises = 3;
                     numberOfIsolationExercises = 3;
                 } else {
@@ -165,13 +178,13 @@ public class ProgramGenerator {
             case PPL: {
                 Log.d(TAG, "Picking PPL split exercises");
 
-                if (goal == Goal.MUSCLE) {
+                if (goal.equals("Muscle mass")) {
                     numberOfCompoundExercises = 3;
                     numberOfIsolationExercises = 4;
-                } else if (goal == Goal.STRENGTH) {
+                } else if (goal.equals("Strength")) {
                     numberOfCompoundExercises = 4;
                     numberOfIsolationExercises = 2;
-                } else if (goal == Goal.POWER_BUILDING) {
+                } else if (goal.equals("Power building")) {
                     numberOfCompoundExercises = 3;
                     numberOfIsolationExercises = 3;
                 } else {
@@ -257,7 +270,7 @@ public class ProgramGenerator {
             //TODO: Optional isPresent check
 
             Log.d(TAG, "getIsolationExercises() called");
-            Log.d(TAG, "Compound Exercises: " + numberOfIsolationExercises + ".");
+            Log.d(TAG, "Isolation Exercises: " + numberOfIsolationExercises + ".");
 
             for (int index = 0; index < numberOfIsolationExercises; index++) {
                 baseExercise = ExerciseList.getInstance().getAllUpperBodyExercises().stream().filter(BaseExercise -> BaseExercise.getPriority() == 3 && !BaseExercise.getIsCompound() && !BaseExercise.getIsSelected()).findFirst().get();

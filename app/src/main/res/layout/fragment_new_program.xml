@@ -28,7 +28,7 @@
         android:background="@color/onyx"
         android:paddingTop="50dp"
         android:paddingBottom="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewGoal2"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTrainingXp"
         app:layout_constraintTop_toBottomOf="@+id/textViewProgramName" />
 
     <View
@@ -41,7 +41,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textViewGoal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGoal2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTrainingXp" />
 
     <View
         android:id="@+id/divider4"
@@ -74,9 +74,88 @@
         android:text="Program name"
         android:textColor="#fff"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewGoal2"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTrainingXp"
         app:layout_constraintStart_toStartOf="@+id/guideVertLeftProgram"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/trainingXPInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        android:text="user input"
+        android:textColor="#fff"
+        android:textColorHint="@color/onyx_light"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewTrainingXp"
+        app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram2"
+        app:layout_constraintTop_toTopOf="@+id/textViewTrainingXp"
+        app:layout_constraintVertical_bias="0.409" />
+
+    <Spinner
+        android:id="@+id/goalInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="user input"
+        android:textColor="#fff"
+        android:textColorHint="@color/onyx_light"
+        android:textSize="18sp"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewGoal"
+        app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram2"
+        app:layout_constraintTop_toTopOf="@+id/textViewGoal" />
+
+    <Spinner
+        android:id="@+id/programIntensityInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="user input"
+        android:textColor="#fff"
+        android:textColorHint="@color/onyx_light"
+        android:textSize="18sp"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewGoal3"
+        app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram2"
+        app:layout_constraintTop_toTopOf="@+id/textViewGoal3" />
+
+    <Spinner
+        android:id="@+id/programFocusInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="user input"
+        android:textColor="#fff"
+        android:textColorHint="@color/onyx_light"
+        android:textSize="18sp"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewGoal4"
+        app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram2"
+        app:layout_constraintTop_toTopOf="@+id/textViewGoal4" />
+
+    <Spinner
+        android:id="@+id/exercisesPerWeekInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="user input"
+        android:textColor="#fff"
+        android:textColorHint="@color/onyx_light"
+        android:textSize="18sp"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewGoal5"
+        app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram2"
+        app:layout_constraintTop_toTopOf="@+id/textViewGoal5" />
+
+    <Spinner
+        android:id="@+id/programLengthInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="user input"
+        android:textColor="#fff"
+        android:textColorHint="@color/onyx_light"
+        android:textSize="18sp"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewGoal6"
+        app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram2"
+        app:layout_constraintTop_toTopOf="@+id/textViewGoal6" />
 
     <TextView
         android:id="@+id/textViewGoal"
@@ -87,10 +166,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewGoal3"
         app:layout_constraintStart_toStartOf="@+id/guideVertLeftProgram"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGoal2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTrainingXp" />
 
     <TextView
-        android:id="@+id/textViewGoal2"
+        android:id="@+id/textViewTrainingXp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Training experience"
@@ -162,14 +241,14 @@
         android:id="@+id/createAddShared"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textColor="#ffffff"
         android:background="@drawable/create_button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:padding="10dp"
         android:text="Create Program"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideHoriMiddleNewProgram" />
 
@@ -178,5 +257,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideVertLeftProgram2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
+
+    <Button
+        android:id="@+id/programNameButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewProgramName" />
+
+    <EditText
+        android:id="@+id/editProgramName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="MyProgram1"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewProgramName"
+        app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram2"
+        app:layout_constraintTop_toTopOf="@+id/textViewProgramName" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

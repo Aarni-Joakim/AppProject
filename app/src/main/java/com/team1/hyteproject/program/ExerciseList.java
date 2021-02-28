@@ -26,8 +26,11 @@ public class ExerciseList {
         upperBodyExercises.add(new BaseExercise("Deadlift2", 5, 5, true, TargetMuscleGroup.BACK));
         upperBodyExercises.add(new BaseExercise("Deadlift3", 5, 5, true, TargetMuscleGroup.BACK));
         upperBodyExercises.add(new BaseExercise("Bench Press", 3, 3, true, TargetMuscleGroup.CHEST));
+        upperBodyExercises.add(new BaseExercise("Dumbell Chest Fly", 2, 2, false, TargetMuscleGroup.CHEST));
+        upperBodyExercises.add(new BaseExercise("Dumbell Lateral Raise", 1, 1, false, TargetMuscleGroup.DELTS));
         upperBodyExercises.add(new BaseExercise("Barbell Bicep Curl", 1, 2, false, TargetMuscleGroup.BICEPS));
         upperBodyExercises.add(new BaseExercise("Tricep Pushdown", 1, 2, false, TargetMuscleGroup.TRICEPS));
+        upperBodyExercises.add(new BaseExercise("Dumbell Bicep Curl", 1, 2, false, TargetMuscleGroup.BICEPS));
         upperBodyExercises.add(new BaseExercise("Bodyweight Dip", 2, 3, true, TargetMuscleGroup.TRICEPS));
         lowerBodyExercises.add(new BaseExercise("Barbell Squat", 4, 4, true, TargetMuscleGroup.LEGS));
         lowerBodyExercises.add(new BaseExercise("Standing Calf Raise", 2, 2, false, TargetMuscleGroup.CALVES));
