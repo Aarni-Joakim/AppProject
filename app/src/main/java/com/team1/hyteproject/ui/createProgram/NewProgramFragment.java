@@ -1,6 +1,5 @@
 package com.team1.hyteproject.ui.createProgram;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -18,24 +17,19 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.enums.Experience;
 import com.team1.hyteproject.enums.Focus;
 import com.team1.hyteproject.enums.Goal;
-import com.team1.hyteproject.program.BaseExercise;
 import com.team1.hyteproject.program.ExerciseList;
 import com.team1.hyteproject.program.ProgramGenerator;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 import com.team1.hyteproject.ui.profile.UserProfile;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import static android.content.Context.MODE_PRIVATE;
 
 public class NewProgramFragment extends Fragment {
 

@@ -309,7 +309,7 @@ public class ProgramGenerator {
         }
 
         private void setExercisePriorities() {
-        // TODO: Based on goals, focus, split etc
+        // TODO: Based on goals, focus, split etc.
         }
 
         private void getWorkoutDates() {
@@ -318,5 +318,28 @@ public class ProgramGenerator {
 
         private void getWorkoutExercises() {
         // TODO: Put exercises in each daily workout-list
+        }
+
+        private void distributeExercisesToWorkouts () {
+        // TODO: Based on recovery, split and goals
+        }
+
+        private void getCurrentDate () {
+        // TODO:
+        }
+
+        private void compareDatesToRecovery () {
+        // TODO: Find out what muscle groups have recovered based on time elapsed
+            //  Use calendar controller to get time and save it to SharedViewModel
+        }
+
+        public void getUpperBodyExercises () {
+         //TODO:
+        }
+        public void getLowerBodyExercises () {
+        // TODO:
+        }
+        public void getCoreExercises () {
+        // TODO:
         }
     }

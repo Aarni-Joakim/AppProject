@@ -31,7 +31,7 @@ public class ExerciseFragment extends Fragment {
         exerciseViewModel =
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(ExerciseViewModel.class);
         View view = inflater.inflate(R.layout.fragment_exercise, container, false);
-        TextView textView = view.findViewById(R.id.textViewExercise);
+        //TextView textView = view.findViewById(R.id.textViewExercise);
         Log.d(TAG, "onCreateView: start.");
 
         addExercise = view.findViewById(R.id.addExercise);
@@ -74,7 +74,7 @@ public class ExerciseFragment extends Fragment {
         exerciseViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                //textView.setText(s);
             }
         });
         return view;

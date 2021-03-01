@@ -29,8 +29,6 @@ public class SaveLoad  {
         return context.getSharedPreferences(TAG, Context.MODE_PRIVATE);
     }
 
-
-
     public void saveDataList(Context context, ArrayList arrayList, String listName) {
         //this.listToSave = arrayList;
         SharedPreferences sharedPreferences = getSharedPreferences(context);
