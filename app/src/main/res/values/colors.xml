@@ -6,12 +6,17 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="status_bar">#303134</color>
     <color name="onyx">#3B3D3F</color>
+    <color name="onyx_light">#6E7071</color>
     <color name="black_coffee">#342E37</color>
+    <color name="new_bg">#202124</color>
     <color name="inchworm">#B0FE76</color>
-    <color name="light_green">#81E979</color>
+    <color name="light_green">#8BC34A</color>
     <color name="blue_munsell">#3891A6</color>
     <color name="steel_teal">#739691</color>
+    <color name="calendar_green">#2c9c92</color>
+    <color name="calendar_note">#8ab4f8</color>
     <color name="dark_test">#161616</color>
 
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#161616"
+    android:background="@color/new_bg"
 
     tools:context=".ui.workout.WorkoutFragment">
 
@@ -23,7 +23,6 @@
         android:id="@+id/textViewWorkout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/workout"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +37,7 @@
         app:fab_expandDirection="up"
         app:fab_labelStyle="@style/FabLabelStyle"
         app:fab_labelsPosition="left"
+        app:fab_addButtonColorNormal="@color/calendar_green"
         app:layout_constraintBottom_toTopOf="@+id/guideHoriBottomWorkout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideVertLeftWorkout"
@@ -47,15 +47,15 @@
             android:id="@+id/createWorkout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:fab_colorNormal="@color/blue_munsell"
+            app:fab_colorNormal="@color/calendar_green"
             app:fab_icon="@drawable/ic_fab_create_workout"
             app:fab_title="Create Own Workout" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/generateWorkout"
+            android:id="@+id/generateProgram"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:fab_colorNormal="@color/blue_munsell"
+            app:fab_colorNormal="@color/calendar_green"
             app:fab_icon="@drawable/ic_fab_create_custom"
             app:fab_title="Create New Workout" />
 

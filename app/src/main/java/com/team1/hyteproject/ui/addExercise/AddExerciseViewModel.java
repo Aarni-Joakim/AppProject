@@ -1,16 +1,16 @@
-package com.team1.hyteproject.ui.profile;
+package com.team1.hyteproject.ui.addExercise;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ProfileViewModel extends ViewModel {
+public class AddExerciseViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ProfileViewModel() {
+    public AddExerciseViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("User Profile1");
+        mText.setValue("Add new exercise");
     }
 
     public LiveData<String> getText() {

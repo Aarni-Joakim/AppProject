@@ -2,25 +2,21 @@ package com.team1.hyteproject.ui.exercise;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.team1.hyteproject.R;
-
-import java.lang.reflect.Array;
 
 public class ExerciseFragment extends Fragment {
 
@@ -38,33 +34,50 @@ public class ExerciseFragment extends Fragment {
         TextView textView = view.findViewById(R.id.textViewExercise);
         Log.d(TAG, "onCreateView: start.");
 
-            addExercise = view.findViewById(R.id.addExercise);
-            modifyExercise = view.findViewById(R.id.modifyExercise);
-            addExercise.setOnClickListener(new View.OnClickListener() {
+        addExercise = view.findViewById(R.id.addExercise);
+        modifyExercise = view.findViewById(R.id.modifyExercise);
 
+        addExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "addExercise clicked.");
+            }
+        });
 
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "addExercise clicked.");
-                }
-            });
+        modifyExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "modifyExercise clicked.");
 
-            modifyExercise.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "modifyExercise clicked.");
-                }
-            });
+                Log.d(TAG, "generateWorkout clicked. Trying to add calendar event");
 
-            exerciseViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-                @Override
-                public void onChanged(@Nullable String s) {
-                    textView.setText(s);
-                }
+                Intent intent = new Intent(Intent.ACTION_INSERT);
+                intent.setData(CalendarContract.Events.CONTENT_URI);
+                intent.putExtra(CalendarContract.Events.TITLE, TAG);
+                intent.putExtra(CalendarContract.Events.DESCRIPTION, TAG);
+                intent.putExtra(CalendarContract.Events.EVENT_LOCATION, TAG);
+                intent.putExtra(CalendarContract.Events.ALL_DAY, true);
 
+                getActivity().startActivity(intent);
+            }
+        });
 
+        addExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "generateProgram clicked.");
 
-            });
-            return view;
-        }
+                Navigation.findNavController(view).navigate(R.id.action_navigation_exercise_to_navigation_add_exercise);
+            }
+        });
+
+        exerciseViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                textView.setText(s);
+            }
+        });
+        return view;
     }
+
+}

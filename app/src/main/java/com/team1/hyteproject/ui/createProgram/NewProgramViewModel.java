@@ -1,16 +1,16 @@
-package com.team1.hyteproject.ui.profile;
+package com.team1.hyteproject.ui.createProgram;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ProfileViewModel extends ViewModel {
+public class NewProgramViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ProfileViewModel() {
+    public NewProgramViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("User Profile1");
+        mText.setValue("Generate a new program");
     }
 
     public LiveData<String> getText() {

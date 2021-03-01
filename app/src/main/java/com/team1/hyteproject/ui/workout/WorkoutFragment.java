@@ -1,37 +1,31 @@
 package com.team1.hyteproject.ui.workout;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
-
-import java.util.Calendar;
 
 public class WorkoutFragment extends Fragment {
 
     private static final String TAG = "WorkoutFragment";
     private WorkoutViewModel workoutViewModel;
 
-    private FloatingActionButton generateWorkout;
+    private FloatingActionButton generateProgram;
     private FloatingActionButton createWorkout;
-    //private Activity activity;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,36 +35,17 @@ public class WorkoutFragment extends Fragment {
         TextView textView = view.findViewById(R.id.textViewWorkout);
         Log.d(TAG, "onCreateView: start.");
 
-        generateWorkout = view.findViewById(R.id.generateWorkout);
+        generateProgram = view.findViewById(R.id.generateProgram);
         createWorkout = view.findViewById(R.id.createWorkout);
 
-        generateWorkout.setOnClickListener(new View.OnClickListener() {
+        ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
+
+        generateProgram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "generateWorkout clicked. Trying to add calendar event");
+                Log.d(TAG, "generateProgram clicked.");
 
-                Intent intent = new Intent(Intent.ACTION_INSERT);
-                intent.setData(CalendarContract.Events.CONTENT_URI);
-                intent.putExtra(CalendarContract.Events.TITLE, TAG);
-                intent.putExtra(CalendarContract.Events.DESCRIPTION, TAG);
-                intent.putExtra(CalendarContract.Events.EVENT_LOCATION, TAG);
-                intent.putExtra(CalendarContract.Events.ALL_DAY, true);
-
-                getActivity().startActivity(intent);
-                /*
-                if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    getActivity().startActivity(intent);
-                } else {
-                    Log.d(TAG, "No compatible calendar app found");
-                    Toast.makeText(getActivity(), "There is no compatible calendar app!", Toast.LENGTH_SHORT).show();
-                }*/
-            }
-            });
-
-        createWorkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "createWorkout clicked.");
+                Navigation.findNavController(view).navigate(R.id.action_navigation_workout_to_navigation_new_program);
             }
         });
 

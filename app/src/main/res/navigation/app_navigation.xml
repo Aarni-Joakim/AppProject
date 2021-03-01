@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_workout">
+
+    <fragment
+        android:id="@+id/navigation_workout"
+        android:name="com.team1.hyteproject.ui.workout.WorkoutFragment"
+        android:label="@string/title_workout"
+        tools:layout="@layout/fragment_workout" >
+        <action
+            android:id="@+id/action_navigation_workout_to_navigation_exercise"
+            app:destination="@id/navigation_exercise" />
+        <action
+            android:id="@+id/action_navigation_workout_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_navigation_workout_to_navigation_calendar"
+            app:destination="@id/navigation_calendar" />
+        <action
+            android:id="@+id/action_navigation_workout_to_navigation_new_program"
+            app:destination="@id/navigation_new_program" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_exercise"
+        android:name="com.team1.hyteproject.ui.exercise.ExerciseFragment"
+        android:label="@string/title_exercise"
+        tools:layout="@layout/fragment_workout" >
+        <action
+            android:id="@+id/action_navigation_exercise_to_navigation_workout"
+            app:destination="@id/navigation_workout" />
+        <action
+            android:id="@+id/action_navigation_exercise_to_navigation_calendar"
+            app:destination="@id/navigation_calendar" />
+        <action
+            android:id="@+id/action_navigation_exercise_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_navigation_exercise_to_navigation_add_exercise"
+            app:destination="@id/navigation_add_exercise" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_calendar"
+        android:name="com.team1.hyteproject.ui.calendar.CalendarFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_navigation_calendar_to_navigation_exercise"
+            app:destination="@id/navigation_exercise" />
+        <action
+            android:id="@+id/action_navigation_calendar_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_navigation_calendar_to_navigation_workout"
+            app:destination="@id/navigation_workout" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.team1.hyteproject.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_workout"
+            app:destination="@id/navigation_workout" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_exercise"
+            app:destination="@id/navigation_exercise" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_calendar"
+            app:destination="@id/navigation_calendar" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_new_program"
+        android:name="com.team1.hyteproject.ui.createProgram.NewProgramFragment"
+        android:label="@string/title_new_program"
+        tools:layout="@layout/fragment_new_program" />
+
+    <fragment
+        android:id="@+id/navigation_add_exercise"
+        android:name="com.team1.hyteproject.ui.addExercise.AddExerciseFragment"
+        android:label="@string/title_add_exercise"
+        tools:layout="@layout/fragment_add_exercise" >
+        <action
+            android:id="@+id/action_navigation_add_exercise_to_navigation_exercise"
+            app:destination="@id/navigation_exercise" />
+    </fragment>
+</navigation>
