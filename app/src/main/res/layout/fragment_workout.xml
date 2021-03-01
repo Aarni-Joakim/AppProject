@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideHoriMiddleWorkout">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/createWorkout"
+            android:id="@+id/createOwnWorkout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:fab_colorNormal="@color/calendar_green"

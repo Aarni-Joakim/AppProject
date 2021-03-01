@@ -1,12 +1,15 @@
 package com.team1.hyteproject.program;
 
+import android.app.Activity;
 import android.util.Log;
 
+import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.enums.Experience;
 import com.team1.hyteproject.enums.Focus;
 import com.team1.hyteproject.enums.Goal;
 import com.team1.hyteproject.enums.ProgramVolume;
 import com.team1.hyteproject.enums.Split;
+import com.team1.hyteproject.ui.SaveLoad;
 
 import java.util.ArrayList;
 
@@ -41,6 +44,7 @@ public class ProgramGenerator {
 
     private ArrayList<BaseExercise> programExercises;
     private BaseExercise baseExercise;
+    private SaveLoad saveLoad;
 
     //TODO: Correct compound/isolation exercise amounts for each split
 
@@ -77,8 +81,13 @@ public class ProgramGenerator {
         Log.d(TAG, "int mult: " + intensityMultiplier);
         Log.d(TAG, "Training experience:" + experience);
         Log.d(TAG, "Age: " +age);
+
+
     }
 
+    public ArrayList getProgramExercises() {
+        return programExercises;
+    }
 
     private Split getSplit() {
         Log.d(TAG, "getSplit() called.");
@@ -118,6 +127,9 @@ public class ProgramGenerator {
             intensityMultiplier *= 0.8;
         else if (age > 50 && age < 61)
             intensityMultiplier *= 0.7;
+        else if (age > 60){
+            intensityMultiplier *= 0.5;
+        }
 
         if (intensityMultiplier < 0.75)
             programVolume = ProgramVolume.LOW;
