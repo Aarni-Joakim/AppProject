@@ -41,6 +41,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.dagger:hilt-core:2.29-alpha'
+    implementation 'androidx.cardview:cardview:1.0.0'
     annotationProcessor 'com.google.dagger:hilt-compiler:2.29-alpha'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

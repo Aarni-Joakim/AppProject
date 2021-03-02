@@ -1,54 +1,63 @@
 package com.team1.hyteproject.program;
 
-import android.app.Activity;
 import android.util.Log;
 
-import com.team1.hyteproject.HomeActivity;
-import com.team1.hyteproject.enums.Experience;
-import com.team1.hyteproject.enums.Focus;
 import com.team1.hyteproject.enums.Goal;
 import com.team1.hyteproject.enums.ProgramVolume;
 import com.team1.hyteproject.enums.Split;
 import com.team1.hyteproject.ui.SaveLoad;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ProgramGenerator {
 
     private final String TAG = "ProgramGenerator";
 
+    private ArrayList<BaseExercise> programExercises;
+    private BaseExercise baseExercise;
+    private SaveLoad saveLoad;
     // user input fields
-    private String programName;
 
+    private Date programStartDate;              // user input calendar pop up
+    private String programName;
     private String goal;                        // muscle mass, strength, power building, toning
     private String focus;                       // Adds volume/frequency for selected muscle group. Can be null/none.
     private String experience;                  // from enum toString()
-
-    private int age;                            // from user input
     private int desiredIntensity;               // from user input desiredIntensity
     private int lengthInWeeks;                  // from user input
-    private int exercisesPerWeek;               // from user input
+    private int workoutsPerWeek;               // from user input
+    private int exerciseInProgram;              // total amount of exercises in program
+    private boolean evenlySpacedRecovery = true;
+
+    // from profile
+    private int age;                            // from user input
 
     // fields determined based on user input
-    private double intensityMultiplier = 1.0;   // calculated from age, experience and desiredIntensity, used to determine program volume (later also frequency)
     private Split split;                        // determined by exercises per week
     private ProgramVolume programVolume;        // replaced int with enum: LOW(iM < 0.75), LOW-MED(iM < 1), HIGH-MED(iM < 1.25), HIGH(iM > 1.25)
+    private double intensityMultiplier = 1.0;   // calculated from age, experience and desiredIntensity, used to determine program volume (later also frequency)
     private boolean startRampUp = false;        // true if experience = 0
 
     //fields determined based on programSplit and goal
     private int numberOfCompoundExercises;
     private int numberOfIsolationExercises;
+    private int workoutsInProgram = 0;
 
-    private int index;
+    private int daysToAdvance;
     private int exerciseIndex;                  // used to set exercise priorities
+    private int index;
 
-    private ArrayList<BaseExercise> programExercises;
-    private BaseExercise baseExercise;
-    private SaveLoad saveLoad;
+    // calendar and time keeping related variables
+    ArrayList<Date> workoutDates;
+    Date dateCreated;
+    Date workoutDate;
+
 
     //TODO: Correct compound/isolation exercise amounts for each split
 
-    public ProgramGenerator(String programName, String focus, String goal, int age, int desiredIntensity, String experience, int lengthInWeeks, int exercisesPerWeek) {
+    public ProgramGenerator(String programName, String focus, String goal, int age, int desiredIntensity, String experience, int lengthInWeeks, int workoutsPerWeek) {
         this.programName = programName;
         this.focus = focus;
         this.goal = goal;
@@ -58,9 +67,10 @@ public class ProgramGenerator {
         if (experience.equals("Beginner"))
             startRampUp = true;
         this.lengthInWeeks = lengthInWeeks;
-        this.exercisesPerWeek = exercisesPerWeek;
+        this.workoutsPerWeek = workoutsPerWeek;
 
         programExercises = new ArrayList<>();
+        workoutDates = new ArrayList<>();
 
         Log.d(TAG, "Program generation started.");
 
@@ -75,14 +85,17 @@ public class ProgramGenerator {
         getIsolationExercises();
         resetIsSelected();
         Log.d(TAG, "Program name is:" + programName);
-        Log.d(TAG, "Exercises per week: " + exercisesPerWeek);
+        Log.d(TAG, "Exercises per week: " + workoutsPerWeek);
         Log.d(TAG, "Program length in weeks: " + lengthInWeeks);
         Log.d(TAG, "Program intensity is:" + desiredIntensity);
         Log.d(TAG, "int mult: " + intensityMultiplier);
         Log.d(TAG, "Training experience:" + experience);
         Log.d(TAG, "Age: " +age);
 
+        getWorkoutsInProgram();
+        getWorkoutDates();
 
+        Log.d(TAG, "# workouts in program: " +workoutsInProgram);
     }
 
     public ArrayList getProgramExercises() {
@@ -92,9 +105,9 @@ public class ProgramGenerator {
     private Split getSplit() {
         Log.d(TAG, "getSplit() called.");
 
-        if (exercisesPerWeek < 3)
+        if (workoutsPerWeek < 3)
             split = Split.FULL_BODY;
-        else if (exercisesPerWeek < 5)
+        else if (workoutsPerWeek < 5)
             split = Split.UPPER_LOWER;
         else
             split = Split.PPL;
@@ -214,34 +227,6 @@ public class ProgramGenerator {
     }
 
 
-
-    /*private void getProgramExercises() {
-
-
-        Log.d(TAG, "getProgramExercises2() called");
-        Log.d(TAG, "Compound Exercises: " + numberOfCompoundExercises + ". Isolation exercises: " +numberOfIsolationExercises);
-
-
-        baseExercise = ExerciseList.getInstance().getAllUpperBodyExercises().stream().filter(BaseExercise -> BaseExercise.getPriority() == 3 && !BaseExercise.getIsCompound() && !BaseExercise.getIsSelected()).findFirst().get();
-        exerciseIndex = ExerciseList.getInstance().getAllUpperBodyExercises().indexOf(baseExercise);
-        if (baseExercise != null)
-            programExercises.add(baseExercise);
-
-        ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).setIsSelected(true);
-        Log.d(TAG, "Priority of " +ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getName() + " set to: " + ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getPriority());
-        Log.d(TAG, programExercises.get(index).getName());
-
-        baseExercise = ExerciseList.getInstance().getAllUpperBodyExercises().stream().filter(BaseExercise -> BaseExercise.getPriority() == 3 && BaseExercise.getIsCompound() && !BaseExercise.getIsSelected()).findFirst().get();
-        exerciseIndex = ExerciseList.getInstance().getAllUpperBodyExercises().indexOf(baseExercise);
-        if (baseExercise != null)
-            programExercises.add(baseExercise);
-
-        ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).setIsSelected(true);
-        Log.d(TAG, "Priority of " +ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getName() + " set to: " + ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getPriority());
-        Log.d(TAG, programExercises.get(index+1).getName());
-
-    }*/
-
     private void getCompoundExercises() {
 
 
@@ -291,12 +276,60 @@ public class ProgramGenerator {
             }
         }
 
-        private void getCurrentDate () {
-        // TODO:
+        public void getWorkoutsInProgram() {
+        workoutsInProgram = workoutsPerWeek * lengthInWeeks;
+        Log.d(TAG, "Total workouts in program: " + workoutsInProgram);
         }
 
+        // set weeks to 0 if there is no need to advance them
+        public Date getFutureDate(Date currentDate, int weeksToAdvance, int daysToAdvance) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DATE, daysToAdvance);
+            if (weeksToAdvance > 0) {
+                calendar.add(Calendar.WEEK_OF_MONTH, weeksToAdvance);
+            }
+            Date futureDate = calendar.getTime();
+            return futureDate;
+        }
+        // uses getCurrentDate() and days to advance to determine dates for all workouts, needs split info,
         private void getWorkoutDates() {
-        // TODO: Need calendar arrays or get dates directly from calendar?
+
+        Calendar calendar = Calendar.getInstance();
+        dateCreated = calendar.getTime();
+        if (programStartDate == null)
+            workoutDates.add(dateCreated);
+        else
+            workoutDates.add(programStartDate);
+
+        Log.d(TAG, "dateCreated: " +dateCreated);
+
+        int workoutsToCreate = workoutsInProgram;
+
+            while (workoutsToCreate > 1) {
+            Log.d(TAG, "reached while loop");
+
+            for (int weeks = lengthInWeeks; weeks > 0; weeks--) {
+                    Log.d(TAG, "inside weeks loop");
+
+                    for (int workouts = workoutsPerWeek; workouts > 0; workouts--) {
+                        Log.d(TAG, "inside workouts loop");
+                        daysToAdvance = (7 / workoutsPerWeek);
+                        Log.d(TAG, "Days to advance: " + daysToAdvance);
+                        if (workoutsPerWeek == 2) {
+                            calendar.add(Calendar.DATE, daysToAdvance);
+                        }
+                        calendar.add(Calendar.DATE, daysToAdvance + 1);
+                        workoutDate = calendar.getTime();
+                        workoutDates.add(workoutDate);
+                        workoutsInProgram--;
+                        Log.d(TAG, "workoutsInProgram reamining: " +workoutsInProgram);
+                    }
+                }
+                Log.d(TAG, "Finished creating workout dates.");
+                Log.d(TAG, "Date created: " + dateCreated);
+            for (int i = 0; i < workoutDates.size(); i++)
+                Log.d(TAG, "Displaying workout dates: " + workoutDates.get(i));
+            }
         }
 
         private void compareDatesToRecovery () {
@@ -304,20 +337,66 @@ public class ProgramGenerator {
         //  Use calendar controller to get time and save it to SharedViewModel
         }
 
+        // based, on split, goals, focus
         private void getExercisesPerMuscleGroup() {
         // TODO:
         }
 
-        private void setExercisePriorities() {
-        // TODO: Based on goals, focus, split etc.
-        }
+
 
 
         private void getWorkoutExercises() {
-        // TODO: Put exercises in each daily workout-list
+
+        getWorkoutsInProgram();
+
+            while(workoutsInProgram < 0) {
+
+                for (int workouts = workoutsPerWeek; workouts > 0; workouts++) {
+                    distributeWeeklyExercises();
+                }
+
+            }
         }
 
-        private void distributeExercisesToWorkouts () {
+    private void setExercisePriorities() {
+        // TODO: Based on goals, focus.
+        int legsPriority, backPriority, chestPriority, armsPriority, shouldersPriority, corePriority;
+
+        if (goal.equals(Goal.MUSCLE)){
+
+        } else if (goal.equals(Goal.STRENGTH)) {
+
+        } else if (goal.equals(Goal.POWER_BUILDING)) {
+
+        } else {
+
+        }
+    }
+
+        private void distributeWeeklyExercises() {
+
+        int legsRecovery, armsRecovery, chestRecovery, backRecovery, shoulderRecovery;
+
+        if (split.equals(Split.FULL_BODY)) {
+
+            for (int workouts = workoutsPerWeek; workouts > 0; workouts++){
+
+            }
+
+        } else if (split.equals(Split.UPPER_LOWER)) {
+
+            for (int workouts = workoutsPerWeek; workouts > 0; workouts++){
+
+            }
+
+        } else {
+
+            for (int workouts = workoutsPerWeek; workouts > 0; workouts++){
+
+            }
+
+        }
+
         // TODO: Based on recovery, split and goals
         }
 
@@ -330,19 +409,34 @@ public class ProgramGenerator {
         public void getCoreExercises () {
         // TODO:
         }
-
-         /*private void getProgramExercises2() {
-
-
-            Log.d(TAG, "determineProgramExercises() called");
-
-            for (index = 0; index < ExerciseList.getInstance().getAllUpperBodyExercises().size(); index++)
-                Log.d(TAG, ExerciseList.getInstance().getUpperBodyExercise(index).getName());
-                baseExercise = ExerciseList.getInstance().stream();
-
-            programExercises.set(index, baseExercise);
-            //programExercises.add(ExerciseList.getInstance().getAllUpperBodyExercises().get(index));
-            Log.d(TAG, programExercises.get(index).getName());
-
-        }*/
     }
+
+
+
+
+    /*private void getProgramExercises() {
+
+
+        Log.d(TAG, "getProgramExercises2() called");
+        Log.d(TAG, "Compound Exercises: " + numberOfCompoundExercises + ". Isolation exercises: " +numberOfIsolationExercises);
+
+
+        baseExercise = ExerciseList.getInstance().getAllUpperBodyExercises().stream().filter(BaseExercise -> BaseExercise.getPriority() == 3 && !BaseExercise.getIsCompound() && !BaseExercise.getIsSelected()).findFirst().get();
+        exerciseIndex = ExerciseList.getInstance().getAllUpperBodyExercises().indexOf(baseExercise);
+        if (baseExercise != null)
+            programExercises.add(baseExercise);
+
+        ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).setIsSelected(true);
+        Log.d(TAG, "Priority of " +ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getName() + " set to: " + ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getPriority());
+        Log.d(TAG, programExercises.get(index).getName());
+
+        baseExercise = ExerciseList.getInstance().getAllUpperBodyExercises().stream().filter(BaseExercise -> BaseExercise.getPriority() == 3 && BaseExercise.getIsCompound() && !BaseExercise.getIsSelected()).findFirst().get();
+        exerciseIndex = ExerciseList.getInstance().getAllUpperBodyExercises().indexOf(baseExercise);
+        if (baseExercise != null)
+            programExercises.add(baseExercise);
+
+        ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).setIsSelected(true);
+        Log.d(TAG, "Priority of " +ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getName() + " set to: " + ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getPriority());
+        Log.d(TAG, programExercises.get(index+1).getName());
+
+    }*/
