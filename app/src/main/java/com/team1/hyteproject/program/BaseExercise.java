@@ -14,9 +14,10 @@ public class BaseExercise {
     private int reps;
     private int sets;
     private int priority = 3;
-    private boolean preference = false;
+    private int preference = 0;
     private boolean isCompound;
     private boolean isSelected = false;
+    private boolean hasRecovered = true;
 
     private String[] tags;              // tags could be used to assists program generator in exercise selection
 
@@ -33,7 +34,7 @@ public class BaseExercise {
 
     public void setReps (int reps) { this.reps = reps; }
 
-    public void setPreference (boolean preference) { this.preference = preference; }
+    public void setPreference (int preference) { this.preference = preference; }
 
     public void setPriority (int priority) { this.priority = priority; }
 
@@ -42,6 +43,10 @@ public class BaseExercise {
     public void setRecoveryDays (int recoveryDays) { this.recoveryDays = recoveryDays; }
 
     public void setIsSelected(boolean isSelected) { this.isSelected = isSelected; }
+
+    public void setHasRecovered(boolean hasRecovered) {
+        this.hasRecovered = hasRecovered;
+    }
 
     public void addTag(String tag) {
         if (tags == null)
@@ -74,5 +79,7 @@ public class BaseExercise {
     public boolean getIsSelected(){
         return isSelected;
     }
+
+    public boolean getHasRecovered() { return hasRecovered; }
 }
 

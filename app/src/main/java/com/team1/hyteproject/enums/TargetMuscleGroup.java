@@ -13,7 +13,7 @@ public enum TargetMuscleGroup{
     LEGS("Legs"),
     LOWER_BACK("Lower back"),
     UPPER_BACK("Upper back"),
-    TRICEPS("TRICEPS"),
+    TRICEPS("Triceps"),
     QUADS("Quads");
 
     private String realName;
