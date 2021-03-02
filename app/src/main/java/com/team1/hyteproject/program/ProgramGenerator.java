@@ -213,24 +213,7 @@ public class ProgramGenerator {
         }
     }
 
-    private void getExercisesPerMuscleGroup() {
-        // TODO:
-    }
 
-        /*private void getProgramExercises2() {
-
-
-            Log.d(TAG, "determineProgramExercises() called");
-
-            for (index = 0; index < ExerciseList.getInstance().getAllUpperBodyExercises().size(); index++)
-                Log.d(TAG, ExerciseList.getInstance().getUpperBodyExercise(index).getName());
-                baseExercise = ExerciseList.getInstance().stream();
-
-            programExercises.set(index, baseExercise);
-            //programExercises.add(ExerciseList.getInstance().getAllUpperBodyExercises().get(index));
-            Log.d(TAG, programExercises.get(index).getName());
-
-        }*/
 
     /*private void getProgramExercises() {
 
@@ -308,13 +291,27 @@ public class ProgramGenerator {
             }
         }
 
-        private void setExercisePriorities() {
-        // TODO: Based on goals, focus, split etc.
+        private void getCurrentDate () {
+        // TODO:
         }
 
         private void getWorkoutDates() {
         // TODO: Need calendar arrays or get dates directly from calendar?
         }
+
+        private void compareDatesToRecovery () {
+        // TODO: Find out what muscle groups have recovered based on time elapsed
+        //  Use calendar controller to get time and save it to SharedViewModel
+        }
+
+        private void getExercisesPerMuscleGroup() {
+        // TODO:
+        }
+
+        private void setExercisePriorities() {
+        // TODO: Based on goals, focus, split etc.
+        }
+
 
         private void getWorkoutExercises() {
         // TODO: Put exercises in each daily workout-list
@@ -322,15 +319,6 @@ public class ProgramGenerator {
 
         private void distributeExercisesToWorkouts () {
         // TODO: Based on recovery, split and goals
-        }
-
-        private void getCurrentDate () {
-        // TODO:
-        }
-
-        private void compareDatesToRecovery () {
-        // TODO: Find out what muscle groups have recovered based on time elapsed
-            //  Use calendar controller to get time and save it to SharedViewModel
         }
 
         public void getUpperBodyExercises () {
@@ -342,4 +330,19 @@ public class ProgramGenerator {
         public void getCoreExercises () {
         // TODO:
         }
+
+         /*private void getProgramExercises2() {
+
+
+            Log.d(TAG, "determineProgramExercises() called");
+
+            for (index = 0; index < ExerciseList.getInstance().getAllUpperBodyExercises().size(); index++)
+                Log.d(TAG, ExerciseList.getInstance().getUpperBodyExercise(index).getName());
+                baseExercise = ExerciseList.getInstance().stream();
+
+            programExercises.set(index, baseExercise);
+            //programExercises.add(ExerciseList.getInstance().getAllUpperBodyExercises().get(index));
+            Log.d(TAG, programExercises.get(index).getName());
+
+        }*/
     }

@@ -1,7 +1,6 @@
 package com.team1.hyteproject.ui.profile;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,17 +18,17 @@ import com.team1.hyteproject.R;
 public class ProfileFragment extends Fragment {
 
     private static final String TAG = "ProfileFragment";
-    private ProfileViewModel profileViewModel;
+    private SharedViewModel sharedViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        profileViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(ProfileViewModel.class);
+        sharedViewModel =
+                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         final TextView textView = view.findViewById(R.id.text_notifications);
         Log.d(TAG, "onCreateView: start.");
 
-        profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        sharedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

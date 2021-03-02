@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ProfileViewModel extends ViewModel {
+public class SharedViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ProfileViewModel() {
+    public SharedViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("User Profile1");
     }
