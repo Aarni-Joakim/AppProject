@@ -9,34 +9,41 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
+import com.team1.hyteproject.program.BaseExercise;
+import com.team1.hyteproject.ui.SaveLoad;
+import com.team1.hyteproject.ui.SharedViewModel;
+
+import java.util.ArrayList;
 
 public class WorkoutFragment extends Fragment {
 
     private static final String TAG = "WorkoutFragment";
-    private WorkoutViewModel workoutViewModel;
+    private static final String TEST = "Test";
+
+    private SharedViewModel sharedViewModel;
 
     private FloatingActionButton generateProgram;
-    private FloatingActionButton createWorkout;
+    private FloatingActionButton createOwnWorkout;
+
+    private ArrayList<BaseExercise> programExercises;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        workoutViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(WorkoutViewModel.class);
+        sharedViewModel =
+                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
         View view = inflater.inflate(R.layout.fragment_workout, container, false);
-        TextView textView = view.findViewById(R.id.textViewWorkout);
+        //TextView textView = view.findViewById(R.id.textViewWorkout);
         Log.d(TAG, "onCreateView: start.");
 
         generateProgram = view.findViewById(R.id.generateProgram);
-        createWorkout = view.findViewById(R.id.createWorkout);
+        createOwnWorkout = view.findViewById(R.id.createOwnWorkout);
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
 
@@ -49,38 +56,30 @@ public class WorkoutFragment extends Fragment {
             }
         });
 
-                workoutViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        createOwnWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "createOwnWorkout clicked.");
+                Log.d(TAG, "Trying to load programExercisesList.");
+
+                programExercises = new ArrayList();
+                Log.d(TAG, "Program exercises index 0: " +programExercises.size());
+                programExercises = SaveLoad.getInstance().loadDataList(getActivity(), TEST);
+                Log.d(TAG, "Program exercises index 0: " +programExercises.isEmpty());
+
+                ArrayList testList = new ArrayList();
+                testList = SaveLoad.getInstance().loadDataList(getActivity(), TEST);
+                Log.d(TAG, "testList is empty:"+testList.isEmpty());
+            }
+        });
+
+                /*SharedViewModel.class.getName().observe(getViewLifecycleOwner(), new Observer<String>() {
                     @Override
                     public void onChanged(@Nullable String s) {
                         textView.setText(s);
                     }
-                });
+                });*/
         return view;
     }
-
 }
 
-    /*Calendar cal = Calendar.getInstance();
-    long endTime;
-    long startTime;
-
-
-                                    cal.set(Calendar.HOUR_OF_DAY, hour);
-                                            cal.set(Calendar.MINUTE,min);
-                                            cal.set(Calendar.YEAR, year);
-                                            cal.set(Calendar.MONTH, month- 1);
-                                            cal.set(Calendar.DAY_OF_MONTH,day );
-
-
-                                            startTime = cal.getTimeInMillis();
-                                            endTime = startTime + 30 * 60 * 1000;
-                                            String title="TAG" + student.getName();
-
-                                            long event_id = (startTime+endTime)/10000;
-
-                                            Intent intent = new Intent(Intent.ACTION_EDIT);
-                                            intent.setType("vnd.android.cursor.item/event");
-                                            intent.putExtra("beginTime", startTime);
-                                            intent.putExtra("rrule", "FREQ=YEARLY");
-                                            intent.putExtra("endTime", endTime);
-                                            intent.putExtra("title", title);*/

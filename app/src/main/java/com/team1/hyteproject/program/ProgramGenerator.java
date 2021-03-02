@@ -1,12 +1,15 @@
 package com.team1.hyteproject.program;
 
+import android.app.Activity;
 import android.util.Log;
 
+import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.enums.Experience;
 import com.team1.hyteproject.enums.Focus;
 import com.team1.hyteproject.enums.Goal;
 import com.team1.hyteproject.enums.ProgramVolume;
 import com.team1.hyteproject.enums.Split;
+import com.team1.hyteproject.ui.SaveLoad;
 
 import java.util.ArrayList;
 
@@ -41,6 +44,7 @@ public class ProgramGenerator {
 
     private ArrayList<BaseExercise> programExercises;
     private BaseExercise baseExercise;
+    private SaveLoad saveLoad;
 
     //TODO: Correct compound/isolation exercise amounts for each split
 
@@ -77,8 +81,13 @@ public class ProgramGenerator {
         Log.d(TAG, "int mult: " + intensityMultiplier);
         Log.d(TAG, "Training experience:" + experience);
         Log.d(TAG, "Age: " +age);
+
+
     }
 
+    public ArrayList getProgramExercises() {
+        return programExercises;
+    }
 
     private Split getSplit() {
         Log.d(TAG, "getSplit() called.");
@@ -118,6 +127,9 @@ public class ProgramGenerator {
             intensityMultiplier *= 0.8;
         else if (age > 50 && age < 61)
             intensityMultiplier *= 0.7;
+        else if (age > 60){
+            intensityMultiplier *= 0.5;
+        }
 
         if (intensityMultiplier < 0.75)
             programVolume = ProgramVolume.LOW;
@@ -201,24 +213,7 @@ public class ProgramGenerator {
         }
     }
 
-    private void getExercisesPerMuscleGroup() {
-        // TODO:
-    }
 
-        /*private void getProgramExercises2() {
-
-
-            Log.d(TAG, "determineProgramExercises() called");
-
-            for (index = 0; index < ExerciseList.getInstance().getAllUpperBodyExercises().size(); index++)
-                Log.d(TAG, ExerciseList.getInstance().getUpperBodyExercise(index).getName());
-                baseExercise = ExerciseList.getInstance().stream();
-
-            programExercises.set(index, baseExercise);
-            //programExercises.add(ExerciseList.getInstance().getAllUpperBodyExercises().get(index));
-            Log.d(TAG, programExercises.get(index).getName());
-
-        }*/
 
     /*private void getProgramExercises() {
 
@@ -296,15 +291,58 @@ public class ProgramGenerator {
             }
         }
 
-        private void setExercisePriorities() {
-        // TODO: Based on goals, focus, split etc
+        private void getCurrentDate () {
+        // TODO:
         }
 
         private void getWorkoutDates() {
         // TODO: Need calendar arrays or get dates directly from calendar?
         }
 
+        private void compareDatesToRecovery () {
+        // TODO: Find out what muscle groups have recovered based on time elapsed
+        //  Use calendar controller to get time and save it to SharedViewModel
+        }
+
+        private void getExercisesPerMuscleGroup() {
+        // TODO:
+        }
+
+        private void setExercisePriorities() {
+        // TODO: Based on goals, focus, split etc.
+        }
+
+
         private void getWorkoutExercises() {
         // TODO: Put exercises in each daily workout-list
         }
+
+        private void distributeExercisesToWorkouts () {
+        // TODO: Based on recovery, split and goals
+        }
+
+        public void getUpperBodyExercises () {
+         //TODO:
+        }
+        public void getLowerBodyExercises () {
+        // TODO:
+        }
+        public void getCoreExercises () {
+        // TODO:
+        }
+
+         /*private void getProgramExercises2() {
+
+
+            Log.d(TAG, "determineProgramExercises() called");
+
+            for (index = 0; index < ExerciseList.getInstance().getAllUpperBodyExercises().size(); index++)
+                Log.d(TAG, ExerciseList.getInstance().getUpperBodyExercise(index).getName());
+                baseExercise = ExerciseList.getInstance().stream();
+
+            programExercises.set(index, baseExercise);
+            //programExercises.add(ExerciseList.getInstance().getAllUpperBodyExercises().get(index));
+            Log.d(TAG, programExercises.get(index).getName());
+
+        }*/
     }

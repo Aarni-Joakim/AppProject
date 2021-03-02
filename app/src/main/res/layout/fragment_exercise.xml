@@ -7,91 +7,52 @@
     android:background="@color/new_bg"
     tools:context=".ui.exercise.ExerciseFragment">
 
+
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/floatingActionsMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:fab_addButtonColorNormal="@color/calendar_green"
         app:fab_expandDirection="up"
         app:fab_labelStyle="@style/FabLabelStyle"
         app:fab_labelsPosition="left"
-        app:fab_addButtonColorNormal="@color/calendar_green"
         app:layout_constraintBottom_toTopOf="@+id/guideHoriBottomExercise"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideVertLeftExercise"
-        app:layout_constraintTop_toTopOf="@+id/guideHoriMiddleExercise">
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/modifyExercise"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:fab_icon="@drawable/ic_fab_create_workout"
             app:fab_colorNormal="@color/calendar_green"
-            app:fab_title="Modify Exercise" />
+            app:fab_icon="@drawable/ic_fab_create_workout"
+            app:fab_title="Create Own Workout" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/addExercise"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:fab_icon="@drawable/ic_exercise"
             app:fab_colorNormal="@color/calendar_green"
-            app:fab_title="Add New Exercise" />
+            app:fab_icon="@drawable/ic_exercise"
+            app:fab_title="Create New Workout" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="127dp"
-        android:layout_height="132dp"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="@string/workoutImageContent"
-        app:layout_constraintBottom_toTopOf="@+id/textViewExercise"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.367"
-        app:srcCompat="@drawable/ic_list" />
-
-    <TextView
-        android:id="@+id/textViewExercise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideHoriMiddleExercise"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideHoriMiddleExercise"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideHoriBottomExercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.97" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideVertLeftExercise"
+        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.35" />
+        app:layout_constraintGuide_percent="0.92" />
 
-    <ListView
-        android:id="@+id/listViewExercises"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
