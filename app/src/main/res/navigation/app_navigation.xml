@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_workout"
-        android:name="com.team1.hyteproject.ui.workout.WorkoutFragment"
+        android:name="com.team1.hyteproject.ui.program.WorkoutFragment"
         android:label="@string/title_workout"
         tools:layout="@layout/fragment_workout" >
         <action
@@ -22,6 +22,19 @@
         <action
             android:id="@+id/action_navigation_workout_to_navigation_new_program"
             app:destination="@id/navigation_new_program" />
+        <action
+            android:id="@+id/action_navigation_workout_to_navigation_workout_list"
+            app:destination="@id/navigation_workout_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_workout_list"
+        android:name="com.team1.hyteproject.ui.program.workoutList.WorkoutListFragment"
+        android:label="@string/title_workout"
+        tools:layout="@layout/fragment_workout_list" >
+        <action
+            android:id="@+id/action_navigation_workout_list_to_navigation_workout"
+            app:destination="@id/navigation_workout" />
     </fragment>
 
     <fragment

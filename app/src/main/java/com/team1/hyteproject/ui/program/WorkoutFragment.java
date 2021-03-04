@@ -1,4 +1,4 @@
-package com.team1.hyteproject.ui.workout;
+package com.team1.hyteproject.ui.program;
 
 import android.os.Bundle;
 
@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -46,6 +45,9 @@ public class WorkoutFragment extends Fragment {
         createOwnWorkout = view.findViewById(R.id.createOwnWorkout);
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
+
+        sharedViewModel.setAge(13);
+        Log.d(TAG, "ikä: " + sharedViewModel.getAge());
 
         generateProgram.setOnClickListener(new View.OnClickListener() {
             @Override

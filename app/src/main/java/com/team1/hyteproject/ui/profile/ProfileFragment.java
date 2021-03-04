@@ -1,8 +1,6 @@
 package com.team1.hyteproject.ui.profile;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -21,10 +19,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.team1.hyteproject.R;
-
-import java.io.IOException;
+import com.team1.hyteproject.ui.SharedViewModel;
 
 import static android.app.Activity.RESULT_OK;
+import static com.google.gson.reflect.TypeToken.get;
 
 public class ProfileFragment extends Fragment {
 
@@ -39,12 +37,16 @@ public class ProfileFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         sharedViewModel =
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_workout, container, false);
+        /*sharedViewModel.getSelected().observe(getViewLifecycleOwner(), item -> {
+            // Update the UI.
+        });*/
         final TextView textView = view.findViewById(R.id.text_notifications);
         profileImage = view.findViewById(R.id.Profile_Image);
         cardView = view.findViewById(R.id.CardView);
 
         Log.d(TAG, "onCreateView: start.");
+        Log.d(TAG, "getting age:" + sharedViewModel);
 
         sharedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override

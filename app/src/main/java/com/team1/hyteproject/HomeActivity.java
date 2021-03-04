@@ -1,20 +1,12 @@
 package com.team1.hyteproject;
 
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.team1.hyteproject.program.BaseExercise;
-import com.team1.hyteproject.program.ExerciseList;
-import com.team1.hyteproject.program.ProgramGenerator;
-import com.team1.hyteproject.ui.SaveLoad;
-import com.team1.hyteproject.ui.workout.WorkoutViewModel;
+import com.team1.hyteproject.ui.SharedViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,8 +17,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
@@ -42,10 +32,11 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
-        //ViewModel HomeViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
+        ViewModel sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_workout, R.id.navigation_exercise, R.id.navigation_calendar, R.id.navigation_profile, R.id.navigation_new_program, R.id.navigation_add_exercise)
+                R.id.navigation_workout, R.id.navigation_exercise, R.id.navigation_calendar, R.id.navigation_profile,
+                R.id.navigation_new_program, R.id.navigation_add_exercise, R.id.navigation_workout_list)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
