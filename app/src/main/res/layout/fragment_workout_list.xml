@@ -21,40 +21,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0" >
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/floatingActionsMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:fab_addButtonColorNormal="@color/calendar_green"
-        app:fab_expandDirection="up"
-        app:fab_labelStyle="@style/FabLabelStyle"
-        app:fab_labelsPosition="left"
-        app:layout_constraintBottom_toTopOf="@+id/guideHoriBottomWorkout"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/createOwnWorkout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:fab_colorNormal="@color/calendar_green"
-            app:fab_icon="@drawable/ic_fab_create_workout"
-            app:fab_title="Create Own Workout" />
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/generateProgram"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:fab_colorNormal="@color/calendar_green"
-            app:fab_icon="@drawable/ic_fab_create_custom"
-            app:fab_title="Create New Workout" />
-
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    </ListView>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideHoriBottomWorkout"

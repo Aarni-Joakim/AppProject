@@ -2,6 +2,8 @@ package com.team1.hyteproject.program;
 
 import com.team1.hyteproject.enums.TargetMuscleGroup;
 
+import java.util.ArrayList;
+
 public class BaseExercise {
 
     private TargetMuscleGroup targetMuscleGroup;
@@ -10,6 +12,7 @@ public class BaseExercise {
     private String tag;
     private double weight;
     private int recoveryDays;
+    private int recoveryProgress;
     private int exerciseIntensity;
     private int reps;
     private int sets;
@@ -17,8 +20,9 @@ public class BaseExercise {
     private int preference = 0;
     private boolean isCompound;
     private boolean isSelected = false;
-    private boolean hasRecovered = true;
+    private boolean isRecovered = true;
 
+    private ArrayList<Integer> recoveryStatistics;
     private String[] tags;              // tags could be used to assists program generator in exercise selection
 
     public BaseExercise() {}
@@ -42,10 +46,19 @@ public class BaseExercise {
 
     public void setRecoveryDays (int recoveryDays) { this.recoveryDays = recoveryDays; }
 
+    public void setRecoveryProgress (int recoveryProgress) { this.recoveryProgress = recoveryProgress; }
+
     public void setIsSelected(boolean isSelected) { this.isSelected = isSelected; }
 
-    public void setHasRecovered(boolean hasRecovered) {
-        this.hasRecovered = hasRecovered;
+    public void setRecovered(boolean recovered) {
+        this.isRecovered = recovered;
+    }
+
+    public void setRecoveryStatistics(int recoveryProgress) {
+        if(recoveryStatistics == null) {
+            this.recoveryStatistics = new ArrayList<>();
+        }
+        recoveryStatistics.add(recoveryProgress);
     }
 
     public void addTag(String tag) {
@@ -64,22 +77,18 @@ public class BaseExercise {
         return priority;
     }
 
-    public TargetMuscleGroup getTargetMuscleGroup() {
-        return targetMuscleGroup;
-    }
+    public TargetMuscleGroup getTargetMuscleGroup() { return targetMuscleGroup; }
 
-    public int getExerciseIntensity() {
-        return exerciseIntensity;
-    }
+    public int getExerciseIntensity() { return exerciseIntensity; }
 
-    public boolean getIsCompound() {
-        return isCompound;
-    }
+    public boolean getIsCompound() { return isCompound; }
 
-    public boolean getIsSelected(){
-        return isSelected;
-    }
+    public boolean getIsSelected(){ return isSelected; }
 
-    public boolean getHasRecovered() { return hasRecovered; }
+    public boolean getRecovered() { return isRecovered; }
+
+    public int getRecoveryProgress() { return this.recoveryProgress; }
+
+    public ArrayList getRecoveryStatistics () { return recoveryStatistics; }
 }
 

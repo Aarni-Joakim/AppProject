@@ -125,7 +125,7 @@ public class NewProgramFragment extends Fragment {
                 ArrayList testList = new ArrayList();
                 testList = SaveLoad.getInstance().loadDataList(getActivity(), TEST);
                 Log.d(TAG, "testList is empty:"+testList.isEmpty());
-
+                Log.d(TAG, "age: " + SharedViewModel.getAge());
             }
         });
 

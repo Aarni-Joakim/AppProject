@@ -1,16 +1,16 @@
-package com.team1.hyteproject.ui.profile;
+package com.team1.hyteproject.ui.program;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SharedViewModel extends ViewModel {
+public class WorkoutViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SharedViewModel() {
+    public WorkoutViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("User Profile1");
+        mText.setValue("Generated workouts will be listed here.");
     }
 
     public LiveData<String> getText() {
