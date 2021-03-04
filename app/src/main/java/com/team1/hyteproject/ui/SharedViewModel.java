@@ -15,7 +15,7 @@ public class SharedViewModel extends ViewModel {
     private Date date;
     private String dateAsString;
     // user profile data
-    private int age;
+    private int age = 20;
     private String userName;
     private String userEmail;
 

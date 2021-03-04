@@ -1,5 +1,7 @@
 package com.team1.hyteproject.enums;
 
+import com.team1.hyteproject.program.BaseExercise;
+
 public enum TargetMuscleGroup{
     ABS("Abs"),
     BACK("Back"),
@@ -9,10 +11,10 @@ public enum TargetMuscleGroup{
     CORE("Core"),
     DELTS("Delts"),
     GLUTES("Glutes"),
-    HAMS("Hamstrings"),
+    HAMSTRINGS("Hamstrings"),
     LEGS("Legs"),
-    LOWER_BACK("Lower back"),
-    UPPER_BACK("Upper back"),
+    LOWER_BACK("Lower_back"),
+    UPPER_BACK("Upper_back"),
     TRICEPS("Triceps"),
     QUADS("Quads");
 
@@ -24,6 +26,34 @@ public enum TargetMuscleGroup{
 
     @Override public String toString(){
         return realName;
+    }
+
+    public String getExerciseGroup (TargetMuscleGroup targetMuscleGroup) {
+        String exerciseGroup;
+
+        if (targetMuscleGroup.equals(BACK) || targetMuscleGroup.equals(BICEPS) || targetMuscleGroup.equals(CHEST)
+                ||targetMuscleGroup.equals(DELTS) ||targetMuscleGroup.equals(LOWER_BACK) ||targetMuscleGroup.equals(UPPER_BACK) ||targetMuscleGroup.equals(TRICEPS)) {
+            exerciseGroup = "Upper Body";
+            return exerciseGroup;
+        } else if (targetMuscleGroup.equals(LEGS) || targetMuscleGroup.equals(GLUTES) || targetMuscleGroup.equals(HAMSTRINGS) || targetMuscleGroup.equals(CALVES) || targetMuscleGroup.equals(QUADS)) {
+            exerciseGroup = "Lower Body";
+            return exerciseGroup;
+        } else if (targetMuscleGroup.equals(CORE) || targetMuscleGroup.equals(CORE)) {
+            exerciseGroup = "Core";
+            return exerciseGroup;
+        } else {
+            exerciseGroup = "Exercise group not found!";
+            return exerciseGroup;
+        }
+    }
+    public TargetMuscleGroup stringToValue(String targetMuscleGroupToConvert) {
+        TargetMuscleGroup targetMuscleGroup = TargetMuscleGroup.valueOf(targetMuscleGroupToConvert);
+       return targetMuscleGroup;
+    }
+
+    public TargetMuscleGroup getExerciseGroupFromObject (BaseExercise baseExercise) {
+        TargetMuscleGroup targetMuscleGroup = baseExercise.getTargetMuscleGroup();
+        return targetMuscleGroup;
     }
 }
 

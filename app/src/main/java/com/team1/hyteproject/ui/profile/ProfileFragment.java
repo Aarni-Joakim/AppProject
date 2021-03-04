@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -37,31 +38,31 @@ public class ProfileFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         sharedViewModel =
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
-        View view = inflater.inflate(R.layout.fragment_workout, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
         /*sharedViewModel.getSelected().observe(getViewLifecycleOwner(), item -> {
             // Update the UI.
         });*/
         final TextView textView = view.findViewById(R.id.text_notifications);
-        profileImage = view.findViewById(R.id.Profile_Image);
-        cardView = view.findViewById(R.id.CardView);
+        profileImage = view.findViewById(R.id.profile_image);
+        cardView = view.findViewById(R.id.cardView);
 
         Log.d(TAG, "onCreateView: start.");
-        Log.d(TAG, "getting age:" + sharedViewModel);
 
-        sharedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        /*sharedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
-        });
+        });*/
 
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.d(TAG, "addExercise clicked.");
                 openGallery();
             }
         });
+
         return view;
     }
 

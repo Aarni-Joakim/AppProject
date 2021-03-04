@@ -16,7 +16,7 @@ public class BaseExercise {
     private int exerciseIntensity;
     private int reps;
     private int sets;
-    private int priority = 3;
+    private int priority;
     private int preference = 0;
     private boolean isCompound;
     private boolean isSelected = false;
@@ -27,11 +27,13 @@ public class BaseExercise {
 
     public BaseExercise() {}
 
-    public BaseExercise(String name, int recoveryDays, int exerciseIntensity, boolean isCompound, TargetMuscleGroup targetMuscleGroup) {
+    public BaseExercise(String name, int recoveryDays, int exerciseIntensity, int Priority,  boolean isCompound, TargetMuscleGroup targetMuscleGroup) {
         this.name = name;
         this.recoveryDays = recoveryDays;
         this.exerciseIntensity = exerciseIntensity;
+        this.priority = Priority;
         this.isCompound = isCompound;
+        this.targetMuscleGroup = targetMuscleGroup;
     }
 
     public void setSets (int sets) { this.sets = sets; }
@@ -88,6 +90,8 @@ public class BaseExercise {
     public boolean getRecovered() { return isRecovered; }
 
     public int getRecoveryProgress() { return this.recoveryProgress; }
+
+    public int getRecoveryDays() {return this.recoveryDays; }
 
     public ArrayList getRecoveryStatistics () { return recoveryStatistics; }
 }
