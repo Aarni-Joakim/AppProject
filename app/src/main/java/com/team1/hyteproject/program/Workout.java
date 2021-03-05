@@ -27,7 +27,7 @@ public class Workout {
 
     public BaseExercise getExercise(int index) { return workoutExercises.get(index); }
 
-    public void addExercise() { workoutExercises.add(new BaseExercise()); } // input parameters
+    public void addExercise(BaseExercise baseExercise) { workoutExercises.add(baseExercise); } // input parameters
 
     public void removeExercise(int index) { workoutExercises.remove(index); }
 

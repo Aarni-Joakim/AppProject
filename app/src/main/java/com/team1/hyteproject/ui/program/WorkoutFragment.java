@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,6 +18,7 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.program.BaseExercise;
+import com.team1.hyteproject.program.ExerciseList;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 
@@ -30,6 +33,7 @@ public class WorkoutFragment extends Fragment {
 
     private FloatingActionButton generateProgram;
     private FloatingActionButton createOwnWorkout;
+    private ListView listView;
 
     private ArrayList<BaseExercise> programExercises;
 
@@ -46,8 +50,9 @@ public class WorkoutFragment extends Fragment {
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
 
-        sharedViewModel.setAge(13);
-        Log.d(TAG, "ikä: " + sharedViewModel.getAge());
+        //sharedViewModel.setAge(13);
+        //Log.d(TAG, "ikä: " + sharedViewModel.getAge());
+
 
         generateProgram.setOnClickListener(new View.OnClickListener() {
             @Override

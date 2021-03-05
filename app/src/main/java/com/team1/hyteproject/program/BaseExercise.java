@@ -94,5 +94,10 @@ public class BaseExercise {
     public int getRecoveryDays() {return this.recoveryDays; }
 
     public ArrayList getRecoveryStatistics () { return recoveryStatistics; }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
 
