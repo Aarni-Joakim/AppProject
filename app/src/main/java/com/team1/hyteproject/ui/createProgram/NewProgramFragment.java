@@ -38,8 +38,8 @@ public class NewProgramFragment extends Fragment {
 
     private SharedViewModel SharedViewModel;
 
-    private Button createProgram;
     private EditText editProgramName;
+    private Button createProgram;
     private String programName;
     private ArrayList<String> programLength = new ArrayList<>();
     private ArrayList<Integer> programIntensity = new ArrayList<>();
@@ -66,6 +66,7 @@ public class NewProgramFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_new_program, container, false);
         Log.d(TAG, "onCreateView: start.");
 
+        editProgramName = view.findViewById(R.id.editProgramName);
         createProgram = view.findViewById(R.id.createAddShared);
         editProgramName = view.findViewById(R.id.editProgramName);
         editProgramName.setGravity(Gravity.END);
@@ -82,7 +83,6 @@ public class NewProgramFragment extends Fragment {
             programLength.add(String.valueOf(i) + " weeks");
         }
 
-
         trainingXpSpinner = view.findViewById(R.id.trainingXPInput);
         goalSpinner = view.findViewById(R.id.goalInput);
         intensitySpinner = view.findViewById(R.id.programIntensityInput);
@@ -90,14 +90,12 @@ public class NewProgramFragment extends Fragment {
         exercisesWeekSpinner = view.findViewById(R.id.exercisesPerWeekInput);
         lengthSpinner = view.findViewById(R.id.programLengthInput);
 
-        trainingXpSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, Experience.values()));
-        goalSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, Goal.values()));
-        intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, programIntensity));
-        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, Focus.values()));
-        exercisesWeekSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, exercisesPerWeek));
-        lengthSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, programLength));
-
-
+        trainingXpSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Experience.values()));
+        goalSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Goal.values()));
+        intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, programIntensity));
+        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Focus.values()));
+        exercisesWeekSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, exercisesPerWeek));
+        lengthSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, programLength));
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#202124");
 
@@ -113,7 +111,7 @@ public class NewProgramFragment extends Fragment {
                 String goal = goalSpinner.getSelectedItem().toString();
                 String focus = focusSpinner.getSelectedItem().toString();
                 String experience = trainingXpSpinner.getSelectedItem().toString();
-                String name = "user input";
+                String name = editProgramName.getText().toString();
 
                 Log.d(TAG, "createWorkout clicked.");
 
