@@ -1,6 +1,8 @@
 package com.team1.hyteproject.ui.profile;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -20,12 +22,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.team1.hyteproject.R;
+import com.team1.hyteproject.ui.RegistrationActivity;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 import static com.google.gson.reflect.TypeToken.get;
 
 public class ProfileFragment extends Fragment {
@@ -50,11 +54,20 @@ public class ProfileFragment extends Fragment {
             // Update the UI.
         });*/
         final TextView textView = view.findViewById(R.id.text_notifications);
+        TextView userNameView = view.findViewById(R.id.userView);
+        TextView eMailView = view.findViewById(R.id.eMailView);
+        TextView ageView = view.findViewById(R.id.ageView);
         profileImage = view.findViewById(R.id.profile_image);
         cardView = view.findViewById(R.id.cardView);
-        users = SaveLoad.getInstance().loadUserList(getActivity(), USER);
         Log.d(TAG, "onCreateView: start.");
-        users = SaveLoad.getInstance().loadUserList(getActivity(), USER);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("CredentialsDB", MODE_PRIVATE);
+        String savedUsername = sharedPreferences.getString("savedUsername","");
+        userNameView.setText(savedUsername);
+        String regEMail = sharedPreferences.getString("regEMail","");
+        eMailView.setText("Email: " + regEMail);
+        String age = sharedPreferences.getString("age","");
+        ageView.setText("Birthday: " + age);
+
         /*sharedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -72,6 +85,8 @@ public class ProfileFragment extends Fragment {
 
         return view;
     }
+
+
 
     //TODO
 
