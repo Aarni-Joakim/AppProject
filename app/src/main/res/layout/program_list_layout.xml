@@ -17,25 +17,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@android:color/transparent"
-        app:cardElevation="0dp"
+        app:cardElevation="10dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/bottomSpacerTextView"
         >
 
-
-
-        <Button
-            android:id="@+id/programNameDisplay"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/program_list_background"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text=""
-            android:textSize="25dp"/>
 
         <ImageView
             android:id="@+id/backgroundImageView"
@@ -44,7 +32,6 @@
             app:srcCompat="@drawable/gradient_background"
             tools:layout_editor_absoluteX="126dp"
             tools:layout_editor_absoluteY="23dp" />
-
 
 
         <ImageView
@@ -61,7 +48,6 @@
             android:text="12"
             android:textSize="50sp"
             android:textStyle="bold" />
-
 
 
         <TextView
@@ -97,6 +83,19 @@
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:paddingBottom="13dp" />
+
+        <TextView
+            android:id="@+id/programNameDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="40dp"
+            android:paddingStart="45dp"
+            android:paddingTop="10dp"
+            android:text="Program Name"
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
 
 

@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
@@ -121,6 +122,8 @@ public class NewProgramFragment extends Fragment {
                 testList = SaveLoad.getInstance().loadDataList(getActivity(), TEST);
                 Log.d(TAG, "testList is empty:"+testList.isEmpty());
                 Log.d(TAG, "age: " + SharedViewModel.getAge());
+
+                Navigation.findNavController(view).navigate(R.id.action_navigation_new_program_to_navigation_program);
             }
         });
 

@@ -8,8 +8,8 @@ public class Workout {
     private ArrayList<BaseExercise> workoutExercises;
 
     private Date workoutDate;
-    private String workoutDateString;
-    private String workoutType;
+    private String workoutDateString = "07.03.2020";
+    private String workoutType = "test type";
     private long workoutDateLong;           // or String?
     private double workoutDuration;         // in minutes
     private int workoutNumber;              // assigned workout order number
@@ -18,8 +18,12 @@ public class Workout {
 
     private boolean workoutCompleted = false;
 
-    public Workout() {
+    public Workout () {
 
+    }
+    public Workout(String workoutDateString, String workoutType) {
+        this.workoutDateString = workoutDateString;
+        this.workoutType = workoutType;
         workoutExercises = new ArrayList<>();
     }
 
@@ -49,6 +53,13 @@ public class Workout {
 
     public void dateToString(){
         this.workoutDateString = workoutDate.toString();
+    }
+
+    public String getWorkoutDate () {
+        return workoutDateString;
+    }
+    public String getWorkoutType () {
+        return workoutType;
     }
 
 

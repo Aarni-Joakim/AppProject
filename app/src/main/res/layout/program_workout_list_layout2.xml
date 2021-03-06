@@ -24,11 +24,6 @@
         app:layout_constraintTop_toTopOf="@+id/bottomSpacerTextView"
         >
 
-
-
-
-
-
         <ImageView
             android:id="@+id/backgroundImageView"
             android:layout_width="match_parent"
@@ -38,7 +33,7 @@
             tools:layout_editor_absoluteY="23dp" />
 
         <TextView
-            android:id="@+id/programNameTextView"
+            android:id="@+id/workoutTypeDisplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -50,7 +45,7 @@
 
 
         <TextView
-            android:id="@+id/workoutDateTextView"
+            android:id="@+id/workoutDateDisplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -69,17 +64,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
-
-    <Button
-        android:id="@+id/addToCalendarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add To Calendar"
-        android:background="@drawable/create_button"
-        app:layout_constraintBottom_toBottomOf="@+id/profileCardView1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

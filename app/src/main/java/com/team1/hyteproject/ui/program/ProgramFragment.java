@@ -1,11 +1,13 @@
 package com.team1.hyteproject.ui.program;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -18,8 +20,11 @@ import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.program.BaseExercise;
 import com.team1.hyteproject.program.Program;
+import com.team1.hyteproject.ui.ProgramView;
+import com.team1.hyteproject.ui.ProgramViewAdapter;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
+import com.team1.hyteproject.ui.program.workoutList.WorkoutListFragment;
 
 import java.util.ArrayList;
 
@@ -32,9 +37,8 @@ public class ProgramFragment extends Fragment {
 
     private FloatingActionButton generateProgram;
     private FloatingActionButton createOwnWorkout;
-    private ListView listView;
 
-    private ArrayList<Program> programs;
+    private ArrayList<Program> programs = new ArrayList<>();
     private ArrayList<BaseExercise> programExercises;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,9 +54,26 @@ public class ProgramFragment extends Fragment {
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
 
-        //sharedViewModel.setAge(13);
-        //Log.d(TAG, "ikä: " + sharedViewModel.getAge());
+        Program program = new Program("test program");
+        programs.add(program);
+        Program program2 = new Program("noob program");
+        programs.add(program2);
+        Program program3 = new Program("noob program2");
+        programs.add(program3);
+        Program program4 = new Program("noob program3");
+        programs.add(program4);
 
+        //ProgramView programView = new ProgramView(programs.get(0).getProgramName());
+
+        // the context and arrayList created above
+
+        // create the instance of the ListView to set the numbersViewAdapter
+
+        // set the numbersViewAdapter for ListView
+
+        ProgramViewAdapter programViewAdapter = new ProgramViewAdapter(getActivity(), programs);
+        ListView programListView = view.findViewById(R.id.programListView);
+        programListView.setAdapter(programViewAdapter);
 
 
         generateProgram.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +99,15 @@ public class ProgramFragment extends Fragment {
                 ArrayList testList = new ArrayList();
                 testList = SaveLoad.getInstance().loadDataList(getActivity(), TEST);
                 Log.d(TAG, "testList is empty:"+testList.isEmpty());
+            }
+        });
+
+        programListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> programListView, View view, int i, long l) {
+                Log.d("onClick", "onItemClick(" + i + ")");
+
+                Navigation.findNavController(view).navigate(R.id.action_navigation_program_to_navigation_workout_list);
             }
         });
 
