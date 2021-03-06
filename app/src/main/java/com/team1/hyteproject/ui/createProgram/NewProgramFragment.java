@@ -20,13 +20,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.enums.Experience;
-import com.team1.hyteproject.enums.Focus;
+import com.team1.hyteproject.enums.ExerciseGroup;
 import com.team1.hyteproject.enums.Goal;
 import com.team1.hyteproject.program.ExerciseList;
 import com.team1.hyteproject.program.ProgramGenerator;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
-import com.team1.hyteproject.ui.profile.UserProfile;
 
 import java.util.ArrayList;
 
@@ -54,8 +53,6 @@ public class NewProgramFragment extends Fragment {
 
     private int numberOfProgramsCreated = 1;
     private ArrayList programExercises;
-
-    private UserProfile userProfile = new UserProfile();
 
     // TODO: increase numberOfProgramsCreated automatically. Program name generator.
 
@@ -93,7 +90,7 @@ public class NewProgramFragment extends Fragment {
         trainingXpSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Experience.values()));
         goalSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Goal.values()));
         intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, programIntensity));
-        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Focus.values()));
+        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, ExerciseGroup.values()));
         exercisesWeekSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, exercisesPerWeek));
         lengthSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, programLength));
 

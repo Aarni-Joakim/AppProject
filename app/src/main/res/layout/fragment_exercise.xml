@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             app:fab_colorNormal="@color/calendar_green"
             app:fab_icon="@drawable/ic_fab_create_workout"
-            app:fab_title="Create Own Workout" />
+            app:fab_title="Modify Exercise" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/addExercise"
@@ -37,7 +37,7 @@
             android:layout_height="match_parent"
             app:fab_colorNormal="@color/calendar_green"
             app:fab_icon="@drawable/ic_exercise"
-            app:fab_title="Create New Workout" />
+            app:fab_title="Add Exercise" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

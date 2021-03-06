@@ -1,5 +1,6 @@
 package com.team1.hyteproject.program;
 
+import com.team1.hyteproject.enums.ExerciseGroup;
 import com.team1.hyteproject.enums.TargetMuscleGroup;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ public class BaseExercise {
     private TargetMuscleGroup targetMuscleGroup;
     private int testMuscleGroup;
     private String name;
+    private ExerciseGroup exerciseGroup;
     private String tag;
     private double weight;
     private int recoveryDays;
@@ -27,8 +29,9 @@ public class BaseExercise {
 
     public BaseExercise() {}
 
-    public BaseExercise(String name, int recoveryDays, int exerciseIntensity, int Priority,  boolean isCompound, TargetMuscleGroup targetMuscleGroup) {
+    public BaseExercise(String name, int recoveryDays, int exerciseIntensity, int Priority,  boolean isCompound, TargetMuscleGroup targetMuscleGroup, ExerciseGroup exerciseGroup) {
         this.name = name;
+        this.exerciseGroup = exerciseGroup;
         this.recoveryDays = recoveryDays;
         this.exerciseIntensity = exerciseIntensity;
         this.priority = Priority;
@@ -98,6 +101,10 @@ public class BaseExercise {
     @Override
     public String toString() {
         return this.name;
+    }
+
+    public ExerciseGroup getExerciseGroup() {
+        return exerciseGroup;
     }
 }
 

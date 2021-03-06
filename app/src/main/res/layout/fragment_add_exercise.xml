@@ -25,9 +25,11 @@
         android:id="@+id/exerciseGroupInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
+        android:backgroundTint="#FFF"
+        android:spinnerMode="dialog"
         android:textAlignment="textStart"
-        android:textSize="20sp"
+        android:textColor="#fff"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewTrainingXp"
         app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram3"
         app:layout_constraintTop_toTopOf="@+id/textViewTrainingXp" />
@@ -77,17 +79,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/textViewGoal5"
         app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram3"
         app:layout_constraintTop_toTopOf="@+id/textViewGoal5" />
-
-    <Spinner
-        android:id="@+id/recoveryTimeInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#FFF"
-        android:spinnerMode="dialog"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewGoal6"
-        app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram3"
-        app:layout_constraintTop_toTopOf="@+id/textViewGoal6" />
 
     <View
         android:id="@+id/divider1"
@@ -254,7 +245,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.96" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
@@ -262,4 +253,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.1" />
+
+    <Spinner
+        android:id="@+id/recoveryTimeInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFF"
+        android:textColor="#FFF"
+        android:theme="@style/Spinner"
+        android:drawSelectorOnTop="true"
+        android:textColorHint="@color/onyx_light"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewGoal6"
+        app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram3"
+        app:layout_constraintTop_toTopOf="@+id/textViewGoal6" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

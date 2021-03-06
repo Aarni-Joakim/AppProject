@@ -8,6 +8,7 @@ import com.team1.hyteproject.enums.Split;
 import com.team1.hyteproject.enums.TargetMuscleGroup;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -132,13 +133,6 @@ public class ProgramGenerator {
                     numberOfIsolationExercises = 4;
                 }
 
-                /*targetMuscleGroupList1.add(TargetMuscleGroup.BACK);
-                targetMuscleGroupList1.add(TargetMuscleGroup.BICEPS);
-                targetMuscleGroupList1.add(TargetMuscleGroup.CHEST);
-                targetMuscleGroupList1.add(TargetMuscleGroup.DELTS);
-                targetMuscleGroupList1.add(TargetMuscleGroup.LEGS);
-                targetMuscleGroupList1.add(TargetMuscleGroup.TRICEPS);*/
-
                 break;
             }
             case UPPER_LOWER: {
@@ -157,16 +151,6 @@ public class ProgramGenerator {
                     numberOfCompoundExercises = 1;
                     numberOfIsolationExercises = 4;
                 }
-
-                /*targetMuscleGroupList1.add(TargetMuscleGroup.LEGS);
-                targetMuscleGroupList1.add(TargetMuscleGroup.QUADS);
-                targetMuscleGroupList1.add(TargetMuscleGroup.CALVES);
-                targetMuscleGroupList1.add(TargetMuscleGroup.HAMS);
-                targetMuscleGroupList2.add(TargetMuscleGroup.BACK);
-                targetMuscleGroupList2.add(TargetMuscleGroup.BICEPS);
-                targetMuscleGroupList2.add(TargetMuscleGroup.CHEST);
-                targetMuscleGroupList2.add(TargetMuscleGroup.TRICEPS);
-                targetMuscleGroupList2.add(TargetMuscleGroup.DELTS);*/
 
                 break;
             }
@@ -187,21 +171,6 @@ public class ProgramGenerator {
                     numberOfCompoundExercises = 1;
                     numberOfIsolationExercises = 4;
                 }
-
-                /*targetMuscleGroupList1.add(TargetMuscleGroup.LEGS);
-                targetMuscleGroupList1.add(TargetMuscleGroup.QUADS);
-                targetMuscleGroupList1.add(TargetMuscleGroup.CALVES);
-                targetMuscleGroupList1.add(TargetMuscleGroup.HAMS);
-
-                targetMuscleGroupList2.add(TargetMuscleGroup.CHEST);
-                targetMuscleGroupList2.add(TargetMuscleGroup.BICEPS);
-                targetMuscleGroupList2.add(TargetMuscleGroup.TRICEPS);
-                targetMuscleGroupList2.add(TargetMuscleGroup.DELTS);
-
-                targetMuscleGroupList3.add(TargetMuscleGroup.BACK);
-                targetMuscleGroupList3.add(TargetMuscleGroup.UPPER_BACK);
-                targetMuscleGroupList3.add(TargetMuscleGroup.LOWER_BACK);*/
-
 
                 break;
             }
@@ -439,7 +408,7 @@ public class ProgramGenerator {
 
     // TODO: Ultimate Challenge!
     //GETS ALL WORKOUT SPECIFIC EXERCISES
-    // wokroutLists is the amount of different exercises compositions in a split, that are used to determine exercises for daily workouts
+    // workoutLists is the amount of different exercises compositions in a split, that are used to determine exercises for daily workouts
     // SplitInfo class holds all unique muscle group lists (object of class SplitMuscleGroup) for each different workout split.
     // targetMuscleGroupsList stores each different muscle group that is trained in a single workout
     public void getDailyWorkoutExercises() {

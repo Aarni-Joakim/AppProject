@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class SaveLoad  {
 
     private static final String TAG = "SaveLoad";
+    private ArrayList loadedList = new ArrayList();
 
     private static final SaveLoad instance = new SaveLoad();
 
