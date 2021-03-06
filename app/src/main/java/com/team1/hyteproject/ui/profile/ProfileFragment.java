@@ -20,7 +20,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.team1.hyteproject.R;
+import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
+
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
 import static com.google.gson.reflect.TypeToken.get;
@@ -32,6 +35,10 @@ public class ProfileFragment extends Fragment {
     private SharedViewModel sharedViewModel;
     private CardView cardView;
     private ImageView profileImage;
+    private static final String USER = "user";
+    private static final String NAMES = "userNames";
+    private ArrayList<User> users = new ArrayList<>();
+    private ArrayList<String> userNames = new ArrayList<>();
     Uri imageUri;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -45,9 +52,9 @@ public class ProfileFragment extends Fragment {
         final TextView textView = view.findViewById(R.id.text_notifications);
         profileImage = view.findViewById(R.id.profile_image);
         cardView = view.findViewById(R.id.cardView);
-
+        users = SaveLoad.getInstance().loadUserList(getActivity(), USER);
         Log.d(TAG, "onCreateView: start.");
-
+        users = SaveLoad.getInstance().loadUserList(getActivity(), USER);
         /*sharedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

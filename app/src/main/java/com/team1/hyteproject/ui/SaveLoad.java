@@ -8,6 +8,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team1.hyteproject.program.BaseExercise;
+import com.team1.hyteproject.ui.profile.User;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -39,6 +40,37 @@ public class SaveLoad  {
         prefEditor.putString(listName, json);
         prefEditor.apply();
         Log.d(TAG, "Saving");
+    }
+    public ArrayList loadUserList(Context context, String listName) {
+        SharedPreferences sharedPreferences = getSharedPreferences(context);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(listName, null);
+        Type type = new TypeToken<ArrayList<User>>() {}.getType();
+        ArrayList loadedList = gson.fromJson(json, type);
+
+        if (loadedList == null) {
+            loadedList = new ArrayList();
+            Log.d(TAG, "Loaded list was null");
+        }
+
+        Log.d(TAG, "Loading");
+        return loadedList;
+    }
+
+    public ArrayList loadUsernamesList(Context context, String listName) {
+        SharedPreferences sharedPreferences = getSharedPreferences(context);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(listName, null);
+        Type type = new TypeToken<ArrayList<String>>() {}.getType();
+        ArrayList loadedList = gson.fromJson(json, type);
+
+        if (loadedList == null) {
+            loadedList = new ArrayList();
+            Log.d(TAG, "Loaded list was null");
+        }
+
+        Log.d(TAG, "Loading");
+        return loadedList;
     }
 
     public ArrayList loadDataList(Context context, String listName) {

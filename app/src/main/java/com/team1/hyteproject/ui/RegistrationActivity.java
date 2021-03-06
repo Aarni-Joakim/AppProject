@@ -82,7 +82,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 if(eRegName.getText().toString().isEmpty()){
                     eRegName.setError("Enter text");
                 }else{
-                    users.add(new User("samu2","testi@gmail.com", "12" ));
                     ProfileSingleton.getInstance().addUser(regUsername, age, regEMail);
                     ProfileSingleton.getInstance().addUserName(regUsername);
                     SaveLoad.getInstance().saveDataList(RegistrationActivity.this,  users,  USER);
