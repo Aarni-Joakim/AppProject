@@ -13,7 +13,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * author Aarni Pesonen
+ * Author Aarni Pesonen
  */
 public class ProgramGenerator {
 
@@ -67,7 +67,17 @@ public class ProgramGenerator {
 
     //TODO: Correct compound/isolation exercise amounts for each split
 
-
+    /**
+     * constructor of ProgramGenerator, creates a program based on user input parameters
+     * @param programName user input name for the program
+     * @param focus user input parameter that adds exercises for select muscle group *not in full use*
+     * @param goal user input program exercise selection and priority is based on
+     * @param age of the user
+     * @param desiredIntensity affects program intensity volume and frequency(not yet implemented)
+     * @param experience user gym training experience
+     * @param lengthInWeeks length of the program in weeks
+     * @param workoutsPerWeek  number of workouts per week, determines program split and exercise distribution
+     */
     public ProgramGenerator(String programName, String focus, String goal, int age, int desiredIntensity, String experience, int lengthInWeeks, int workoutsPerWeek) {
         this.programName = programName;
         this.focus = focus;
@@ -108,9 +118,12 @@ public class ProgramGenerator {
 
         Log.d(TAG, "# workouts in program: " + workoutsInProgram);
 
-        getDailyWorkoutExercises();
+        megaLoop();
     }
 
+    /**
+     * gets program exercise distribution based on split value
+     */
     //GETS TOTAL NUMBER OF COMPOUND AND ISOLATION EXERCISES TO BE ADDED TO PROGRAM
     private void getExerciseDistribution() { //TODO Make a dedicated Split class
         Log.d(TAG, "getExerciseDistribution() called.");
@@ -181,11 +194,18 @@ public class ProgramGenerator {
         }
     }
 
-    //
+    /**
+     * returns ArrayList programExercises
+     * @return
+     */
     public ArrayList getProgramExercises() {
         return programExercises;
     }
 
+    /**
+     * gets split value based on number of weekly workouts
+     * @return
+     */
     private Split getSplit() {
         Log.d(TAG, "getSplit() called.");
 
@@ -199,6 +219,11 @@ public class ProgramGenerator {
         return split;
     }
 
+    /**
+     * calculates program intesity multiplier and program volume based on prior experience level, desired intensity and user age
+     * returns program volume
+     * @return
+     */
     //DETERMINES PROGRAM VOLUME AND INTENSITY MULTIPLIER BASED ON PRIOR USER EXPERIENCE, DESIRED PROGRAM INTENSITY AND AGE
     private ProgramVolume getProgramVolumeIntensity() {
         Log.d(TAG, "getProgramVolume() called.");
@@ -243,7 +268,9 @@ public class ProgramGenerator {
     }
 
 
-
+    /**
+     * gets all compound exercises to be included in the program from ExerciseList singleton
+     */
     //GETS ALL COMPOUND EXERCISES TO BE INCLUDED IN THE PROGRAM FROM EXERCISELIST SINGLETON
     private void getCompoundExercises() {
 
@@ -263,6 +290,9 @@ public class ProgramGenerator {
         }
     }
 
+    /**
+     * gets all isolation exercises to be included in the program from ExerciseList singleton
+     */
     //GETS ALL ISOLATION EXERCISES TO BE INCLUDED IN THE PROGRAM FROM EXERCISELIST SINGLETON
     private void getIsolationExercises() {
 
@@ -284,6 +314,10 @@ public class ProgramGenerator {
 
     }
 
+    /**
+     * complete list of program exercises
+     * @return
+     */
     //RETURNS A COMPLETE LIST OF ALL PROGRAM EXERCISES
     public ArrayList<BaseExercise> getProgramExerciseList() {
         Log.d(TAG, "getProgramExerciseList called");
@@ -291,6 +325,11 @@ public class ProgramGenerator {
         return programExercises;
     }
 
+    /**
+     * resets isSelected bool value of input list elements
+     * bool dictates if a selected exercise "is seen" as stream reader goes through the list of exercises
+     * @param arrayList
+     */
     // TODO: Make arrayList detection more "safe". CHECK THE FUNCTION OF THIS METHOD!!!!!
     //RESETS isSelected BOOLEAN OF ALL EXERCISES IN LIST ENTERED AS PARAMETER
     private void resetIsSelected(ArrayList<BaseExercise> arrayList) {
@@ -306,6 +345,9 @@ public class ProgramGenerator {
         }
     }
 
+    /**
+     * calulates the amount of workout sessions in a program
+     */
     //DETERMINE HOW MANY INDIVIDUAL WORKOUTS THERE ARE IN A PROGRAM
     public void getWorkoutsInProgram() {
         workoutsInProgram = workoutsPerWeek * lengthInWeeks;
@@ -323,6 +365,9 @@ public class ProgramGenerator {
         return futureDate;
     }
 
+    /**
+     * finds dates for all workouts included in the program using java calendar
+     */
     //USES getCurrentDate() AND daysToAdvance value TO DETERMINE DATES FOR ALL WORKOUTS, REQUIRED SPLIT INFO
     private void getWorkoutDates() {
 
@@ -376,20 +421,9 @@ public class ProgramGenerator {
         // TODO:
     }
 
-    //TODO: IS THIS NEEDED ANYMORE? CHECK!!
-    private void getWorkoutExercises() {
-
-        getWorkoutsInProgram();
-
-        while (workoutsInProgram > 0) {
-
-            for (int workouts = workoutsPerWeek; workouts > 0; workouts++) {
-                //distributeWeeklyExercises();
-            }
-
-        }
-    }
-
+    /**
+     * intended to set exercise priorities based on program goal *not yet implemented*
+     */
     //TODO: NOT YET IMPLEMENTED. SETS EXERCISE PRIORITIES BASED ON PROGRAM SPLIT
     private void setExercisePriorities() {
         // TODO: Based on goals, focus.
@@ -406,6 +440,13 @@ public class ProgramGenerator {
         }
     }
 
+    /**
+     * distributes exercises to all workouts included in a program
+     * first while loop: loops through times total of individual exercises in a program
+     * second for loop: loops as many times as there are workouts in a week
+     * third for loop: loops once for each muscle group in a single workout session
+     * inside this third loop is a method for getting all single workout session exercises per each included muscle group
+     */
     // TODO: Ultimate Challenge!
     //GETS ALL WORKOUT SPECIFIC EXERCISES
     // workoutLists is the amount of different exercises compositions in a split, that are used to determine exercises for daily workouts
@@ -434,11 +475,21 @@ public class ProgramGenerator {
         Log.d(TAG, "Exercises created: " + programWorkouts.size());
         }
 
-
+    /**
+     * gets all compound and isolation exercises for each muscle group included in a single workout session
+     * first for loop: loops once for each different muscle group included in session
+     * second for loop: gets compound exercises for above muscle group
+     * third for loop: gets isolation exercises for above muscle group
+     * working in tandem with getDailyWorkoutExercises() these methods are able to populate all workout session in a program
+     * getDailyWorkouts() inputs all parameters below
+     * @param targetMuscleGroup of exercises to be selected from programExercises list
+     * @param dailyCompoundExercises number of workout compound exercises to be selected per muscle group
+     * @param dailyIsolationExercises number of workout isolation exercises to be selected per muscle group
+     * @param muscleGroupsPerDay how many muscle groups are included in a specific workout session
+     */
     // This methods take in amounts of daily exercises depending on the split. Use this method inside getDailyWorkoutExercises()
     //TODO: Sort the programExercises list beforehand, create a method for this
     // TODO: Figure out a better way to handle isSelected?!!!
-
     public void getSessionExercisesPerMuscleGroup(TargetMuscleGroup targetMuscleGroup, int dailyCompoundExercises, int dailyIsolationExercises, int muscleGroupsPerDay) {
 
         numberOfIsolationExercises = 2;
@@ -492,10 +543,13 @@ public class ProgramGenerator {
         programWorkouts.add(workout);
         workoutsInProgram--;                            //IS THERE ARE BETTER WAY TO CHECK HOW MANY PROGRAMS HAVE BEEN CREATED?
         //resetIsSelected(programWorkouts);
+    }
 
-
-        //TODO: DIFFERENCE BETWEEN programWorkouts and programExercises!!!!!!!
-
+    /**
+     * easy to remember method name for running the program workout generation loops!
+     */
+    public void megaLoop() {
+        getDailyWorkoutExercises();
     }
 }
 /*

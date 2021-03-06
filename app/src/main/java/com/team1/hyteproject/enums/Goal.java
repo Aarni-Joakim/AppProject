@@ -1,5 +1,7 @@
 package com.team1.hyteproject.enums;
-
+/**
+ * Author Aarni Pesonen
+ */
 public enum Goal{
     MUSCLE("Muscle mass"),
     STRENGTH("Strength"),
@@ -8,10 +10,18 @@ public enum Goal{
 
     private String realName;
 
+    /**
+     * store enum string value in a field
+     * @param realName
+     */
     private Goal(String realName){
         this.realName = realName;
     }
 
+    /**
+     * override toString() and return enum value as string
+     * @return
+     */
     @Override public String toString(){
         return realName;
     }

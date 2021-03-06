@@ -24,6 +24,9 @@ import com.team1.hyteproject.ui.WorkoutViewAdapter;
 
 import java.util.ArrayList;
 
+/**
+ * Author Aarni Pesonen
+ */
 public class WorkoutListFragment extends Fragment {
 
     private static final String TAG = "WorkoutListFragment";
@@ -36,6 +39,13 @@ public class WorkoutListFragment extends Fragment {
     private ArrayList<BaseExercise> programExercises;
     private ArrayList<Workout> workouts;
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         sharedViewModel =

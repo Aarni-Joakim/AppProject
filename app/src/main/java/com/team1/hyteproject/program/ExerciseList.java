@@ -7,6 +7,10 @@ import com.team1.hyteproject.enums.TargetMuscleGroup;
 
 import java.util.ArrayList;
 
+/**
+ * Author Aarni Pesonen
+ */
+
 public class ExerciseList {
     private final String TAG = "ExerciseList";
     private static final ExerciseList instance = new ExerciseList();
@@ -16,9 +20,15 @@ public class ExerciseList {
     private ArrayList<BaseExercise> coreExercises;
     private BaseExercise baseExercise;
 
-
+    /**
+     * return instance of ExerciseList singleton
+     * @return
+     */
     public static ExerciseList getInstance() { return instance; }
 
+    /**
+     * default contructor
+     */
     private ExerciseList() {
         Log.d(TAG, "Singleton created.");
         upperBodyExercises = new ArrayList<>();
@@ -70,8 +80,23 @@ public class ExerciseList {
 
 
     }
+
+    /**
+     * gets list of upper body exercises
+     * @return
+     */
     public ArrayList<BaseExercise> getAllUpperBodyExercises() { return upperBodyExercises; }
+
+    /**
+     * gets list of lower body exercises
+     * @return
+     */
     public ArrayList<BaseExercise> getAllLowerBodyExercises() { return lowerBodyExercises; }
+
+    /**
+     * gets list of core exercises
+     * @return
+     */
     public ArrayList<BaseExercise> getAllCoreExercises() { return coreExercises; }
 
     /*public void addUpperBodyExercise(String name, int recoveryDays, int exerciseIntensity, boolean isCompound, TargetMuscleGroup targetMuscleGroup) {
@@ -84,12 +109,29 @@ public class ExerciseList {
         coreExercises.add(new BaseExercise(name, recoveryDays, exerciseIntensity, isCompound, targetMuscleGroup));
     }*/
 
+    /**
+     * return upper body exercise at given index
+     * @param index
+     * @return
+     */
     public BaseExercise getUpperBodyExercise(int index) {
         return upperBodyExercises.get(index);
     }
+
+    /**
+     * return lower body exercise at given index
+     * @param index
+     * @return
+     */
     public BaseExercise getLowerBodyExercise(int index) {
         return lowerBodyExercises.get(index);
     }
+
+    /**
+     * return core exercise at given index
+     * @param index
+     * @return
+     */
     public BaseExercise getCoreExercise(int index) {
         return coreExercises.get(index);
     }
@@ -112,6 +154,11 @@ public class ExerciseList {
         }
     }*/
 
+    /**
+     * add an exercise to complete list of exercises
+     * sorts exercise in a list based on it's target muscle group
+     * @param baseExercise takes in BaseExercise class as parameter
+     */
     public void addExercise (BaseExercise baseExercise) {
 
         this.baseExercise = baseExercise;
@@ -136,6 +183,11 @@ public class ExerciseList {
         }
     }
 
+    /**
+     * converts a string value to isCompound bool
+     * @param isCompoundToBool
+     * @return
+     */
     public boolean getIsCompoundBool(String isCompoundToBool) {
         boolean isCompound = true;
         if (isCompoundToBool == "Isolation") {

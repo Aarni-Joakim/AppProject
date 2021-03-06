@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,9 @@ import androidx.navigation.Navigation;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.team1.hyteproject.R;
+import com.team1.hyteproject.program.ExerciseList;
+import com.team1.hyteproject.ui.ExerciseListViewAdapter;
+import com.team1.hyteproject.ui.ProgramViewAdapter;
 
 public class ExerciseFragment extends Fragment {
 
@@ -36,6 +40,10 @@ public class ExerciseFragment extends Fragment {
 
         addExercise = view.findViewById(R.id.addExercise);
         modifyExercise = view.findViewById(R.id.modifyExercise);
+
+        ExerciseListViewAdapter exerciseListViewAdapter = new ExerciseListViewAdapter(getActivity(), ExerciseList.getInstance().getAllUpperBodyExercises());
+        ListView exerciseListView = view.findViewById(R.id.exerciseAllListView);
+        exerciseListView.setAdapter(exerciseListViewAdapter);
 
         addExercise.setOnClickListener(new View.OnClickListener() {
             @Override
