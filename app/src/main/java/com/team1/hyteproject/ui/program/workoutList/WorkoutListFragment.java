@@ -12,11 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.program.BaseExercise;
-import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 
 import java.util.ArrayList;
@@ -36,7 +34,7 @@ public class WorkoutListFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         sharedViewModel =
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
-        View view = inflater.inflate(R.layout.fragment_workout_list, container, false);
+        View view = inflater.inflate(R.layout.program_list1, container, false);
         //TextView textView = view.findViewById(R.id.textViewWorkout);
         Log.d(TAG, "onCreateView: start.");
 

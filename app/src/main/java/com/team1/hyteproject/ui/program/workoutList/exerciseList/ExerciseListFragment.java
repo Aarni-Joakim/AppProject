@@ -34,7 +34,7 @@ public class ExerciseListFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         sharedViewModel =
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
-        View view = inflater.inflate(R.layout.fragment_workout_list, container, false);
+        View view = inflater.inflate(R.layout.program_list1, container, false);
         //TextView textView = view.findViewById(R.id.textViewWorkout);
         Log.d(TAG, "onCreateView: start.");
 

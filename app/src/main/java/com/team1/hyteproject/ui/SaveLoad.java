@@ -12,11 +12,14 @@ import com.team1.hyteproject.program.BaseExercise;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class SaveLoad  {
 
     private static final String TAG = "SaveLoad";
     private ArrayList loadedList = new ArrayList();
+    private SharedPreferences sharedPreferences;
 
     private static final SaveLoad instance = new SaveLoad();
 
@@ -27,12 +30,12 @@ public class SaveLoad  {
     }
 
     private static SharedPreferences getSharedPreferences(Context context) {
-        return context.getSharedPreferences(TAG, Context.MODE_PRIVATE);
+        return context.getSharedPreferences(TAG, MODE_PRIVATE);
     }
 
     public void saveDataList(Context context, ArrayList arrayList, String listName) {
         //this.listToSave = arrayList;
-        SharedPreferences sharedPreferences = getSharedPreferences(context);
+        sharedPreferences = getSharedPreferences(context);
         SharedPreferences.Editor prefEditor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(arrayList);
@@ -42,7 +45,39 @@ public class SaveLoad  {
     }
 
     public ArrayList loadDataList(Context context, String listName) {
-        SharedPreferences sharedPreferences = getSharedPreferences(context);
+        sharedPreferences = getSharedPreferences(context);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(listName, null);
+        Type type = new TypeToken<ArrayList<BaseExercise>>() {}.getType();
+        ArrayList loadedList = gson.fromJson(json, type);
+
+        if (loadedList == null) {
+            loadedList = new ArrayList();
+            Log.d(TAG, "Loaded list was null");
+        }
+
+        Log.d(TAG, "Loading");
+        return loadedList;
+    }
+
+    public ArrayList loadUserList(Context context, String listName) {
+        sharedPreferences = getSharedPreferences(context);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(listName, null);
+        Type type = new TypeToken<ArrayList<BaseExercise>>() {}.getType();
+        ArrayList loadedList = gson.fromJson(json, type);
+
+        if (loadedList == null) {
+            loadedList = new ArrayList();
+            Log.d(TAG, "Loaded list was null");
+        }
+
+        Log.d(TAG, "Loading");
+        return loadedList;
+    }
+
+    public ArrayList loadUsernameList(Context context, String listName) {
+        sharedPreferences = getSharedPreferences(context);
         Gson gson = new Gson();
         String json = sharedPreferences.getString(listName, null);
         Type type = new TypeToken<ArrayList<BaseExercise>>() {}.getType();

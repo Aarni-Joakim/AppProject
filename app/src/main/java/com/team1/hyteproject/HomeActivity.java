@@ -35,8 +35,9 @@ public class HomeActivity extends AppCompatActivity {
         ViewModel sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_workout, R.id.navigation_exercise, R.id.navigation_calendar, R.id.navigation_profile,
-                R.id.navigation_new_program, R.id.navigation_add_exercise, R.id.navigation_workout_list)
+                R.id.navigation_workout, R.id.navigation_all_exercise, R.id.navigation_calendar, R.id.navigation_profile,
+                R.id.navigation_new_program, R.id.navigation_add_exercise, R.id.navigation_workout_list,
+                R.id.navigation_exercise_list)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

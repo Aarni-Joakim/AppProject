@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -18,13 +17,13 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.program.BaseExercise;
-import com.team1.hyteproject.program.ExerciseList;
+import com.team1.hyteproject.program.Program;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 
 import java.util.ArrayList;
 
-public class WorkoutFragment extends Fragment {
+public class ProgramFragment extends Fragment {
 
     private static final String TAG = "WorkoutFragment";
     private static final String TEST = "Test";
@@ -35,13 +34,14 @@ public class WorkoutFragment extends Fragment {
     private FloatingActionButton createOwnWorkout;
     private ListView listView;
 
+    private ArrayList<Program> programs;
     private ArrayList<BaseExercise> programExercises;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         sharedViewModel =
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
-        View view = inflater.inflate(R.layout.fragment_workout, container, false);
+        View view = inflater.inflate(R.layout.fragment_program1, container, false);
         //TextView textView = view.findViewById(R.id.textViewWorkout);
         Log.d(TAG, "onCreateView: start.");
 
@@ -52,6 +52,7 @@ public class WorkoutFragment extends Fragment {
 
         //sharedViewModel.setAge(13);
         //Log.d(TAG, "ikä: " + sharedViewModel.getAge());
+
 
 
         generateProgram.setOnClickListener(new View.OnClickListener() {

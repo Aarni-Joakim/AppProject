@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/navigation_workout"
-        android:name="com.team1.hyteproject.ui.program.WorkoutFragment"
+        android:name="com.team1.hyteproject.ui.program.ProgramFragment"
         android:label="@string/title_workout"
-        tools:layout="@layout/fragment_workout" >
+        tools:layout="@layout/fragment_program1" >
         <action
             android:id="@+id/action_navigation_workout_to_navigation_exercise"
-            app:destination="@id/navigation_exercise" />
+            app:destination="@id/navigation_all_exercise" />
         <action
             android:id="@+id/action_navigation_workout_to_navigation_profile"
             app:destination="@id/navigation_profile" />
@@ -31,17 +31,40 @@
         android:id="@+id/navigation_workout_list"
         android:name="com.team1.hyteproject.ui.program.workoutList.WorkoutListFragment"
         android:label="@string/title_workout"
-        tools:layout="@layout/fragment_workout_list" >
+        tools:layout="@layout/program_list1" >
+        <action
+            android:id="@+id/action_navigation_workout_list_to_navigation_workout"
+            app:destination="@id/navigation_workout" />
+        <action
+            android:id="@+id/action_navigation_workout_list_to_navigation_exercise_list"
+            app:destination="@id/navigation_exercise_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_program_exercise_list"
+        android:name="com.team1.hyteproject.ui.program.workoutList.WorkoutListFragment"
+        android:label="@string/title_workout"
+        tools:layout="@layout/program_list1" >
         <action
             android:id="@+id/action_navigation_workout_list_to_navigation_workout"
             app:destination="@id/navigation_workout" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_exercise"
+        android:id="@+id/navigation_exercise_list"
+        android:name="com.team1.hyteproject.ui.program.workoutList.WorkoutListFragment"
+        android:label="@string/title_workout"
+        tools:layout="@layout/program_list1" >
+        <action
+            android:id="@+id/action_navigation_exercise_list_to_navigation_workout_list"
+            app:destination="@id/navigation_workout_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_all_exercise"
         android:name="com.team1.hyteproject.ui.exercise.ExerciseFragment"
         android:label="@string/title_exercise"
-        tools:layout="@layout/fragment_workout" >
+        tools:layout="@layout/fragment_program1" >
         <action
             android:id="@+id/action_navigation_exercise_to_navigation_workout"
             app:destination="@id/navigation_workout" />
@@ -63,7 +86,7 @@
         tools:layout="@layout/fragment_calendar" >
         <action
             android:id="@+id/action_navigation_calendar_to_navigation_exercise"
-            app:destination="@id/navigation_exercise" />
+            app:destination="@id/navigation_all_exercise" />
         <action
             android:id="@+id/action_navigation_calendar_to_navigation_profile"
             app:destination="@id/navigation_profile" />
@@ -82,7 +105,7 @@
             app:destination="@id/navigation_workout" />
         <action
             android:id="@+id/action_navigation_profile_to_navigation_exercise"
-            app:destination="@id/navigation_exercise" />
+            app:destination="@id/navigation_all_exercise" />
         <action
             android:id="@+id/action_navigation_profile_to_navigation_calendar"
             app:destination="@id/navigation_calendar" />
@@ -101,6 +124,6 @@
         tools:layout="@layout/fragment_add_exercise" >
         <action
             android:id="@+id/action_navigation_add_exercise_to_navigation_exercise"
-            app:destination="@id/navigation_exercise" />
+            app:destination="@id/navigation_all_exercise" />
     </fragment>
 </navigation>

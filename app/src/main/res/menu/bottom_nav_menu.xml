@@ -7,7 +7,7 @@
         android:title="@string/title_workout" />
 
     <item
-        android:id="@+id/navigation_exercise"
+        android:id="@+id/navigation_all_exercise"
         android:icon="@drawable/ic_exercise"
         android:title="@string/title_exercise" />
 

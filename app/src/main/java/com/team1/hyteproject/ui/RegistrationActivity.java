@@ -31,6 +31,10 @@ public class RegistrationActivity extends AppCompatActivity {
     private SharedViewModel sharedViewModel;
     private static final String USER = "user";
     private static final String NAMES = "userNames";
+    String regUsername;
+    String regPassword;
+    String regEMail;
+    String age;
 
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<String> userNames = new ArrayList<>();
@@ -75,14 +79,15 @@ public class RegistrationActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                String regUsername = eRegName.getText().toString();
-                String regPassword = eRegPassword.getText().toString();
-                String regEMail = regMail.getText().toString();
-                String age = regBday.getText().toString();
+                regUsername = eRegName.getText().toString();
+                regPassword = eRegPassword.getText().toString();
+                regEMail = regMail.getText().toString();
+                age = regBday.getText().toString();
                 if(eRegName.getText().toString().isEmpty()){
                     eRegName.setError("Enter text");
                 }else{
-                    users.add(new User("samu2","testi@gmail.com", "12" ));
+                    users.add(new User(regUsername,regEMail, age));
+                    userNames.add(regUsername);
                     ProfileSingleton.getInstance().addUser(regUsername, age, regEMail);
                     ProfileSingleton.getInstance().addUserName(regUsername);
                     SaveLoad.getInstance().saveDataList(RegistrationActivity.this,  users,  USER);
@@ -115,10 +120,6 @@ public class RegistrationActivity extends AppCompatActivity {
         });
 
     }
-
-
-
-
 
     private boolean validate(String username, String password){
 

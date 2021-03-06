@@ -25,26 +25,16 @@
         >
 
 
+
         <Button
+            android:id="@+id/programNameDisplay"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/program_list_background"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:text="New Program Name"
-
-            android:textSize="25dp"/>
-
-        <Button
-            android:id="@+id/iconBaseButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/program_list_background"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:text="New Program Name"
+            android:text=""
             android:textSize="25dp"/>
 
         <ImageView
@@ -55,19 +45,10 @@
             tools:layout_editor_absoluteX="126dp"
             tools:layout_editor_absoluteY="23dp" />
 
-        <TextView
-            android:id="@+id/programNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="18dp"
-            android:text="Program Name Test"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+
 
         <ImageView
-            android:id="@+id/weeksDisplayView"
+            android:id="@+id/pictureDisplayView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -116,6 +97,8 @@
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:paddingBottom="13dp" />
+
+
 
     </androidx.cardview.widget.CardView>
 

@@ -107,9 +107,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String regUsername = eName.getText().toString();
 
-
-
-
                 String inputName = eName.getText().toString();
                 String inputPassword = ePassword.getText().toString();
 
