@@ -16,22 +16,24 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.enums.Experience;
-import com.team1.hyteproject.enums.Focus;
+import com.team1.hyteproject.enums.ExerciseGroup;
 import com.team1.hyteproject.enums.Goal;
+import com.team1.hyteproject.program.BaseExercise;
 import com.team1.hyteproject.program.ExerciseList;
+import com.team1.hyteproject.program.Program;
 import com.team1.hyteproject.program.ProgramGenerator;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
-import com.team1.hyteproject.ui.profile.UserProfile;
 
 import java.util.ArrayList;
 
 
-public class NewProgramFragment extends Fragment {
+public class CreateProgramFragment extends Fragment {
 
     private static final String TAG = "NewProgramFragment";
     private static final String TEST = "Test";
@@ -41,9 +43,14 @@ public class NewProgramFragment extends Fragment {
     private EditText editProgramName;
     private Button createProgram;
     private String programName;
+    private Program program;
+    private ProgramGenerator programGenerator;
+    private ArrayList<Program> programsList = new ArrayList();
+    private ArrayList<BaseExercise> programExercises;
     private ArrayList<String> programLength = new ArrayList<>();
     private ArrayList<Integer> programIntensity = new ArrayList<>();
     private ArrayList<Integer> exercisesPerWeek = new ArrayList<>();
+    private SaveLoad saveLoad = SaveLoad.getInstance();
 
     Spinner trainingXpSpinner;
     Spinner goalSpinner;
@@ -53,9 +60,7 @@ public class NewProgramFragment extends Fragment {
     Spinner lengthSpinner;
 
     private int numberOfProgramsCreated = 1;
-    private ArrayList programExercises;
-
-    private UserProfile userProfile = new UserProfile();
+    //private ArrayList programExercises;
 
     // TODO: increase numberOfProgramsCreated automatically. Program name generator.
 
@@ -93,11 +98,14 @@ public class NewProgramFragment extends Fragment {
         trainingXpSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Experience.values()));
         goalSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Goal.values()));
         intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, programIntensity));
-        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Focus.values()));
+        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, ExerciseGroup.values()));
         exercisesWeekSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, exercisesPerWeek));
         lengthSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, programLength));
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#202124");
+
+        program = new Program();
+        programGenerator = new ProgramGenerator();
 
         createProgram.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,9 +113,9 @@ public class NewProgramFragment extends Fragment {
 
                 ExerciseList exerciseList = ExerciseList.getInstance();
                 int age = SharedViewModel.getAge();
-                int exercisesPerWeek = (exercisesWeekSpinner.getSelectedItemPosition() + 1);
-                int length = (lengthSpinner.getSelectedItemPosition() + 4);
-                int intensity = (intensitySpinner.getSelectedItemPosition() +1);
+                int workoutsPerWeek = (exercisesWeekSpinner.getSelectedItemPosition() + 1);
+                int lengthInWeeks = (lengthSpinner.getSelectedItemPosition() + 4);
+                int desiredIntensity = (intensitySpinner.getSelectedItemPosition() +1);
                 String goal = goalSpinner.getSelectedItem().toString();
                 String focus = focusSpinner.getSelectedItem().toString();
                 String experience = trainingXpSpinner.getSelectedItem().toString();
@@ -115,15 +123,24 @@ public class NewProgramFragment extends Fragment {
 
                 Log.d(TAG, "createWorkout clicked.");
 
+                ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, desiredIntensity, experience, lengthInWeeks, workoutsPerWeek);
+                program = programGenerator.getProgram();
+                programsList.add(program);
+                // SAVING PROGRAM LIST HERE
+                saveLoad.saveProgramList(getActivity(), programsList);
+                Log.d(TAG, "Total programs in list: " + programsList.size());
 
-                ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, intensity, experience, length, exercisesPerWeek);
-                programExercises = programGenerator.getProgramExercises();
+                //ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, intensity, experience, length, exercisesPerWeek);
+                //programExercises = programGenerator.generateProgram(programName, focus, goal, age, intensity, experience, length, exercisesPerWeek);
+                //programExercises = programGenerator.getProgramExercises();
                 numberOfProgramsCreated++;
                 SaveLoad.getInstance().saveDataList(getActivity(), programExercises, TEST);
                 ArrayList testList = new ArrayList();
-                testList = SaveLoad.getInstance().loadDataList(getActivity(), TEST);
+                testList = SaveLoad.getInstance().loadProgramList(getActivity(), TEST);
                 Log.d(TAG, "testList is empty:"+testList.isEmpty());
                 Log.d(TAG, "age: " + SharedViewModel.getAge());
+
+                Navigation.findNavController(view).navigate(R.id.action_navigation_new_program_to_navigation_program);
             }
         });
 

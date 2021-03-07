@@ -1,5 +1,6 @@
 package com.team1.hyteproject.ui.addExercise;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +19,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
-import com.team1.hyteproject.enums.Experience;
+import com.team1.hyteproject.enums.ExerciseGroup;
+import com.team1.hyteproject.enums.IntensityPriority;
+import com.team1.hyteproject.enums.IsCompound;
+import com.team1.hyteproject.enums.RecoveryTime;
 import com.team1.hyteproject.enums.TargetMuscleGroup;
 import com.team1.hyteproject.program.BaseExercise;
 import com.team1.hyteproject.program.ExerciseList;
@@ -34,17 +38,20 @@ public class AddExerciseFragment extends Fragment {
     private ArrayList<String> recoveryTimeList = new ArrayList<>();
     private ArrayList<String> isCompoundList = new ArrayList<>();
     private ArrayList<String> exerciseGroupList = new ArrayList<>();
+    String[] exerciseGroups;
 
     private BaseExercise baseExercise;
     private EditText editExerciseName;
     private Button addNewExercise;
-    private Spinner groupSpinner;
-    private Spinner targetMuscleGroupSpinner;
-    private Spinner intensitySpinner;
-    private Spinner exerciseTypeSpinner;
-    private Spinner exercisePrioritySpinner;
-    private Spinner recoveryTimeSpinner;
+    Spinner groupSpinner;
+    Spinner targetMuscleGroupSpinner;
+    Spinner intensitySpinner;
+    Spinner exerciseTypeSpinner;
+    Spinner exercisePrioritySpinner;
+    Spinner recoveryTimeSpinner;
     private String exerciseName;
+
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -55,31 +62,38 @@ public class AddExerciseFragment extends Fragment {
         //TextView textView = view.findViewById(R.id.textView);
         Log.d(TAG, "onCreateView: start.");
 
+        //ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.exerciseGroupsSpinner, R.layout.spinner_layout_test);
+
         editExerciseName = view.findViewById(R.id.editExerciseName);
         addNewExercise = view.findViewById(R.id.createAddShared);
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#202124");
 
-        groupSpinner = view.findViewById(R.id.exerciseGroupInput);
+        groupSpinner = (Spinner)view.findViewById(R.id.exerciseGroupInput);
         targetMuscleGroupSpinner = view.findViewById(R.id.targetMuscleGroupInput);
         intensitySpinner = view.findViewById(R.id.intensityInput);
         exerciseTypeSpinner = view.findViewById(R.id.exerciseTypeInput);
         exercisePrioritySpinner = view.findViewById(R.id.exercisePriorityInput);
         recoveryTimeSpinner = view.findViewById(R.id.recoveryTimeInput);
 
-        groupSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Experience.values()));
+        groupSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, ExerciseGroup.values()));
         targetMuscleGroupSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, TargetMuscleGroup.values()));
-        intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, exerciseIntensityList));
-        exerciseTypeSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, isCompoundList));
-        exercisePrioritySpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, exerciseIntensityList));
-        recoveryTimeSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, recoveryTimeList));
+        intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, IntensityPriority.values()));
+        exerciseTypeSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, IsCompound.values()));
+        exercisePrioritySpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, IntensityPriority.values()));
+        recoveryTimeSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, RecoveryTime.values()));
 
+        //arrayAdapter.setDropDownViewResource(R.layout.spinner_dropdown);
+        //groupSpinner.setAdapter(arrayAdapter);
         isCompoundList.add("Compound");
         isCompoundList.add("Isolation");
 
         exerciseGroupList.add("Upper Body");
         exerciseGroupList.add("Lower Body");
         exerciseGroupList.add("Core");
+
+        Resources res = getResources();
+        exerciseGroups = res.getStringArray(R.array.exerciseGroupsSpinner);
 
 
 
@@ -91,6 +105,7 @@ public class AddExerciseFragment extends Fragment {
             recoveryTimeList.add(String.valueOf(i) + " days");
         }
 
+
         addNewExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,26 +113,25 @@ public class AddExerciseFragment extends Fragment {
                 ExerciseList exerciseList = ExerciseList.getInstance();
                 String exerciseGroupString = groupSpinner.getSelectedItem().toString();
                 String targetMuscleGroupString = targetMuscleGroupSpinner.getSelectedItem().toString();
-                int exerciseIntensityInt = (intensitySpinner.getSelectedItemPosition() +2);
-                //String isCompound = exerciseTypeSpinner.getSelectedItem().toString();
-                //String isCompound = "true";
-                boolean isCompound = true;
-                int exercisePrioryInt = (exercisePrioritySpinner.getSelectedItemPosition() +2);
-                int recoveryTimeInt = (recoveryTimeSpinner.getSelectedItemPosition()+2);
+                int exerciseIntensityInt = (intensitySpinner.getSelectedItemPosition() +1);
+                boolean isCompound = compoundToBool(exerciseTypeSpinner.getSelectedItem().toString());
+                int exercisePrioryInt = (exercisePrioritySpinner.getSelectedItemPosition() +1);
+                int recoveryTimeInt = (recoveryTimeSpinner.getSelectedItemPosition()+1);
                 exerciseName = editExerciseName.getText().toString();
 
                 Log.d(TAG, "createWorkout clicked.");
                 Log.d(TAG, "Exercise type is: " + isCompound);
                 //ExerciseList.getInstance().addExercise(exerciseName, recoveryTimeInt, exerciseIntensityInt, isCompound, TargetMuscleGroup.valueOf(targetMuscleGroupString.toUpperCase()));
-                baseExercise = new BaseExercise(exerciseName, recoveryTimeInt, exerciseIntensityInt, exercisePrioryInt, isCompound, TargetMuscleGroup.valueOf(targetMuscleGroupSpinner.getSelectedItem().toString().toUpperCase()));
+                baseExercise = new BaseExercise(exerciseName, recoveryTimeInt, exerciseIntensityInt, exercisePrioryInt, isCompound, TargetMuscleGroup.valueOf(targetMuscleGroupSpinner.getSelectedItem().toString().toUpperCase()), ExerciseGroup.valueOf(groupSpinner.getSelectedItem().toString().toUpperCase()));
                 //SaveLoad.getInstance().saveDataList(getActivity(), programExercises, TEST);
 
                 Log.d(TAG, "Added " + baseExercise.getName() + " to exercise list.");
-                Log.d(TAG, "isRecovered:" +baseExercise.getRecoveryDays());
+                Log.d(TAG, "Exercise group: " + baseExercise.getExerciseGroup() + " to exercise list.");
                 Log.d(TAG, "Intensity: " +baseExercise.getExerciseIntensity());
                 Log.d(TAG, "IsCompound: " +baseExercise.getIsCompound());
                 Log.d(TAG, "Priority: " +baseExercise.getPriority());
-                Log.d(TAG, "MuscleGroup: " +baseExercise.getTargetMuscleGroup());
+                Log.d(TAG, "Muscle group: " +baseExercise.getTargetMuscleGroup());
+                Log.d(TAG, "Recovery days:" +baseExercise.getRecoveryDays());
 
                 ExerciseList.getInstance().addExercise(baseExercise);
             }
@@ -130,6 +144,14 @@ public class AddExerciseFragment extends Fragment {
                     }
                 });
         return view;
+    }
+
+    public Boolean compoundToBool (String exerciseType) {
+        if (exerciseType.equals("Compound")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

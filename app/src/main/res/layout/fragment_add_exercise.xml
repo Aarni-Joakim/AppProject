@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Author Aarni Pesonen -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/new_bg"
 
-    tools:context=".ui.program.WorkoutFragment">
+    tools:context=".ui.program.ProgramFragment">
 
     <EditText
         android:id="@+id/editExerciseName"
@@ -25,11 +26,11 @@
         android:id="@+id/exerciseGroupInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        android:text="user input"
+        android:backgroundTint="#FFF"
+        android:spinnerMode="dialog"
+        android:textAlignment="textStart"
         android:textColor="#fff"
-        android:textColorHint="@color/onyx_light"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewTrainingXp"
         app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram3"
         app:layout_constraintTop_toTopOf="@+id/textViewTrainingXp" />
@@ -38,13 +39,11 @@
         android:id="@+id/targetMuscleGroupInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
-        android:text="user input"
-        android:textColor="#fff"
-        android:textColorHint="@color/onyx_light"
-        android:textSize="18sp"
-        android:textAlignment="textStart"
         android:backgroundTint="#FFF"
+        android:spinnerMode="dialog"
+        android:textAlignment="textStart"
+        android:textColor="#fff"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewGoal"
         app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram3"
         app:layout_constraintTop_toTopOf="@+id/textViewGoal" />
@@ -53,12 +52,9 @@
         android:id="@+id/intensityInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
-        android:text="user input"
-        android:textColor="#fff"
-        android:textColorHint="@color/onyx_light"
-        android:textSize="18sp"
         android:backgroundTint="#FFF"
+        android:spinnerMode="dialog"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewGoal3"
         app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram3"
         app:layout_constraintTop_toTopOf="@+id/textViewGoal3" />
@@ -67,12 +63,9 @@
         android:id="@+id/exerciseTypeInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
-        android:text="user input"
-        android:textColor="#fff"
-        android:textColorHint="@color/onyx_light"
-        android:textSize="18sp"
         android:backgroundTint="#FFF"
+        android:spinnerMode="dialog"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewGoal4"
         app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram3"
         app:layout_constraintTop_toTopOf="@+id/textViewGoal4" />
@@ -81,28 +74,12 @@
         android:id="@+id/exercisePriorityInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
-        android:text="user input"
-        android:textColor="#fff"
-        android:textColorHint="@color/onyx_light"
-        android:textSize="18sp"
         android:backgroundTint="#FFF"
+        android:spinnerMode="dialog"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewGoal5"
         app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram3"
         app:layout_constraintTop_toTopOf="@+id/textViewGoal5" />
-
-    <Spinner
-        android:id="@+id/recoveryTimeInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
-        android:text="user input"
-        android:textColor="#fff"
-        android:textColorHint="@color/onyx_light"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewGoal6"
-        app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram3"
-        app:layout_constraintTop_toTopOf="@+id/textViewGoal6" />
 
     <View
         android:id="@+id/divider1"
@@ -269,7 +246,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.96" />
+        app:layout_constraintGuide_percent="0.95" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
@@ -277,4 +254,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.1" />
+
+    <Spinner
+        android:id="@+id/recoveryTimeInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFF"
+        android:textColor="#FFF"
+        android:theme="@style/Spinner"
+        android:drawSelectorOnTop="true"
+        android:textColorHint="@color/onyx_light"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewGoal6"
+        app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram3"
+        app:layout_constraintTop_toTopOf="@+id/textViewGoal6" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

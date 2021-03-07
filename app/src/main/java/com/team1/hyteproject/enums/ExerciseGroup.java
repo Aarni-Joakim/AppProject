@@ -3,11 +3,14 @@ package com.team1.hyteproject.enums;
 /**
  * Author Aarni Pesonen
  */
-//stores program split information
-public enum Split{
-    FULL_BODY("Full-body"),
-    UPPER_LOWER("Upper lower"),
-    PPL("PPL");
+//exercise group that the exercise object belongs to, used in grouping exercises
+public enum ExerciseGroup {
+    UPPER_BODY("Upper_Body"),
+    LOWER_BODY("Lower_Body"),
+    CORE("Core"),
+    CARDIO("Cardio"),
+    STRETCHING("Stretching"),
+    YOGA("Yoga");
 
     private String realName;
 
@@ -15,7 +18,7 @@ public enum Split{
      * store enum string value in a field
      * @param realName
      */
-    private Split(String realName){
+    private ExerciseGroup(String realName){
         this.realName = realName;
     }
 
@@ -27,3 +30,4 @@ public enum Split{
         return realName;
     }
 }
+

@@ -2,6 +2,10 @@ package com.team1.hyteproject.enums;
 
 import com.team1.hyteproject.program.BaseExercise;
 
+/**
+ * Author Aarni Pesonen
+ */
+//used to store exercise targetMuscleGroup value
 public enum TargetMuscleGroup{
     ABS("Abs"),
     BACK("Back"),
@@ -20,14 +24,27 @@ public enum TargetMuscleGroup{
 
     private String realName;
 
+    /**
+     * store enum string value in a field
+     * @param realName
+     */
     private TargetMuscleGroup(String realName){
         this.realName = realName;
     }
 
+    /**
+     * override toString() and return enum value as string
+     * @return
+     */
     @Override public String toString(){
         return realName;
     }
 
+    /**
+     * return exerciseGroup string value based on target muscle group of exercise
+     * @param targetMuscleGroup
+     * @return
+     */
     public String getExerciseGroup (TargetMuscleGroup targetMuscleGroup) {
         String exerciseGroup;
 
@@ -46,11 +63,23 @@ public enum TargetMuscleGroup{
             return exerciseGroup;
         }
     }
+
+    /**
+     * converts a string value representation to enum value
+     * @param targetMuscleGroupToConvert
+     * @return
+     */
+    //TODO: Check if this needs toUpperCase()
     public TargetMuscleGroup stringToValue(String targetMuscleGroupToConvert) {
         TargetMuscleGroup targetMuscleGroup = TargetMuscleGroup.valueOf(targetMuscleGroupToConvert);
        return targetMuscleGroup;
     }
 
+    /**
+     * returns target muscle group of BaseExercise object entered as a parameter
+     * @param baseExercise
+     * @return
+     */
     public TargetMuscleGroup getExerciseGroupFromObject (BaseExercise baseExercise) {
         TargetMuscleGroup targetMuscleGroup = baseExercise.getTargetMuscleGroup();
         return targetMuscleGroup;
