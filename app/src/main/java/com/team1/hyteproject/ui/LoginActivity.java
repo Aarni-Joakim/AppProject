@@ -128,8 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(counter == 0){
                             eLogin.setEnabled(false);
                         }
-
-                    }else{
+                    } else{
 
                         Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
 
