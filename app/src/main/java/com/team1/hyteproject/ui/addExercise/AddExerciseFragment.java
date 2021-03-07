@@ -63,7 +63,6 @@ public class AddExerciseFragment extends Fragment {
         Log.d(TAG, "onCreateView: start.");
 
         //ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.exerciseGroupsSpinner, R.layout.spinner_layout_test);
-
         editExerciseName = view.findViewById(R.id.editExerciseName);
         addNewExercise = view.findViewById(R.id.createAddShared);
 
@@ -76,7 +75,7 @@ public class AddExerciseFragment extends Fragment {
         exercisePrioritySpinner = view.findViewById(R.id.exercisePriorityInput);
         recoveryTimeSpinner = view.findViewById(R.id.recoveryTimeInput);
 
-        groupSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, ExerciseGroup.values()));
+        groupSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item , ExerciseGroup.values()));
         targetMuscleGroupSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, TargetMuscleGroup.values()));
         intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, IntensityPriority.values()));
         exerciseTypeSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, IsCompound.values()));
