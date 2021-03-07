@@ -1,12 +1,15 @@
 package com.team1.hyteproject.ui.program.workoutList.exerciseList;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -25,7 +28,9 @@ import com.team1.hyteproject.ui.ProgramViewAdapter;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ExerciseListFragment extends Fragment {
 
@@ -57,6 +62,26 @@ public class ExerciseListFragment extends Fragment {
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
 
         listIndex = saveLoad.loadListIndex(getActivity());
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
+        TextView dateView = view.findViewById(R.id.dateTextView);
+        dateView.setText(currentDate);
+
+        Button calendarButton = (Button) view.findViewById(R.id.addCalendarButton);
+
+        calendarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_INSERT);
+                intent.setData(CalendarContract.Events.CONTENT_URI);
+                intent.putExtra(CalendarContract.Events.TITLE, TAG);
+                intent.putExtra(CalendarContract.Events.DESCRIPTION, TAG);
+                intent.putExtra(CalendarContract.Events.EVENT_LOCATION, TAG);
+                intent.putExtra(CalendarContract.Events.ALL_DAY, true);
+
+                getActivity().startActivity(intent);
+            }
+        });
 
 
         Program program = new Program("Testiohjelma");

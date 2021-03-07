@@ -1,5 +1,6 @@
 package com.team1.hyteproject.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,10 +32,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private SharedViewModel sharedViewModel;
     private static final String USER = "user";
     private static final String NAMES = "userNames";
-    String regUsername;
-    String regPassword;
-    String regEMail;
-    String age;
+    private final String regUserName = "userName";
+
 
     private ArrayList<User> users = new ArrayList<>();
     private ArrayList<String> userNames = new ArrayList<>();
@@ -64,6 +63,9 @@ public class RegistrationActivity extends AppCompatActivity {
         credentials = new Credentials();
 
         sharedPreferences = getApplicationContext().getSharedPreferences("CredentialsDB", MODE_PRIVATE);
+
+
+
         sharedPreferencesEditor = sharedPreferences.edit();
 
         if(sharedPreferences != null){
@@ -79,23 +81,20 @@ public class RegistrationActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                regUsername = eRegName.getText().toString();
-                regPassword = eRegPassword.getText().toString();
-                regEMail = regMail.getText().toString();
-                age = regBday.getText().toString();
+                String regUsername = eRegName.getText().toString();
+                String regPassword = eRegPassword.getText().toString();
+                String savedUsername = eRegName.getText().toString();
+                String regEMail = regMail.getText().toString();
+                String age = regBday.getText().toString();
                 if(eRegName.getText().toString().isEmpty()){
                     eRegName.setError("Enter text");
                 }else{
-                    users.add(new User(regUsername,regEMail, age));
-                    userNames.add(regUsername);
-                    ProfileSingleton.getInstance().addUser(regUsername, age, regEMail);
-                    ProfileSingleton.getInstance().addUserName(regUsername);
-                    SaveLoad.getInstance().saveDataList(RegistrationActivity.this,  users,  USER);
-                    SaveLoad.getInstance().saveDataList(RegistrationActivity.this,  userNames,  NAMES);
-
+                    sharedPreferencesEditor.putString("savedUsername", savedUsername);
+                    sharedPreferencesEditor.putString("regEMail", regEMail);
+                    sharedPreferencesEditor.putString("age", age);
+                    sharedPreferencesEditor.apply();
                 }
 
-                Log.d(TAG, "ArrayList: "+ ProfileSingleton.getInstance().getArray());
                 if(validate(regUsername, regPassword)) {
 
                     if(credentials.checkUsername(regUsername)){
@@ -117,9 +116,14 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
 
+
         });
 
     }
+
+
+
+
 
     private boolean validate(String username, String password){
 
