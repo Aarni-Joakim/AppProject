@@ -568,7 +568,7 @@ public class ProgramGenerator {
         getDailyWorkoutExercises();
     }
 
-    
+
     public void generateProgram () {
 
         //ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, desiredIntensity, experience, lengthInWeeks, workoutsPerWeek);

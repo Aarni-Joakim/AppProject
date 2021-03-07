@@ -64,10 +64,26 @@ public class SaveLoad  {
         sharedPreferences = getSharedPreferences(context);
         SharedPreferences.Editor prefEditor = sharedPreferences.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(arrayList);
-        prefEditor.putString(PROGRAM_TAG, json);
+        String programsList = gson.toJson(arrayList);
+        prefEditor.putString(PROGRAM_TAG, programsList);
         prefEditor.apply();
         Log.d(TAG, "Saving");
+    }
+
+    public ArrayList loadProgramListTest(Context context) {
+        sharedPreferences = getSharedPreferences(context);
+        Gson gson = new Gson();
+        String programsList = sharedPreferences.getString(PROGRAM_TAG, null);
+        Type programsListType = new TypeToken<ArrayList<Program>>() {}.getType();
+        ArrayList<Program> loadedProgramsList = gson.fromJson(programsList, programsListType);
+
+        if (loadedProgramsList == null) {
+            loadedProgramsList = new ArrayList();
+            Log.d(TAG, "Loaded programList was null");
+        }
+
+        Log.d(TAG, "Loading");
+        return loadedList;
     }
 
     public ArrayList loadExerciseList(Context context, String listName) {
@@ -132,23 +148,6 @@ public class SaveLoad  {
         return loadedList;
     }
 
-    public ArrayList loadProgramListTest(Context context, String listName) {
-
-        sharedPreferences = getSharedPreferences(context);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(listName, null);
-        Type type = new TypeToken<ArrayList<Program>>() {
-        }.getType();
-        ArrayList loadedList = gson.fromJson(json, type);
-
-        if (loadedList == null) {
-            loadedList = new ArrayList();
-            Log.d(TAG, "Loaded programList was null");
-        }
-
-        Log.d(TAG, "Loading");
-        return loadedList;
-    }
 
         public ArrayList loadUserList(Context context, String listName) {
         sharedPreferences = getSharedPreferences(context);

@@ -1,5 +1,7 @@
 package com.team1.hyteproject.program;
 
+import android.widget.ProgressBar;
+
 import java.util.ArrayList;
 
 /**
@@ -10,13 +12,14 @@ public class Program {
     private ArrayList<Workout> workoutHistory;
     private ArrayList<BaseExercise> programExercises;
 
-
+    private ProgressBar progressbar;
     private String programName;
     private String programType;              // toning, power building, muscle mass, strength
     private long creationDate;               // date the program was generated
     private long endDate;                    // predicted date of finishing
     private int programDuration;             // weeks
-    private int numberOfWorkouts;            // how many daily workouts in the program
+    private int workoutsInProgram;            // how many daily workouts in the program
+    private int workoutsCompleted;
     private int programIntensity;            // generated from individual workout intensities
     private int programGrade;                // generated from individual workout grades
     private String mockNextWorkoutDate = "07.03.2021";
