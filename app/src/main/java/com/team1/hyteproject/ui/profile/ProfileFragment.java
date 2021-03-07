@@ -30,6 +30,7 @@ import static com.google.gson.reflect.TypeToken.get;
 /**
  * Displays user info, including a picture selectable from devices memory
  * Login data is (currently) saved in shared preferences and loaded to be displayed here
+ * Add profile picture functionality adapted from https://www.youtube.com/watch?v=b3BEa2drx4w
  */
 public class ProfileFragment extends Fragment {
 
