@@ -1,6 +1,5 @@
 package com.team1.hyteproject.ui.profile;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -11,39 +10,47 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.team1.hyteproject.R;
-import com.team1.hyteproject.ui.RegistrationActivity;
+import com.team1.hyteproject.program.Credentials;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.MODE_PRIVATE;
 import static com.google.gson.reflect.TypeToken.get;
 
+/**
+ * Displays user info, including a picture selectable from devices memory
+ * Login data is (currently) saved in shared preferences and loaded to be displayed here
+ * Add profile picture functionality adapted from https://www.youtube.com/watch?v=b3BEa2drx4w
+ */
 public class ProfileFragment extends Fragment {
 
     private static final String TAG = "ProfileFragment";
+    private static final String CREDS = "CredentialsDB";
     private static final int PICK_IMAGE = 1;
     private SharedViewModel sharedViewModel;
+    private Credentials credentials;
     private CardView cardView;
+    private TextView name;
+    private TextView email;
+    private TextView age;
     private ImageView profileImage;
-    private static final String USER = "user";
-    private static final String NAMES = "userNames";
-    private ArrayList<User> users = new ArrayList<>();
-    private ArrayList<String> userNames = new ArrayList<>();
     Uri imageUri;
+
+    private ArrayList users;
+    private ArrayList usernames;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor sharedPreferencesEditor;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -53,20 +60,22 @@ public class ProfileFragment extends Fragment {
         /*sharedViewModel.getSelected().observe(getViewLifecycleOwner(), item -> {
             // Update the UI.
         });*/
-        final TextView textView = view.findViewById(R.id.text_notifications);
-        TextView userNameView = view.findViewById(R.id.userView);
-        TextView eMailView = view.findViewById(R.id.eMailView);
-        TextView ageView = view.findViewById(R.id.ageView);
+        final TextView textView = view.findViewById(R.id.profileNameTextView);
         profileImage = view.findViewById(R.id.profile_image);
         cardView = view.findViewById(R.id.cardView);
+
+        name = view.findViewById(R.id.profileNameTextView);
+        email = view.findViewById(R.id.profileEmailTextView);
+        age = view.findViewById(R.id.profileAgeTextView);
+
+        users = SaveLoad.getInstance().loadUserList(getActivity(), "user");
+        usernames = SaveLoad.getInstance().loadUsernameList(getActivity(), "usernames");
+
         Log.d(TAG, "onCreateView: start.");
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("CredentialsDB", MODE_PRIVATE);
-        String savedUsername = sharedPreferences.getString("savedUsername","");
-        userNameView.setText(savedUsername);
-        String regEMail = sharedPreferences.getString("regEMail","");
-        eMailView.setText("Email: " + regEMail);
-        String age = sharedPreferences.getString("age","");
-        ageView.setText("Birthday: " + age);
+
+        Log.d(TAG, "users is empty: " + users.isEmpty());
+        //Log.d(TAG, "index 0: " + users.get(0));
+
 
         /*sharedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -86,16 +95,27 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-
-
     //TODO
 
+    /**
+     * Uses an intent to open the phones gallery and allows for picture selection
+     * code based on (add link)
+     */
     protected void openGallery() {
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
     }
 
     // TODO change to protected
+
+    /**
+     * overrides default onActivityResult to check if picture selection from gallery has succeeded
+     * sets the selected picture as profile image if resultCode is OK.
+     * sets retrieved imageUri data as profileImage
+     * @param requestCode checks the result to see if image selection has "succeeded"
+     * @param resultCode identifies the intent returned to
+     * @param data to be set in imageUri Universal resource identifier
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);

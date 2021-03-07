@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Author Aarni Pesonen -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_workout"
+        android:id="@+id/navigation_program"
         android:icon="@drawable/ic_workout_list"
         android:title="@string/title_workout" />
 
     <item
-        android:id="@+id/navigation_exercise"
+        android:id="@+id/navigation_all_exercise"
         android:icon="@drawable/ic_exercise"
         android:title="@string/title_exercise" />
 
