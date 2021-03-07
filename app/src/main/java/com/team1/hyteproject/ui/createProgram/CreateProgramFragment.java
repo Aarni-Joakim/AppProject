@@ -23,6 +23,7 @@ import com.team1.hyteproject.R;
 import com.team1.hyteproject.enums.Experience;
 import com.team1.hyteproject.enums.ExerciseGroup;
 import com.team1.hyteproject.enums.Goal;
+import com.team1.hyteproject.enums.TargetMuscleGroup;
 import com.team1.hyteproject.program.BaseExercise;
 import com.team1.hyteproject.program.ExerciseList;
 import com.team1.hyteproject.program.Program;
@@ -92,7 +93,7 @@ public class CreateProgramFragment extends Fragment {
         trainingXpSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Experience.values()));
         goalSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Goal.values()));
         intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, programIntensity));
-        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, ExerciseGroup.values()));
+        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, TargetMuscleGroup.values()));
         exercisesWeekSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, exercisesPerWeek));
         lengthSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, programLength));
 
@@ -100,6 +101,7 @@ public class CreateProgramFragment extends Fragment {
 
         program = new Program();
         programGenerator = new ProgramGenerator();
+        completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
 
         createProgram.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,7 +147,7 @@ public class CreateProgramFragment extends Fragment {
 
         ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, desiredIntensity, experience, lengthInWeeks, workoutsPerWeek);
         program = programGenerator.getProgram();
-        completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
+
         completeProgramsList.addProgram(program);
         saveLoad.saveProgramListObject(getActivity(), completeProgramsList);
 

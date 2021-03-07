@@ -83,6 +83,8 @@ public class ProgramFragment extends Fragment {
             public void onClick(View v) {
                 Log.d(TAG, "generateProgram clicked.");
 
+                //NEEDS TO BE IN SHARED PREFS OR CRASH
+                saveLoad.saveProgramListObject(getActivity(), completeProgramsList);
                 Navigation.findNavController(view).navigate(R.id.action_navigation_workout_to_navigation_new_program);
             }
         });

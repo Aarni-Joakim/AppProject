@@ -31,6 +31,7 @@ public class SaveLoad  {
     private ArrayList<Program> loadedList = new ArrayList<>();
     private ArrayList<Program> programsList = new ArrayList<>();
     private ProgramsList completeProgramsList;
+    private int listIndex;
 
     private static final SaveLoad instance = new SaveLoad();
 
@@ -48,14 +49,14 @@ public class SaveLoad  {
         sharedPreferences = getSharedPreferences(context);
         SharedPreferences.Editor prefEditor = sharedPreferences.edit();
         prefEditor.putInt(INDEX_TAG, index);
-        prefEditor.apply();
+        prefEditor.commit();
         Log.d(TAG, "Saving list index");
     }
 
     public int loadListIndex(Context context) {
 
         sharedPreferences = getSharedPreferences(context);
-        int listIndex = sharedPreferences.getInt(TAG, 0);
+        listIndex = sharedPreferences.getInt(INDEX_TAG, 0);
 
         Log.d(TAG, "Loaded list index was: " + listIndex);
         Log.d(TAG, "Loading");

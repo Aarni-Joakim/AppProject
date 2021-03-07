@@ -8,6 +8,7 @@ import com.team1.hyteproject.enums.Split;
 import com.team1.hyteproject.enums.TargetMuscleGroup;
 import com.team1.hyteproject.ui.SaveLoad;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -66,6 +67,7 @@ public class ProgramGenerator {
     ArrayList<Date> workoutDates;                                   // calculated workout dates are stored here
     Date dateCreated;                                               // program creation date, is no startDate is given, this will be used instead
     Date workoutDate;                                               // date of an individual workout
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
 
     //TODO: Correct compound/isolation exercise amounts for each split
@@ -596,6 +598,7 @@ public class ProgramGenerator {
         Log.d(TAG, "Age: " + age);
         Log.d(TAG, "# workouts in program: " + workoutsInProgram);
 
+        assignWorkoutDates();
         program.setProgramExercises(programExercises);
         program.setProgramWorkouts(programWorkouts);
         program.setProgramName(programName);
@@ -611,9 +614,18 @@ public class ProgramGenerator {
         completeProgramsList.addProgram(program);
         return completeProgramsList;
     }
+
+    //ASSIGNS STRING DATES FOR EACH PROGRAM WORKOUT FROM workoutDates list | WIP!!!
+    private void assignWorkoutDates() {
+        for (int index = 0; index < programWorkouts.size(); index++) {
+            Log.d(TAG, "workout dates index " + index + " is: "+ workoutDates.get(index));
+            String date = simpleDateFormat.format(workoutDates.get(index));
+            programWorkouts.get(index).setWorkoutDate(date);
+            Log.d(TAG, "date of index " +index + "is " + programWorkouts.get(index).getWorkoutDate());
+        }
+
+    }
 }
-
-
 
 
 
