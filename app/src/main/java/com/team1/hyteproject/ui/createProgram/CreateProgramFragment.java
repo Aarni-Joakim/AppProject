@@ -27,6 +27,7 @@ import com.team1.hyteproject.program.BaseExercise;
 import com.team1.hyteproject.program.ExerciseList;
 import com.team1.hyteproject.program.Program;
 import com.team1.hyteproject.program.ProgramGenerator;
+import com.team1.hyteproject.program.ProgramsList;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 
@@ -43,6 +44,7 @@ public class CreateProgramFragment extends Fragment {
     private EditText editProgramName;
     private Button createProgram;
     private String programName;
+    private ProgramsList completeProgramsList;
     private Program program;
     private ProgramGenerator programGenerator;
     private ArrayList<Program> programsList = new ArrayList();
@@ -104,6 +106,8 @@ public class CreateProgramFragment extends Fragment {
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#202124");
 
+        completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
+
         program = new Program();
         programGenerator = new ProgramGenerator();
 
@@ -119,24 +123,27 @@ public class CreateProgramFragment extends Fragment {
                 String goal = goalSpinner.getSelectedItem().toString();
                 String focus = focusSpinner.getSelectedItem().toString();
                 String experience = trainingXpSpinner.getSelectedItem().toString();
-                String name = editProgramName.getText().toString();
+                String programName = editProgramName.getText().toString();
 
                 Log.d(TAG, "createWorkout clicked.");
 
                 ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, desiredIntensity, experience, lengthInWeeks, workoutsPerWeek);
                 program = programGenerator.getProgram();
-                programsList.add(program);
+                completeProgramsList = new ProgramsList();
+                completeProgramsList.addProgram(program);
+                saveLoad.saveProgramListObject(getActivity(), completeProgramsList);
+
                 // SAVING PROGRAM LIST HERE
-                saveLoad.saveProgramList(getActivity(), programsList);
-                Log.d(TAG, "Total programs in list: " + programsList.size());
+                //saveProgramList(getActivity(), programsList);
+                //Log.d(TAG, "Total programs in list: " + programsList.size());
 
                 //ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, intensity, experience, length, exercisesPerWeek);
                 //programExercises = programGenerator.generateProgram(programName, focus, goal, age, intensity, experience, length, exercisesPerWeek);
                 //programExercises = programGenerator.getProgramExercises();
                 numberOfProgramsCreated++;
-                SaveLoad.getInstance().saveDataList(getActivity(), programExercises, TEST);
+                //SaveLoad.getInstance().saveDataList(getActivity(), programExercises, TEST);
                 ArrayList testList = new ArrayList();
-                testList = SaveLoad.getInstance().loadProgramList(getActivity(), TEST);
+                //testList = SaveLoad.getInstance().loadProgramList(getActivity());
                 Log.d(TAG, "testList is empty:"+testList.isEmpty());
                 Log.d(TAG, "age: " + SharedViewModel.getAge());
 

@@ -20,6 +20,7 @@ import com.team1.hyteproject.R;
 import com.team1.hyteproject.enums.TargetMuscleGroup;
 import com.team1.hyteproject.program.BaseExercise;
 import com.team1.hyteproject.program.Program;
+import com.team1.hyteproject.program.ProgramsList;
 import com.team1.hyteproject.program.Workout;
 import com.team1.hyteproject.ui.ProgramViewAdapter;
 import com.team1.hyteproject.ui.SaveLoad;
@@ -45,6 +46,8 @@ public class ProgramFragment extends Fragment {
     private ArrayList<Program> programsList;
     private ArrayList<Program> loaderCache;
 
+    private ProgramsList completeProgramsList;
+    private Program program;
     private Workout workout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -60,60 +63,37 @@ public class ProgramFragment extends Fragment {
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
 
-        /*Program program = new Program("test program");
-        programs.add(program);
-        Program program2 = new Program("noob program");
-        programs.add(program2);
-        Program program3 = new Program("noob program2");
-        programs.add(program3);
-        Program program4 = new Program("noob program3");
-        programs.add(program4);*/
-
-        programsList = new ArrayList<>();
-        loaderCache = new ArrayList<>();
-        //ProgramView programView = new ProgramView(programs.get(0).getProgramName());
-
-        // the context and arrayList created above
-
-        // create the instance of the ListView to set the numbersViewAdapter
-
-        // set the numbersViewAdapter for ListView
-
-        //ATTEMPTING TO LOAD programsLIST IF NULL. IF LOADED LIST NOT NULL, LOAD STORED LIST.
-        if (programsList == null) {
-            loaderCache = saveLoad.loadProgramList(getActivity(), "programsList");
-            if (loaderCache != null){
-                programsList = loaderCache;
-            }
-
-        }
-        Log.d(TAG, "Total programs in list: " + programsList.size());
-
-        //Custom ProgramViewAdapter
-        ProgramViewAdapter programViewAdapter = new ProgramViewAdapter(getActivity(), programsList);
-        ListView programListView = view.findViewById(R.id.programListView);
-        programListView.setAdapter(programViewAdapter);
+        //Log.d(TAG, "Total programs in list: " + programsList.size());
 
 
-            Program program = new Program("Testiohjelma");
+
+
+
+
+
+            /*Program program = new Program("Testiohjelma");
             workout = new Workout();
             workout.addExercise(new BaseExercise("Hauberikääntö", TargetMuscleGroup.BICEPS, "4", "8-12"));
             workout.addExercise(new BaseExercise("Hauberikääntö2", TargetMuscleGroup.BICEPS, "4", "8-12"));
             program.addWorkout(new Workout("07.03.2020", "Legs"));
             programsList.add(program);
             Program program2 = new Program("noob program");
-            programsList.add(program2);
+            programsList.add(program2);*/
 
-
-
-
-        ArrayList<User> users = SaveLoad.getInstance().loadUserList(getActivity(), "users");
-
-        /*if (users != null) {
-            for (int i = 0; i < users.size(); i++)
-            Log.d(TAG, "users list names: " + users.get(i).getUserName());
+        completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
+        if (completeProgramsList == null){
+            completeProgramsList = new ProgramsList();
+            Log.d(TAG, "complete programs list was null");
         }
-        programExercises2 = SaveLoad.getInstance().loadDataList(getActivity(), "Test");*/
+        else {
+            Log.d(TAG, "complete programs list size: " + completeProgramsList.getProgramsList().size());
+        }
+
+        ProgramViewAdapter programViewAdapter = new ProgramViewAdapter(getActivity(), completeProgramsList.getProgramsList());
+        ListView programListView = view.findViewById(R.id.programListView);
+        programListView.setAdapter(programViewAdapter);
+
+
 
         //FIND OUT WHAT HAPPENS HERE
         if (programExercises2 != null) {
@@ -144,11 +124,11 @@ public class ProgramFragment extends Fragment {
 
                 programExercises = new ArrayList();
                 Log.d(TAG, "Program exercises index 0: " +programExercises.size());
-                programExercises = SaveLoad.getInstance().loadProgramList(getActivity(), TEST);
+                programExercises = SaveLoad.getInstance().loadProgramList(getActivity());
                 Log.d(TAG, "Program exercises index 0: " +programExercises.isEmpty());
 
                 ArrayList testList = new ArrayList();
-                testList = SaveLoad.getInstance().loadProgramList(getActivity(), TEST);
+                testList = SaveLoad.getInstance().loadProgramList(getActivity());
                 Log.d(TAG, "testList is empty:"+testList.isEmpty());
             }
         });

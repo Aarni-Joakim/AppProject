@@ -18,7 +18,7 @@ public class Program {
     private long creationDate;               // date the program was generated
     private long endDate;                    // predicted date of finishing
     private int programDuration;             // weeks
-    private int workoutsInProgram;            // how many daily workouts in the program
+    private int workoutsInProgram;           // how many daily workouts in the program
     private int workoutsCompleted;
     private int programIntensity;            // generated from individual workout intensities
     private int programGrade;                // generated from individual workout grades

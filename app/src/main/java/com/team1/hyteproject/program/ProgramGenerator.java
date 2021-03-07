@@ -9,7 +9,6 @@ import com.team1.hyteproject.enums.TargetMuscleGroup;
 import com.team1.hyteproject.ui.SaveLoad;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -26,9 +25,11 @@ public class ProgramGenerator {
     private ArrayList<WorkoutMuscleGroup> splitGroupList;             // List of all muscle groups included in a single workout
     private BaseExercise baseExercise;                              // Used to hold a single instance of BaseExercise
     private SplitInfo splitInfo;                                    // Holds a list of all split related muscle group distributions
-    private WorkoutMuscleGroup workoutMuscleGroup;                      // Holds lists of all different muscle group distributions available in a split
-    private Workout workout;                                        // Instance of a single workout
+    private WorkoutMuscleGroup workoutMuscleGroup;                  // Holds lists of all different muscle group distributions available in a split
+
+    private ProgramsList completeProgramsList;                              // Holds list of all programs
     private Program program;                                        // All program information is ultimately stored in this class
+    private Workout workout;                                        // Instance of a single workout
     //private SaveLoad saveLoad;                                    // not needed
 
     // user input fields
@@ -70,6 +71,7 @@ public class ProgramGenerator {
     //TODO: Correct compound/isolation exercise amounts for each split
 
     public ProgramGenerator() {
+        completeProgramsList = new ProgramsList();
         program = new Program();
         programExercises = new ArrayList<>();
         workoutDates = new ArrayList<>();
@@ -89,6 +91,7 @@ public class ProgramGenerator {
     public ProgramGenerator(String programName, String focus, String goal, int age, int desiredIntensity, String experience, int lengthInWeeks, int workoutsPerWeek) {
 
         this.programName = programName;
+        Log.d(TAG, "program name is: " +programName);
         this.focus = focus;
         this.goal = goal;
         this.age = age;
@@ -594,13 +597,23 @@ public class ProgramGenerator {
         Log.d(TAG, "# workouts in program: " + workoutsInProgram);
 
         program.setProgramExercises(programExercises);
+        program.setProgramWorkouts(programWorkouts);
+        program.setProgramName(programName);
+        program.setProgramType(goal);
 
     }
 
     public Program getProgram() {
         return program;
     }
+
+    public ProgramsList getCompleteProgramsList() {
+        completeProgramsList.addProgram(program);
+        return completeProgramsList;
+    }
 }
+
+
 
 
 
