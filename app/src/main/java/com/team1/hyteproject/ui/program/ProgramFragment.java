@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -63,24 +64,8 @@ public class ProgramFragment extends Fragment {
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
 
-        //Log.d(TAG, "Total programs in list: " + programsList.size());
-
-
-
-
-
-
-
-            /*Program program = new Program("Testiohjelma");
-            workout = new Workout();
-            workout.addExercise(new BaseExercise("Hauberikääntö", TargetMuscleGroup.BICEPS, "4", "8-12"));
-            workout.addExercise(new BaseExercise("Hauberikääntö2", TargetMuscleGroup.BICEPS, "4", "8-12"));
-            program.addWorkout(new Workout("07.03.2020", "Legs"));
-            programsList.add(program);
-            Program program2 = new Program("noob program");
-            programsList.add(program2);*/
-
         completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
+
         if (completeProgramsList == null){
             completeProgramsList = new ProgramsList();
             Log.d(TAG, "complete programs list was null");
@@ -92,20 +77,6 @@ public class ProgramFragment extends Fragment {
         ProgramViewAdapter programViewAdapter = new ProgramViewAdapter(getActivity(), completeProgramsList.getProgramsList());
         ListView programListView = view.findViewById(R.id.programListView);
         programListView.setAdapter(programViewAdapter);
-
-
-
-        //FIND OUT WHAT HAPPENS HERE
-        if (programExercises2 != null) {
-            for (int i = 0; i < programExercises2.size(); i++) {
-                Log.d(TAG, "Program exercises contains: " + programExercises2.get(i).getName() +" " + programExercises2.get(i).getTargetMuscleGroup());
-            }
-
-            Log.d(TAG, "programExercises is empty: " + programExercises2.isEmpty());
-            if (programExercises2 == null) {
-                Log.d(TAG, "programExercises is null.");
-            }
-        }
 
         generateProgram.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,17 +90,8 @@ public class ProgramFragment extends Fragment {
         createOwnWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "createOwnWorkout clicked.");
-                Log.d(TAG, "Trying to load programExercisesList.");
 
-                programExercises = new ArrayList();
-                Log.d(TAG, "Program exercises index 0: " +programExercises.size());
-                programExercises = SaveLoad.getInstance().loadProgramList(getActivity());
-                Log.d(TAG, "Program exercises index 0: " +programExercises.isEmpty());
-
-                ArrayList testList = new ArrayList();
-                testList = SaveLoad.getInstance().loadProgramList(getActivity());
-                Log.d(TAG, "testList is empty:"+testList.isEmpty());
+                Toast.makeText(getActivity(), "Feature not yet implemented.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -141,7 +103,6 @@ public class ProgramFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_navigation_program_to_navigation_workout_list);
             }
         });
-
                 /*SharedViewModel.class.getName().observe(getViewLifecycleOwner(), new Observer<String>() {
                     @Override
                     public void onChanged(@Nullable String s) {
