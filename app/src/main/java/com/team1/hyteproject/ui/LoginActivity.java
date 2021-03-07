@@ -1,5 +1,7 @@
 package com.team1.hyteproject.ui;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,8 +14,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
@@ -105,7 +105,6 @@ public class LoginActivity extends AppCompatActivity {
         eLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String regUsername = eName.getText().toString();
 
                 String inputName = eName.getText().toString();
                 String inputPassword = ePassword.getText().toString();

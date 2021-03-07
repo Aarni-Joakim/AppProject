@@ -4,86 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/new_bg"
     tools:context=".ui.RegistrationActivity">
 
     <EditText
         android:id="@+id/etRegName"
-        android:layout_width="178dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Enter name:"
         android:inputType="textPersonName"
-        android:textColorHint="#778899"
-        android:textColor="#778899"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintHorizontal_bias="0.449"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121" />
-
-    <EditText
-        android:id="@+id/regBday"
-        android:layout_width="178dp"
-        android:layout_height="48dp"
-        android:textColorHint="#778899"
-        android:ems="10"
-        android:hint="Enter your birthday!"
-        android:inputType="date"
-        android:textColor="#778899"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.931"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121" />
+        app:layout_constraintVertical_bias="0.225" />
 
     <EditText
         android:id="@+id/etRegPassword"
-        android:layout_width="179dp"
-        android:layout_height="45dp"
-        android:textColorHint="#778899"
-        android:textColor="#778899"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Enter Password:"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintHorizontal_bias="0.449"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etRegName"
-        app:layout_constraintVertical_bias="0.025" />
-
-    <EditText
-        android:id="@+id/regEmail"
-        android:layout_width="179dp"
-        android:layout_height="45dp"
-        android:textColorHint="#778899"
-        android:ems="10"
-        android:hint="Enter email"
-        android:inputType="textEmailAddress"
-        android:textColor="#778899"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.939"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRegName"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.065" />
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
-        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etRegPassword"
-        android:background="@color/calendar_green"
         app:layout_constraintVertical_bias="0.076" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
