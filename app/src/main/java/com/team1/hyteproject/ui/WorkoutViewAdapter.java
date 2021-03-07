@@ -45,7 +45,7 @@ public class WorkoutViewAdapter extends ArrayAdapter<Workout> {
         workoutDate.setText(currentNumberPosition.getWorkoutDate());
 
         // GET FROM MUSCLE GROUP MAJORITY
-        TextView workoutType = WorkoutItemView.findViewById(R.id.workoutTypeDisplay);
+        TextView workoutType = WorkoutItemView.findViewById(R.id.programExerciseNameDisplay);
         workoutType.setText(currentNumberPosition.getWorkoutType());
 
         // then according to the position of the view assign the desired TextView 2 for the same

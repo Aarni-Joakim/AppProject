@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class Workout {
 
-    private ArrayList<BaseExercise> workoutExercises;
+    private ArrayList<BaseExercise> workoutExercises = new ArrayList<>();
 
     private Date workoutDate;                               //date from java calendar
     private String workoutDateString = "07.03.2020";
@@ -27,7 +27,6 @@ public class Workout {
     public Workout(String workoutDateString, String workoutType) {
         this.workoutDateString = workoutDateString;
         this.workoutType = workoutType;
-        workoutExercises = new ArrayList<>();
     }
 
     /**

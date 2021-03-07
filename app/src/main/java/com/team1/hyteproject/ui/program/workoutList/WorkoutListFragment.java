@@ -16,8 +16,11 @@ import androidx.navigation.Navigation;
 
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
+import com.team1.hyteproject.enums.TargetMuscleGroup;
 import com.team1.hyteproject.program.BaseExercise;
+import com.team1.hyteproject.program.Program;
 import com.team1.hyteproject.program.Workout;
+import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 import com.team1.hyteproject.ui.WorkoutView;
 import com.team1.hyteproject.ui.WorkoutViewAdapter;
@@ -33,11 +36,17 @@ public class WorkoutListFragment extends Fragment {
     private static final String TEST = "Test";
 
     private SharedViewModel sharedViewModel;
+    private SaveLoad saveLoad = SaveLoad.getInstance();
     private ListView workoutListView;
     private Button testButton;
+    private int listIndex;
 
+    private ArrayList<Program> programsList = new ArrayList<>();
     private ArrayList<BaseExercise> programExercises;
-    private ArrayList<Workout> workouts;
+    private ArrayList<Workout> workoutList;
+
+    private Program program;
+    private Workout workout;
 
     /**
      *
@@ -54,16 +63,25 @@ public class WorkoutListFragment extends Fragment {
         //TextView textView = view.findViewById(R.id.textViewWorkout);
         Log.d(TAG, "onCreateView: start.");
 
-        testButton = view.findViewById(R.id.generateProgram);
+        //testButton = view.findViewById(R.id.generateProgram);
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
 
-        workouts = new ArrayList<>();
-        workouts.add(new Workout("06.03.2021", "Noobdev"));
+        listIndex = saveLoad.loadListIndex(getActivity());
 
-        WorkoutView workoutView = new WorkoutView(workouts.get(0).getWorkoutDate());
+        Program program = new Program("Testiohjelma");
+        workout = new Workout();
+        workout.addExercise(new BaseExercise("Hauberikääntö", TargetMuscleGroup.BICEPS, "4", "8-12"));
+        workout.addExercise(new BaseExercise("Hauberikääntö2", TargetMuscleGroup.BICEPS, "4", "8-12"));
+        program.addWorkout(new Workout("07.03.2020", "Legs"));
+        programsList.add(program);
+        Program program2 = new Program("noob program");
+        programsList.add(program2);
 
-        WorkoutViewAdapter workoutViewAdapter = new WorkoutViewAdapter(getActivity(), workouts);
+        Log.d(TAG, "List index: " +listIndex);
+        //WorkoutView workoutView = new WorkoutView(workouts.get(0).getWorkoutDate());
+
+        WorkoutViewAdapter workoutViewAdapter = new WorkoutViewAdapter(getActivity(), program.getWorkoutList());
         workoutListView = view.findViewById(R.id.workoutListView);
         workoutListView.setAdapter(workoutViewAdapter);
 
@@ -71,6 +89,8 @@ public class WorkoutListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> programListView, View view, int i, long l) {
                 Log.d("onClick", "onItemClick(" + i + ")");
+
+                saveLoad.saveListIndex(getActivity(), i);
 
                 Navigation.findNavController(view).navigate(R.id.action_navigation_workout_list_to_navigation_program_exercise_list);
             }

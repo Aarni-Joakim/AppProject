@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- Author Aarni Pesonen -->
+
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -33,7 +36,7 @@
     <fragment
         android:id="@+id/navigation_workout_list"
         android:name="com.team1.hyteproject.ui.program.workoutList.WorkoutListFragment"
-        android:label="@string/title_workout"
+        android:label="@string/title_program_workouts"
         tools:layout="@layout/program_list1" >
         <action
             android:id="@+id/action_navigation_workout_list_to_navigation_workout"
@@ -46,7 +49,7 @@
     <fragment
         android:id="@+id/navigation_program_workout_exercise_list"
         android:name="com.team1.hyteproject.ui.program.workoutList.exerciseList.ExerciseListFragment"
-        android:label="@string/title_workout"
+        android:label="@string/title_workout_exercises"
         tools:layout="@layout/program_list1" >
         <action
             android:id="@+id/action_navigation_program_exercise_list_to_navigation_workout_list"
@@ -112,7 +115,7 @@
 
     <fragment
         android:id="@+id/navigation_new_program"
-        android:name="com.team1.hyteproject.ui.createProgram.NewProgramFragment"
+        android:name="com.team1.hyteproject.ui.createProgram.CreateProgramFragment"
         android:label="@string/title_new_program"
         tools:layout="@layout/fragment_new_program" >
         <action

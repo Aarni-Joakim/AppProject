@@ -19,8 +19,8 @@ public class BaseExercise {
     private int recoveryDays;
     private int recoveryProgress;
     private int exerciseIntensity;
-    private int reps;
-    private int sets;
+    private String reps;
+    private String sets;
     private int priority;
     private int preference = 0;
     private boolean isCompound;
@@ -35,6 +35,12 @@ public class BaseExercise {
      */
     public BaseExercise() {}
 
+    public BaseExercise(String name, TargetMuscleGroup targetMuscleGroup, String sets, String reps) {
+        this.name = name;
+        this.targetMuscleGroup = targetMuscleGroup;
+        this.sets = sets;
+        this.reps = reps;
+    }
     /**
      * parameterized constructor
      * @param name of the exercise
@@ -59,13 +65,13 @@ public class BaseExercise {
      * set the amount of sets
      * @param sets
      */
-    public void setSets (int sets) { this.sets = sets; }
+    public void setSets (String sets) { this.sets = sets; }
 
     /**
      * set the amount of reps
      * @param reps
      */
-    public void setReps (int reps) { this.reps = reps; }
+    public void setReps (String reps) { this.reps = reps; }
 
     /**
      * set exercise preference value
@@ -199,6 +205,13 @@ public class BaseExercise {
      * @return
      */
     public ArrayList getRecoveryStatistics () { return recoveryStatistics; }
+
+    public String getSets() {
+        return sets;
+    }
+    public String getReps() {
+        return reps;
+    }
 
     /**
      * overrides toString method to return exercise name (redundant?)
