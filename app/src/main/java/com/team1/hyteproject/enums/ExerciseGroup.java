@@ -5,8 +5,8 @@ package com.team1.hyteproject.enums;
  */
 //exercise group that the exercise object belongs to, used in grouping exercises
 public enum ExerciseGroup {
-    UPPER_BODY("Upper_Body"),
-    LOWER_BODY("Lower_Body"),
+    UPPER_BODY("Upper Body"),
+    LOWER_BODY("Lower Body"),
     CORE("Core"),
     CARDIO("Cardio"),
     STRETCHING("Stretching"),

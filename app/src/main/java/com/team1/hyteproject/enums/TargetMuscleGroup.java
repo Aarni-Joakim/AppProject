@@ -17,8 +17,8 @@ public enum TargetMuscleGroup{
     GLUTES("Glutes"),
     HAMSTRINGS("Hamstrings"),
     LEGS("Legs"),
-    LOWER_BACK("Lower_back"),
-    UPPER_BACK("Upper_back"),
+    LOWER_BACK("Lower back"),
+    UPPER_BACK("Upper back"),
     TRICEPS("Triceps"),
     QUADS("Quads");
 
