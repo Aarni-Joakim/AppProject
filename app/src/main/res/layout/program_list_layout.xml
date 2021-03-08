@@ -52,7 +52,7 @@
 
 
         <TextView
-            android:id="@+id/nextWorkoutDateText"
+            android:id="@+id/nextWorkoutDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -64,7 +64,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/nextWorkoutDateTextView"
+            android:id="@+id/nextWorkoutDateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

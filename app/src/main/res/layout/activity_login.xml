@@ -12,10 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:textColorHint="#778899"
         android:hint="Enter Username:"
-        android:textColor="#778899"
         android:inputType="textPersonName"
+        android:textColor="#778899"
+        android:textColorHint="#778899"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,10 +27,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:textColorHint="#778899"
         android:hint="Enter Password:"
         android:textColor="#778899"
         android:inputType="textPassword"
+        android:textColorHint="#778899"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,8 +41,8 @@
         android:id="@+id/tvAttemptsInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#778899"
         android:text="No. of attempts remaining: 5"
+        android:textColor="#778899"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,5 +100,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordText"
         app:layout_constraintVertical_bias="0.42" />
+
+
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="79dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="137dp"
+        android:layout_marginBottom="13dp"
+        android:contentDescription="logo"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/usernameText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/logo_outline"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/app_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/logo_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAttemptsInfo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

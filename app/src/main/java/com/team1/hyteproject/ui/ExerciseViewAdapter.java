@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.program.BaseExercise;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class ExerciseViewAdapter extends ArrayAdapter<BaseExercise> {

@@ -42,8 +42,8 @@ public class ProgramViewAdapter extends ArrayAdapter<Program> {
         TextView programName = ProgramItemView.findViewById(R.id.programNameDisplay);
         programName.setText(currentNumberPosition.getProgramName());
 
-        //TextView nextWorkoutDate = ProgramItemView.findViewById(R.id.nextWorkoutDateText);
-        //nextWorkoutDate.setText(currentNumberPosition.getNumbersInText());
+        TextView nextWorkoutDate = ProgramItemView.findViewById(R.id.nextWorkoutDateText);
+        nextWorkoutDate.setText(currentNumberPosition.getNextWorkoutDate());
 
         ProgressBar programProgress = ProgramItemView.findViewById(R.id.programProgressBar);
         //programProgress.
