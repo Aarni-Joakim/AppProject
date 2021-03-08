@@ -8,8 +8,8 @@ import com.team1.hyteproject.enums.Split;
 import com.team1.hyteproject.enums.TargetMuscleGroup;
 import com.team1.hyteproject.ui.SaveLoad;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -26,9 +26,11 @@ public class ProgramGenerator {
     private ArrayList<WorkoutMuscleGroup> splitGroupList;             // List of all muscle groups included in a single workout
     private BaseExercise baseExercise;                              // Used to hold a single instance of BaseExercise
     private SplitInfo splitInfo;                                    // Holds a list of all split related muscle group distributions
-    private WorkoutMuscleGroup workoutMuscleGroup;                      // Holds lists of all different muscle group distributions available in a split
-    private Workout workout;                                        // Instance of a single workout
+    private WorkoutMuscleGroup workoutMuscleGroup;                  // Holds lists of all different muscle group distributions available in a split
+
+    private ProgramsList completeProgramsList;                              // Holds list of all programs
     private Program program;                                        // All program information is ultimately stored in this class
+    private Workout workout;                                        // Instance of a single workout
     //private SaveLoad saveLoad;                                    // not needed
 
     // user input fields
@@ -65,11 +67,13 @@ public class ProgramGenerator {
     ArrayList<Date> workoutDates;                                   // calculated workout dates are stored here
     Date dateCreated;                                               // program creation date, is no startDate is given, this will be used instead
     Date workoutDate;                                               // date of an individual workout
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
 
     //TODO: Correct compound/isolation exercise amounts for each split
 
     public ProgramGenerator() {
+        completeProgramsList = new ProgramsList();
         program = new Program();
         programExercises = new ArrayList<>();
         workoutDates = new ArrayList<>();
@@ -89,6 +93,7 @@ public class ProgramGenerator {
     public ProgramGenerator(String programName, String focus, String goal, int age, int desiredIntensity, String experience, int lengthInWeeks, int workoutsPerWeek) {
 
         this.programName = programName;
+        Log.d(TAG, "program name is: " +programName);
         this.focus = focus;
         this.goal = goal;
         this.age = age;
@@ -568,7 +573,7 @@ public class ProgramGenerator {
         getDailyWorkoutExercises();
     }
 
-    
+
     public void generateProgram () {
 
         //ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, desiredIntensity, experience, lengthInWeeks, workoutsPerWeek);
@@ -593,12 +598,32 @@ public class ProgramGenerator {
         Log.d(TAG, "Age: " + age);
         Log.d(TAG, "# workouts in program: " + workoutsInProgram);
 
+        assignWorkoutDates();
         program.setProgramExercises(programExercises);
+        program.setProgramWorkouts(programWorkouts);
+        program.setProgramName(programName);
+        program.setProgramType(goal);
 
     }
 
     public Program getProgram() {
         return program;
+    }
+
+    public ProgramsList getCompleteProgramsList() {
+        completeProgramsList.addProgram(program);
+        return completeProgramsList;
+    }
+
+    //ASSIGNS STRING DATES FOR EACH PROGRAM WORKOUT FROM workoutDates list | WIP!!!
+    private void assignWorkoutDates() {
+        for (int index = 0; index < programWorkouts.size(); index++) {
+            Log.d(TAG, "workout dates index " + index + " is: "+ workoutDates.get(index));
+            String date = simpleDateFormat.format(workoutDates.get(index));
+            programWorkouts.get(index).setWorkoutDate(date);
+            Log.d(TAG, "date of index " +index + "is " + programWorkouts.get(index).getWorkoutDate());
+        }
+
     }
 }
 

@@ -23,10 +23,12 @@ import com.team1.hyteproject.R;
 import com.team1.hyteproject.enums.Experience;
 import com.team1.hyteproject.enums.ExerciseGroup;
 import com.team1.hyteproject.enums.Goal;
+import com.team1.hyteproject.enums.TargetMuscleGroup;
 import com.team1.hyteproject.program.BaseExercise;
 import com.team1.hyteproject.program.ExerciseList;
 import com.team1.hyteproject.program.Program;
 import com.team1.hyteproject.program.ProgramGenerator;
+import com.team1.hyteproject.program.ProgramsList;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 
@@ -43,6 +45,7 @@ public class CreateProgramFragment extends Fragment {
     private EditText editProgramName;
     private Button createProgram;
     private String programName;
+    private ProgramsList completeProgramsList;
     private Program program;
     private ProgramGenerator programGenerator;
     private ArrayList<Program> programsList = new ArrayList();
@@ -59,7 +62,7 @@ public class CreateProgramFragment extends Fragment {
     Spinner exercisesWeekSpinner;
     Spinner lengthSpinner;
 
-    private int numberOfProgramsCreated = 1;
+    private int numberOfProgramsCreated = 0;
     //private ArrayList programExercises;
 
     // TODO: increase numberOfProgramsCreated automatically. Program name generator.
@@ -71,22 +74,14 @@ public class CreateProgramFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_new_program, container, false);
         Log.d(TAG, "onCreateView: start.");
 
+        ((HomeActivity)getActivity()).updateStatusBarColor("#202124");
+
         editProgramName = view.findViewById(R.id.editProgramName);
         createProgram = view.findViewById(R.id.createAddShared);
         editProgramName = view.findViewById(R.id.editProgramName);
         editProgramName.setGravity(Gravity.END);
 
-        for (int i = 1; i < 6; i++) {
-            programIntensity.add(i);
-
-        }
-        for (int i = 1; i < 7; i++){
-            exercisesPerWeek.add(i);
-        }
-
-        for (int i = 4; i <= 12; i++) {
-            programLength.add(String.valueOf(i) + " weeks");
-        }
+        createSpinnerData();
 
         trainingXpSpinner = view.findViewById(R.id.trainingXPInput);
         goalSpinner = view.findViewById(R.id.goalInput);
@@ -98,47 +93,21 @@ public class CreateProgramFragment extends Fragment {
         trainingXpSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Experience.values()));
         goalSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Goal.values()));
         intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, programIntensity));
-        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, ExerciseGroup.values()));
+        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, TargetMuscleGroup.values()));
         exercisesWeekSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, exercisesPerWeek));
         lengthSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, programLength));
 
-        ((HomeActivity)getActivity()).updateStatusBarColor("#202124");
+//        completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
 
         program = new Program();
         programGenerator = new ProgramGenerator();
+        completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
 
         createProgram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ExerciseList exerciseList = ExerciseList.getInstance();
-                int age = SharedViewModel.getAge();
-                int workoutsPerWeek = (exercisesWeekSpinner.getSelectedItemPosition() + 1);
-                int lengthInWeeks = (lengthSpinner.getSelectedItemPosition() + 4);
-                int desiredIntensity = (intensitySpinner.getSelectedItemPosition() +1);
-                String goal = goalSpinner.getSelectedItem().toString();
-                String focus = focusSpinner.getSelectedItem().toString();
-                String experience = trainingXpSpinner.getSelectedItem().toString();
-                String name = editProgramName.getText().toString();
-
-                Log.d(TAG, "createWorkout clicked.");
-
-                ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, desiredIntensity, experience, lengthInWeeks, workoutsPerWeek);
-                program = programGenerator.getProgram();
-                programsList.add(program);
-                // SAVING PROGRAM LIST HERE
-                saveLoad.saveProgramList(getActivity(), programsList);
-                Log.d(TAG, "Total programs in list: " + programsList.size());
-
-                //ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, intensity, experience, length, exercisesPerWeek);
-                //programExercises = programGenerator.generateProgram(programName, focus, goal, age, intensity, experience, length, exercisesPerWeek);
-                //programExercises = programGenerator.getProgramExercises();
-                numberOfProgramsCreated++;
-                SaveLoad.getInstance().saveDataList(getActivity(), programExercises, TEST);
-                ArrayList testList = new ArrayList();
-                testList = SaveLoad.getInstance().loadProgramList(getActivity(), TEST);
-                Log.d(TAG, "testList is empty:"+testList.isEmpty());
-                Log.d(TAG, "age: " + SharedViewModel.getAge());
+                createProgram();
 
                 Navigation.findNavController(view).navigate(R.id.action_navigation_new_program_to_navigation_program);
             }
@@ -161,6 +130,42 @@ public class CreateProgramFragment extends Fragment {
                     }
                 });
         return view;
+    }
+
+    private void createProgram() {
+        ExerciseList exerciseList = ExerciseList.getInstance();
+        int age = SharedViewModel.getAge();
+        int workoutsPerWeek = (exercisesWeekSpinner.getSelectedItemPosition() + 1);
+        int lengthInWeeks = (lengthSpinner.getSelectedItemPosition() + 4);
+        int desiredIntensity = (intensitySpinner.getSelectedItemPosition() +1);
+        String goal = goalSpinner.getSelectedItem().toString();
+        String focus = focusSpinner.getSelectedItem().toString();
+        String experience = trainingXpSpinner.getSelectedItem().toString();
+        String programName = editProgramName.getText().toString();
+
+        Log.d(TAG, "createWorkout clicked.");
+
+        ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, desiredIntensity, experience, lengthInWeeks, workoutsPerWeek);
+        program = programGenerator.getProgram();
+
+        completeProgramsList.addProgram(program);
+        saveLoad.saveProgramListObject(getActivity(), completeProgramsList);
+
+        numberOfProgramsCreated++;
+    }
+
+    private void createSpinnerData() {
+        for (int i = 1; i < 6; i++) {
+            programIntensity.add(i);
+
+        }
+        for (int i = 1; i < 7; i++){
+            exercisesPerWeek.add(i);
+        }
+
+        for (int i = 4; i <= 12; i++) {
+            programLength.add(String.valueOf(i) + " weeks");
+        }
     }
 }
 
