@@ -71,13 +71,13 @@ public class ProfileFragment extends Fragment {
         profileImage = view.findViewById(R.id.profile_image);
         cardView = view.findViewById(R.id.cardView);
         Log.d(TAG, "onCreateView: start.");
-        //SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("CredentialsDB", MODE_PRIVATE);
-        //String savedUsername = sharedPreferences.getString("savedUsername","");
-        //userNameView.setText(savedUsername);
-        //String regEMail = sharedPreferences.getString("regEMail","");
-        //eMailView.setText("Email: " + regEMail);
-        //String age = sharedPreferences.getString("age","");
-        //ageView.setText("Birthday: " + age);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("CredentialsDB", MODE_PRIVATE);
+        String savedUsername = sharedPreferences.getString("savedUsername","");
+        userNameView.setText(savedUsername);
+        String regEMail = sharedPreferences.getString("regEMail","");
+        eMailView.setText("Email: " + regEMail);
+        String age = sharedPreferences.getString("age","");
+        ageView.setText("Birthday: " + age);
 
         user = (User) saveLoad.loadUserObject(getActivity(), User.class);
 
