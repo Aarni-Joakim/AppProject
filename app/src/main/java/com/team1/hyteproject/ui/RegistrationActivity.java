@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.program.Credentials;
+import com.team1.hyteproject.ui.profile.ProfileFragment;
 import com.team1.hyteproject.ui.profile.ProfileSingleton;
 import com.team1.hyteproject.ui.profile.User;
 
@@ -32,7 +33,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private SharedViewModel sharedViewModel;
     private static final String USER = "user";
     private static final String NAMES = "userNames";
-    private final String regUserName = "userName";
+    private SaveLoad saveLoad = SaveLoad.getInstance();
 
 
     private ArrayList<User> users = new ArrayList<>();
@@ -84,15 +85,17 @@ public class RegistrationActivity extends AppCompatActivity {
                 String regUsername = eRegName.getText().toString();
                 String regPassword = eRegPassword.getText().toString();
                 String savedUsername = eRegName.getText().toString();
-                String regEMail = regMail.getText().toString();
+                String eMail = regMail.getText().toString();
                 String age = regBday.getText().toString();
                 if(eRegName.getText().toString().isEmpty()){
                     eRegName.setError("Enter text");
                 }else{
-                    sharedPreferencesEditor.putString("savedUsername", savedUsername);
-                    sharedPreferencesEditor.putString("regEMail", regEMail);
-                    sharedPreferencesEditor.putString("age", age);
-                    sharedPreferencesEditor.apply();
+                    //sharedPreferencesEditor.putString("savedUsername", savedUsername);
+                    //sharedPreferencesEditor.putString("regEMail", regEMail);
+                    //sharedPreferencesEditor.putString("age", age);
+                    //sharedPreferencesEditor.apply();
+
+
                 }
 
                 if(validate(regUsername, regPassword)) {
@@ -101,10 +104,11 @@ public class RegistrationActivity extends AppCompatActivity {
                         Toast.makeText(RegistrationActivity.this, "Username already taken!", Toast.LENGTH_SHORT).show();
                     }else{
 
-                        credentials.addCredentials(regUsername, regPassword);
+                        credentials.addCredentials(regUsername, regPassword, eMail, age);
 
                         /* Store the credentials */
                         sharedPreferencesEditor.putString(regUsername, regPassword);
+                        sharedPreferencesEditor.putString(age, eMail);
                         sharedPreferencesEditor.putString("LastSavedUsername", "");
                         sharedPreferencesEditor.putString("LastSavedPassword", "");
 
@@ -120,9 +124,6 @@ public class RegistrationActivity extends AppCompatActivity {
         });
 
     }
-
-
-
 
 
     private boolean validate(String username, String password){

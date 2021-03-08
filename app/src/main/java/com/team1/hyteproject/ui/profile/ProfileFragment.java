@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.program.Credentials;
+import com.team1.hyteproject.ui.RegistrationActivity;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 
@@ -46,6 +47,8 @@ public class ProfileFragment extends Fragment {
     private TextView email;
     private TextView age;
     private ImageView profileImage;
+    private SaveLoad saveLoad = SaveLoad.getInstance();
+    private User user;
     Uri imageUri;
 
     private ArrayList users;
@@ -68,13 +71,16 @@ public class ProfileFragment extends Fragment {
         profileImage = view.findViewById(R.id.profile_image);
         cardView = view.findViewById(R.id.cardView);
         Log.d(TAG, "onCreateView: start.");
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("CredentialsDB", MODE_PRIVATE);
-        String savedUsername = sharedPreferences.getString("savedUsername","");
-        userNameView.setText(savedUsername);
-        String regEMail = sharedPreferences.getString("regEMail","");
-        eMailView.setText("Email: " + regEMail);
-        String age = sharedPreferences.getString("age","");
-        ageView.setText("Birthday: " + age);
+        //SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("CredentialsDB", MODE_PRIVATE);
+        //String savedUsername = sharedPreferences.getString("savedUsername","");
+        //userNameView.setText(savedUsername);
+        //String regEMail = sharedPreferences.getString("regEMail","");
+        //eMailView.setText("Email: " + regEMail);
+        //String age = sharedPreferences.getString("age","");
+        //ageView.setText("Birthday: " + age);
+
+        user = (User) saveLoad.loadUserObject(getActivity(), User.class);
+
 
 
         /*sharedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {

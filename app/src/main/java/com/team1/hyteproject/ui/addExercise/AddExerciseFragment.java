@@ -93,7 +93,7 @@ public class AddExerciseFragment extends Fragment {
         exerciseGroupList.add("Core");
 
         Resources res = getResources();
-        exerciseGroups = res.getStringArray(R.array.exerciseGroupsSpinner);
+        //exerciseGroups = res.getStringArray(R.array.exerciseGroupsSpinner);
 
 
 

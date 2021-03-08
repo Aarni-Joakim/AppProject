@@ -11,13 +11,13 @@
 
     <ListView
         android:id="@+id/exerciseListView"
-        android:layout_width="401dp"
-        android:layout_height="581dp"
+        android:layout_width="393dp"
+        android:layout_height="519dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
@@ -37,16 +37,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.92" />
+
     <TextView
         android:id="@+id/dateTextView"
         android:layout_width="169dp"
         android:layout_height="54dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="216dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="64dp"
         android:text="TextView"
         android:textColor="#778899"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/exerciseListView"
+        app:layout_constraintEnd_toStartOf="@+id/addCalendarButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -55,7 +58,9 @@
         android:layout_height="54dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
         android:text="Add To Calendar"
+        app:layout_constraintBottom_toTopOf="@+id/exerciseListView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
