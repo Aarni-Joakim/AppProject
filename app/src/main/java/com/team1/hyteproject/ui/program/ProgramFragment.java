@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.team1.hyteproject.CalendarController;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.enums.TargetMuscleGroup;
@@ -83,7 +84,7 @@ public class ProgramFragment extends Fragment {
             public void onClick(View v) {
                 Log.d(TAG, "generateProgram clicked.");
 
-                //NEEDS TO BE IN SHARED PREFS OR CRASH
+                //NEEDS TO BE IN SHARED PREFS OR CRASH (FIXED)
                 saveLoad.saveProgramListObject(getActivity(), completeProgramsList);
                 Navigation.findNavController(view).navigate(R.id.action_navigation_workout_to_navigation_new_program);
             }
@@ -94,6 +95,8 @@ public class ProgramFragment extends Fragment {
             public void onClick(View v) {
 
                 Toast.makeText(getActivity(), "Feature not yet implemented.", Toast.LENGTH_SHORT).show();
+                CalendarController calendarController = new CalendarController();
+                calendarController.addEvent(getActivity());
             }
         });
 
