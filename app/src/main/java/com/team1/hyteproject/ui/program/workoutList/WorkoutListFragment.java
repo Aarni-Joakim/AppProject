@@ -1,5 +1,6 @@
 package com.team1.hyteproject.ui.program.workoutList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,7 +26,9 @@ import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 import com.team1.hyteproject.ui.WorkoutViewAdapter;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Author Aarni Pesonen
@@ -63,6 +67,9 @@ public class WorkoutListFragment extends Fragment {
         Log.d(TAG, "onCreateView: start.");
 
 
+
+
+       
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
 
         programIndex = saveLoad.loadListIndex(getActivity(), "index");
@@ -89,7 +96,11 @@ public class WorkoutListFragment extends Fragment {
             }
         });
 
+
+
         return view;
     }
+
+
 }
 

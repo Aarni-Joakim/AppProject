@@ -5,12 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.team1.hyteproject.CalendarController;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.enums.ExerciseGroup;
@@ -35,6 +37,7 @@ public class ExerciseListFragment extends Fragment {
     private ListView exerciseListView;
     private int programIndex;
     private int workoutIndex;
+    private Button addCalendarbutton;
 
     private ArrayList<BaseExercise> programExercises = new ArrayList<>();
     private ArrayList<Program> programsList = new ArrayList<>();
@@ -53,6 +56,7 @@ public class ExerciseListFragment extends Fragment {
         Log.d(TAG, "onCreateView: start.");
 
         exerciseListView = view.findViewById(R.id.exerciseListView);
+        addCalendarbutton = view.findViewById(R.id.addCalendarButton);
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
 
@@ -63,8 +67,28 @@ public class ExerciseListFragment extends Fragment {
             completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
         }
 
+        addCalendarbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CalendarController calendarController = new CalendarController();
+                calendarController.addEvent(getActivity());
+            }
+        });
+
+
+        /*Program program = new Program("Testiohjelma");
+        workout = new Workout("07.03", "Legs");
+        workout.addExercise(new BaseExercise("Hauberikääntö", TargetMuscleGroup.BICEPS, "4", "8-12"));
+        workout.addExercise(new BaseExercise("Hauberikääntö2", TargetMuscleGroup.BICEPS, "4", "8-12"));
+        program.addWorkout(workout);
+        programsList.add(program);
+        Program program2 = new Program("noob program");
+        programsList.add(program2);*/
+
         ExerciseViewAdapter exerciseViewAdapter = new ExerciseViewAdapter(getActivity(), completeProgramsList.getProgram(programIndex).getWorkout(workoutIndex).getExerciseList());
         exerciseListView.setAdapter(exerciseViewAdapter);
+        /*BaseExercise baseExercise = new BaseExercise("noob", 5, 5, 5, true, TargetMuscleGroup.BICEPS, ExerciseGroup.LOWER_BODY);
+        programExercises.add(baseExercise);*/
 
         /*exerciseListView.setOnClickListener(new View.OnClickListener() {
             @Override

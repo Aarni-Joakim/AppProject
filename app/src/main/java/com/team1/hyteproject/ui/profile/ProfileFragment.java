@@ -1,5 +1,6 @@
 package com.team1.hyteproject.ui.profile;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -19,12 +20,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.program.Credentials;
+import com.team1.hyteproject.ui.RegistrationActivity;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 import static com.google.gson.reflect.TypeToken.get;
 
 /**
@@ -44,6 +47,8 @@ public class ProfileFragment extends Fragment {
     private TextView email;
     private TextView age;
     private ImageView profileImage;
+    private SaveLoad saveLoad = SaveLoad.getInstance();
+    private User user;
     Uri imageUri;
 
     private ArrayList users;
@@ -60,18 +65,23 @@ public class ProfileFragment extends Fragment {
         /*sharedViewModel.getSelected().observe(getViewLifecycleOwner(), item -> {
             // Update the UI.
         });*/
-        final TextView textView = view.findViewById(R.id.profileNameTextView);
+        TextView userNameView = view.findViewById(R.id.userView);
+        TextView eMailView = view.findViewById(R.id.eMailView);
+        TextView ageView = view.findViewById(R.id.ageView);
         profileImage = view.findViewById(R.id.profile_image);
         cardView = view.findViewById(R.id.cardView);
-
-        name = view.findViewById(R.id.profileNameTextView);
-        email = view.findViewById(R.id.profileEmailTextView);
-        age = view.findViewById(R.id.profileAgeTextView);
-
-        users = SaveLoad.getInstance().loadUserList(getActivity(), "user");
-        usernames = SaveLoad.getInstance().loadUsernameList(getActivity(), "usernames");
-
         Log.d(TAG, "onCreateView: start.");
+        //SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("CredentialsDB", MODE_PRIVATE);
+        //String savedUsername = sharedPreferences.getString("savedUsername","");
+        //userNameView.setText(savedUsername);
+        //String regEMail = sharedPreferences.getString("regEMail","");
+        //eMailView.setText("Email: " + regEMail);
+        //String age = sharedPreferences.getString("age","");
+        //ageView.setText("Birthday: " + age);
+
+        user = (User) saveLoad.loadUserObject(getActivity(), User.class);
+
+
 
         /*sharedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
