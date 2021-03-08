@@ -21,6 +21,7 @@ import com.team1.hyteproject.R;
 import com.team1.hyteproject.enums.TargetMuscleGroup;
 import com.team1.hyteproject.program.BaseExercise;
 import com.team1.hyteproject.program.Program;
+import com.team1.hyteproject.program.ProgramsList;
 import com.team1.hyteproject.program.Workout;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
@@ -48,6 +49,7 @@ public class WorkoutListFragment extends Fragment {
     private ArrayList<BaseExercise> programExercises;
     private ArrayList<Workout> workoutList;
 
+    private ProgramsList completeProgramsList;
     private Program program;
     private Workout workout;
 
@@ -63,10 +65,8 @@ public class WorkoutListFragment extends Fragment {
         sharedViewModel =
                 new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
         View view = inflater.inflate(R.layout.fragment_workout_list2, container, false);
-        //TextView textView = view.findViewById(R.id.textViewWorkout);
         Log.d(TAG, "onCreateView: start.");
 
-        //testButton = view.findViewById(R.id.generateProgram);
 
 
 
@@ -75,19 +75,23 @@ public class WorkoutListFragment extends Fragment {
 
         listIndex = saveLoad.loadListIndex(getActivity());
 
-        Program program = new Program("Testiohjelma");
+        /*Program program = new Program("Testiohjelma");
         workout = new Workout();
         workout.addExercise(new BaseExercise("Hauberikääntö", TargetMuscleGroup.BICEPS, "4", "8-12"));
         workout.addExercise(new BaseExercise("Hauberikääntö2", TargetMuscleGroup.BICEPS, "4", "8-12"));
         program.addWorkout(new Workout("07.03.2020", "Legs"));
         programsList.add(program);
         Program program2 = new Program("noob program");
-        programsList.add(program2);
+        programsList.add(program2);*/
 
         Log.d(TAG, "List index: " +listIndex);
         //WorkoutView workoutView = new WorkoutView(workouts.get(0).getWorkoutDate());
 
-        WorkoutViewAdapter workoutViewAdapter = new WorkoutViewAdapter(getActivity(), program.getWorkoutList());
+        if (completeProgramsList == null) {
+            completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
+        }
+
+        WorkoutViewAdapter workoutViewAdapter = new WorkoutViewAdapter(getActivity(), completeProgramsList.getProgram(listIndex).getWorkoutList());
         workoutListView = view.findViewById(R.id.workoutListView);
         workoutListView.setAdapter(workoutViewAdapter);
 
