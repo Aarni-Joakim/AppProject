@@ -8,39 +8,6 @@
     android:background="@color/new_bg"
     tools:context=".ui.profile.ProfileFragment">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        app:cardCornerRadius="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/gradient_background" />
-
-    </androidx.cardview.widget.CardView>
-
-
-    <TextView
-        android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:layout_constraintVertical_bias="0.39" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -53,8 +20,8 @@
         android:id="@+id/userView"
         android:layout_width="222dp"
         android:layout_height="53dp"
-        android:layout_marginTop="232dp"
-        android:layout_marginEnd="92dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
         android:gravity="center"
         android:text="TextView"
         android:textColor="#778899"
@@ -62,28 +29,71 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:cardCornerRadius="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.36">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/gradient_background" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/eMailView"
+        android:layout_width="281dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#778899"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.089" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="60dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="16dp"
+        android:src="@android:drawable/sym_action_email"
+        app:layout_constraintEnd_toStartOf="@+id/eMailView"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
     <TextView
         android:id="@+id/ageView"
         android:layout_width="221dp"
         android:layout_height="45dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="131dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="48dp"
+        android:gravity="center"
         android:text="TextView"
         android:textColor="#778899"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_notifications" />
+        app:layout_constraintTop_toBottomOf="@+id/eMailView" />
 
-    <TextView
-        android:id="@+id/eMailView"
-        android:layout_width="344dp"
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="62dp"
         android:layout_height="43dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="8dp"
-        android:text="TextView"
-        android:textColor="#778899"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_notifications" />
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="36dp"
+        android:src="@android:drawable/ic_menu_my_calendar"
+        app:layout_constraintEnd_toStartOf="@+id/ageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

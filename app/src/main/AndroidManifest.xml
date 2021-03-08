@@ -8,15 +8,15 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Apptitudo"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Default">
-        <activity android:name=".ui.RegistrationActivity"></activity>
-        <activity android:name=".HomeActivity" />
+        <activity android:name="com.team1.hyteproject.ui.RegistrationActivity"></activity>
+        <activity android:name="com.team1.hyteproject.HomeActivity" />
         <activity
-            android:name=".ui.LoginActivity"
-            android:label="@string/app_name">
+            android:name="com.team1.hyteproject.ui.LoginActivity"
+            android:label="Apptitudo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

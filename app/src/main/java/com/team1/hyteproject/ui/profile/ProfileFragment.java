@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
         String savedUsername = sharedPreferences.getString("savedUsername","");
         userNameView.setText(savedUsername);
         String regEMail = sharedPreferences.getString("regEMail","");
-        eMailView.setText("Email: " + regEMail);
+        eMailView.setText(regEMail);
         String age = sharedPreferences.getString("age","");
         ageView.setText("Birthday: " + age);
 

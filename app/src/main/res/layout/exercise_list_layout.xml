@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:text="Exercise Name"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/profileCardView1"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
