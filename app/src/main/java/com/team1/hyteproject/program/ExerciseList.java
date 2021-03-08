@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 /**
  * Author Aarni Pesonen
+ *
+ * Singleton class contains the complete list of exercises
  */
 
 public class ExerciseList {
