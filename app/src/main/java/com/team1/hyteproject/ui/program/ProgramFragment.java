@@ -95,8 +95,7 @@ public class ProgramFragment extends Fragment {
             public void onClick(View v) {
 
                 Toast.makeText(getActivity(), "Feature not yet implemented.", Toast.LENGTH_SHORT).show();
-                CalendarController calendarController = new CalendarController();
-                calendarController.addEvent(getActivity());
+
             }
         });
 

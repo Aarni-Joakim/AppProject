@@ -276,6 +276,7 @@
         android:paddingRight="23dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="#FFF"
         app:layout_constraintBottom_toBottomOf="@+id/textViewProgramName"
         app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram2"
         app:layout_constraintTop_toTopOf="@+id/textViewProgramName" />

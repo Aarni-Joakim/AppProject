@@ -26,8 +26,6 @@ public class SaveLoad  {
     private static final String INDEX_TAG = "index";
     private static final String INDEX2_TAG = "index2";
     private static final String USER_TAG = "userData";
-    //private ArrayList loadedList = new ArrayList();
-    //private ArrayList<Program> programsList = new ArrayList<>();
     private SharedPreferences sharedPreferences;
     private ArrayList<Program> loadedList = new ArrayList<>();
     private ArrayList<Program> programsList = new ArrayList<>();

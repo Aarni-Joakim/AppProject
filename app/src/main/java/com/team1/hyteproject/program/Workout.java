@@ -12,7 +12,7 @@ public class Workout {
 
     private Date workoutDate;                               //date from java calendar
     private String workoutDateString;
-    private String workoutType;
+    private String workoutType = "Full Body";
     private long workoutDateLong;                           // redundant?
     private double workoutDuration;                         // in minutes, not implemented
     private int workoutNumber;                              // assigned workout order number

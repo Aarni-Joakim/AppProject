@@ -621,7 +621,7 @@ public class ProgramGenerator {
         for (int index = 0; index < programWorkouts.size(); index++) {
             Log.d(TAG, "workout dates index " + index + " is: "+ workoutDates.get(index));
             //String date = simpleDateFormat.format(workoutDates.get(index));
-            String date = DateFormat.getDateInstance(DateFormat.SHORT).format(workoutDates.get(index));
+            String date = workoutDates.get(index).toString();
             programWorkouts.get(index).setWorkoutDate(date);
             Log.d(TAG, "date of index " +index + "is " + programWorkouts.get(index).getWorkoutDate());
         }
