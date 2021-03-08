@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -25,7 +26,10 @@ import com.team1.hyteproject.ui.ExerciseViewAdapter;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ExerciseListFragment extends Fragment {
 
@@ -38,6 +42,7 @@ public class ExerciseListFragment extends Fragment {
     private int programIndex;
     private int workoutIndex;
     private Button addCalendarbutton;
+    private TextView dateView;
 
     private ArrayList<BaseExercise> programExercises = new ArrayList<>();
     private ArrayList<Program> programsList = new ArrayList<>();
@@ -54,6 +59,10 @@ public class ExerciseListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_exercise_list3, container, false);
         //TextView textView = view.findViewById(R.id.textViewWorkout);
         Log.d(TAG, "onCreateView: start.");
+        dateView = view.findViewById(R.id.dateTextView);
+        Calendar calendar = Calendar.getInstance();
+        String currentDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(calendar.getTime());
+        dateView.setText(currentDate);
 
         exerciseListView = view.findViewById(R.id.exerciseListView);
         addCalendarbutton = view.findViewById(R.id.addCalendarButton);
@@ -101,5 +110,6 @@ public class ExerciseListFragment extends Fragment {
 
         return view;
     }
+
 }
 
