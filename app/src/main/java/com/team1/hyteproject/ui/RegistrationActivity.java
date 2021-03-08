@@ -90,10 +90,10 @@ public class RegistrationActivity extends AppCompatActivity {
                 if(eRegName.getText().toString().isEmpty()){
                     eRegName.setError("Enter text");
                 }else{
-                    //sharedPreferencesEditor.putString("savedUsername", savedUsername);
-                    //sharedPreferencesEditor.putString("regEMail", regEMail);
-                    //sharedPreferencesEditor.putString("age", age);
-                    //sharedPreferencesEditor.apply();
+                    sharedPreferencesEditor.putString("savedUsername", savedUsername);
+                    sharedPreferencesEditor.putString("regEMail", eMail);
+                    sharedPreferencesEditor.putString("age", age);
+                    sharedPreferencesEditor.apply();
 
 
                 }
