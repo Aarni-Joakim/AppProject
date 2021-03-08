@@ -127,7 +127,6 @@ public class ExerciseList {
         Log.d(TAG, "IsCompound: " +baseExercise.getIsCompound());
         Log.d(TAG, "Priority: " +baseExercise.getPriority());
         Log.d(TAG, "isRecovered:" +baseExercise.getRecovered());
-
         if (targetMuscleGroup.getExerciseGroup(targetMuscleGroup) == "Upper Body") {
             upperBodyExercises.add(baseExercise);
         } else if (targetMuscleGroup.getExerciseGroup(targetMuscleGroup) == "Lower Body") {
@@ -154,10 +153,10 @@ public class ExerciseList {
         Log.d(TAG, "isRecovered:" +baseExercise.getRecovered());
 
 
-        if (baseExercise.getTargetMuscleGroup().getExerciseGroupFromObject(baseExercise).toString().equals("Upper Body")) {
+        if (baseExercise.getTargetMuscleGroup().getExerciseGroupFromObject(baseExercise).toString().equals("Upper_Body")) {
             upperBodyExercises.add(baseExercise);
             Log.d(TAG, "Added to upperBodyExercises");
-        } else if (baseExercise.getTargetMuscleGroup().getExerciseGroupFromObject(baseExercise).toString().equals("Lower Body")) {
+        } else if (baseExercise.getTargetMuscleGroup().getExerciseGroupFromObject(baseExercise).toString().equals("Lower_Body")) {
             lowerBodyExercises.add(baseExercise);
             Log.d(TAG, "Added to lowerBodyExercises");
         } else if (baseExercise.getTargetMuscleGroup().getExerciseGroupFromObject(baseExercise).toString().equals("Core")) {

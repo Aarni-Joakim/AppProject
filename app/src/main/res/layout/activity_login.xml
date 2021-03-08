@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/new_bg"
     tools:context=".ui.LoginActivity">
 
     <EditText
@@ -13,6 +14,8 @@
         android:ems="10"
         android:hint="Enter Username:"
         android:inputType="textPersonName"
+        android:textColor="#778899"
+        android:textColorHint="#778899"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +29,8 @@
         android:ems="10"
         android:hint="Enter Password:"
         android:inputType="textPassword"
+        android:textColor="#778899"
+        android:textColorHint="#778899"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No. of attempts remaining: 5"
+        android:textColor="#778899"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +53,7 @@
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/calendar_green"
         android:text="Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +66,7 @@
         android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/calendar_green"
         android:text="SignUp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,6 +80,7 @@
         android:layout_width="135dp"
         android:layout_height="35dp"
         android:text="Show Password"
+        android:textColor="#778899"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -84,11 +93,30 @@
         android:layout_width="135dp"
         android:layout_height="35dp"
         android:text="Remember Me"
+        android:textColor="#778899"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordText"
         app:layout_constraintVertical_bias="0.42" />
+
+
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="79dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="137dp"
+        android:layout_marginBottom="13dp"
+        android:contentDescription="logo"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/usernameText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/apptitude_logo"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
