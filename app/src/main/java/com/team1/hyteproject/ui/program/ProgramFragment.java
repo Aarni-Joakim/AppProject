@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.team1.hyteproject.CalendarController;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.enums.TargetMuscleGroup;
@@ -94,6 +95,8 @@ public class ProgramFragment extends Fragment {
             public void onClick(View v) {
 
                 Toast.makeText(getActivity(), "Feature not yet implemented.", Toast.LENGTH_SHORT).show();
+                CalendarController calendarController = new CalendarController();
+                calendarController.addEvent(getActivity());
             }
         });
 

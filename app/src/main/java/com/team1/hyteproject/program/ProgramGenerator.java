@@ -8,6 +8,7 @@ import com.team1.hyteproject.enums.Split;
 import com.team1.hyteproject.enums.TargetMuscleGroup;
 import com.team1.hyteproject.ui.SaveLoad;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -619,7 +620,8 @@ public class ProgramGenerator {
     private void assignWorkoutDates() {
         for (int index = 0; index < programWorkouts.size(); index++) {
             Log.d(TAG, "workout dates index " + index + " is: "+ workoutDates.get(index));
-            String date = simpleDateFormat.format(workoutDates.get(index));
+            //String date = simpleDateFormat.format(workoutDates.get(index));
+            String date = DateFormat.getDateInstance(DateFormat.SHORT).format(workoutDates.get(index));
             programWorkouts.get(index).setWorkoutDate(date);
             Log.d(TAG, "date of index " +index + "is " + programWorkouts.get(index).getWorkoutDate());
         }
