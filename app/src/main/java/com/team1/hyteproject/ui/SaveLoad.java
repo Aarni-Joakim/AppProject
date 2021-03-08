@@ -24,6 +24,7 @@ public class SaveLoad  {
     private static final String TAG = "SaveLoad";
     private static final String PROGRAM_TAG = "programList";
     private static final String INDEX_TAG = "index";
+    private static final String INDEX2_TAG = "index2";
     private static final String USER_TAG = "userData";
     //private ArrayList loadedList = new ArrayList();
     //private ArrayList<Program> programsList = new ArrayList<>();
@@ -44,19 +45,19 @@ public class SaveLoad  {
     private static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(TAG, MODE_PRIVATE);
     }
-
-    public void saveListIndex (Context context, int index) {
+    //IF index2 ISN*T USED, PASS 0
+    public void saveListIndex (Context context, int index, String indexTag) {
         sharedPreferences = getSharedPreferences(context);
         SharedPreferences.Editor prefEditor = sharedPreferences.edit();
-        prefEditor.putInt(INDEX_TAG, index);
+        prefEditor.putInt(indexTag, index);
         prefEditor.commit();
         Log.d(TAG, "Saving list index");
     }
 
-    public int loadListIndex(Context context) {
+    public int loadListIndex(Context context, String indexTag) {
 
         sharedPreferences = getSharedPreferences(context);
-        listIndex = sharedPreferences.getInt(INDEX_TAG, 0);
+        listIndex = sharedPreferences.getInt(indexTag, 0);
 
         Log.d(TAG, "Loaded list index was: " + listIndex);
         Log.d(TAG, "Loading");
