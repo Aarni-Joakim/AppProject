@@ -101,7 +101,7 @@ public class ProgramFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> programListView, View view, int i, long l) {
                 Log.d("onClick", "onItemClick(" + i + ")");
-                saveLoad.saveListIndex(getActivity(), i);
+                saveLoad.saveListIndex(getActivity(), i, "index");
                 Navigation.findNavController(view).navigate(R.id.action_navigation_program_to_navigation_workout_list);
             }
         });
