@@ -108,7 +108,6 @@ public class RegistrationActivity extends AppCompatActivity {
 
                         /* Store the credentials */
                         sharedPreferencesEditor.putString(regUsername, regPassword);
-                        sharedPreferencesEditor.putString(age, eMail);
                         sharedPreferencesEditor.putString("LastSavedUsername", "");
                         sharedPreferencesEditor.putString("LastSavedPassword", "");
 
