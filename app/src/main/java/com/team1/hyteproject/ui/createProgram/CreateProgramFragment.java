@@ -90,12 +90,12 @@ public class CreateProgramFragment extends Fragment {
         exercisesWeekSpinner = view.findViewById(R.id.exercisesPerWeekInput);
         lengthSpinner = view.findViewById(R.id.programLengthInput);
 
-        trainingXpSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Experience.values()));
-        goalSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Goal.values()));
-        intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, programIntensity));
-        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, TargetMuscleGroup.values()));
-        exercisesWeekSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, exercisesPerWeek));
-        lengthSpinner.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, programLength));
+        trainingXpSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, Experience.values()));
+        goalSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, Goal.values()));
+        intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, programIntensity));
+        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, TargetMuscleGroup.values()));
+        exercisesWeekSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, exercisesPerWeek));
+        lengthSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, programLength));
 
 //        completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
 
