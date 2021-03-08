@@ -8,11 +8,11 @@ import java.util.Date;
  */
 public class Workout {
 
-    private ArrayList<BaseExercise> workoutExercises;
+    private ArrayList<BaseExercise> workoutExercises = new ArrayList<>();
 
     private Date workoutDate;                               //date from java calendar
-    private String workoutDateString = "07.03.2020";
-    private String workoutType = "test type";
+    private String workoutDateString;
+    private String workoutType;
     private long workoutDateLong;                           // redundant?
     private double workoutDuration;                         // in minutes, not implemented
     private int workoutNumber;                              // assigned workout order number
@@ -27,7 +27,6 @@ public class Workout {
     public Workout(String workoutDateString, String workoutType) {
         this.workoutDateString = workoutDateString;
         this.workoutType = workoutType;
-        workoutExercises = new ArrayList<>();
     }
 
     /**
@@ -65,7 +64,7 @@ public class Workout {
      * sets workoutDate long value (redundant?)
      * @param workoutDate
      */
-    public void setWorkoutDate(long workoutDate) {this.workoutDateLong = workoutDate;}
+    public void setWorkoutDate(String workoutDate) {this.workoutDateString = workoutDateString;}
 
     /**
      * sets workout duration in minutes, calculation not yet implemented

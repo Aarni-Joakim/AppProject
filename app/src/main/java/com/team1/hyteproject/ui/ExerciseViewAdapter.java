@@ -41,8 +41,14 @@ public class ExerciseViewAdapter extends ArrayAdapter<BaseExercise> {
         BaseExercise currentNumberPosition = getItem(position);
 
         // then according to the position of the view assign the desired TextView 1 for the same
-        TextView exerciseName = ExerciseItemView.findViewById(R.id.workoutTypeDisplay);
+        TextView exerciseName = ExerciseItemView.findViewById(R.id.programExerciseNameDisplay);
         exerciseName.setText(currentNumberPosition.getName());
+
+        TextView exerciseSets = ExerciseItemView.findViewById(R.id.setsNumberText);
+        exerciseSets.setText(currentNumberPosition.getSets());
+
+        TextView exerciseReps = ExerciseItemView.findViewById(R.id.repsNumberText);
+        exerciseReps.setText(currentNumberPosition.getReps());
 
 
         // then according to the position of the view assign the desired TextView 2 for the same

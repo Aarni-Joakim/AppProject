@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,11 +19,14 @@ import android.widget.Toast;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
 import com.team1.hyteproject.program.Credentials;
+import com.team1.hyteproject.ui.profile.User;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final String TAG = "LoginActivity";
     private EditText eName;
     private EditText ePassword;
     private Button eLogin;
@@ -30,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView eAttemptsInfo;
     private CheckBox eRememberMe;
     private CheckBox showPassword;
+    private ArrayList<User> users;
 
     boolean isValid = false;
     private int counter = 5;
@@ -52,6 +57,15 @@ public class LoginActivity extends AppCompatActivity {
         eRememberMe = findViewById(R.id.cbRememberMe);
         showPassword = findViewById(R.id.showPassword);
 
+        //If there is no user list present, attempting to load from prefs
+        if (users == null) {
+            users = SaveLoad.getInstance().loadUserList(LoginActivity.this, "users");
+            if (users !=  null)
+                for (int i = 0; i < users.size(); i++){
+                    Log.d(TAG, users.get(i).getUserName());
+                }
+        }
+
         showPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -62,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
 
         credentials = new Credentials();
 
@@ -129,6 +144,8 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     } else{
 
+                        //SaveLoad testing here
+                        SaveLoad.getInstance().saveDataList(LoginActivity.this, users, "users");
                         Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
 
                         sharedPreferencesEditor.putString("LastSavedUsername", inputName);
@@ -136,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         sharedPreferencesEditor.apply();
 
-                        // Add the code to go to new activity
+
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
                     }
@@ -149,5 +166,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validate(String name, String password){
         return credentials.checkCredentials(name, password);
+    }
+    //users list can be set from registration activity
+    private void setUserList (ArrayList arraylist) {
+        this.users = arraylist;
     }
 }

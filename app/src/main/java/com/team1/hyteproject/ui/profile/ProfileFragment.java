@@ -73,10 +73,6 @@ public class ProfileFragment extends Fragment {
 
         Log.d(TAG, "onCreateView: start.");
 
-        Log.d(TAG, "users is empty: " + users.isEmpty());
-        Log.d(TAG, "index 0: " + users.get(0));
-
-
         /*sharedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

@@ -6,9 +6,11 @@ import com.team1.hyteproject.enums.Goal;
 import com.team1.hyteproject.enums.ProgramVolume;
 import com.team1.hyteproject.enums.Split;
 import com.team1.hyteproject.enums.TargetMuscleGroup;
+import com.team1.hyteproject.ui.SaveLoad;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -25,7 +27,10 @@ public class ProgramGenerator {
     private ArrayList<WorkoutMuscleGroup> splitGroupList;             // List of all muscle groups included in a single workout
     private BaseExercise baseExercise;                              // Used to hold a single instance of BaseExercise
     private SplitInfo splitInfo;                                    // Holds a list of all split related muscle group distributions
-    private WorkoutMuscleGroup workoutMuscleGroup;                      // Holds lists of all different muscle group distributions available in a split
+    private WorkoutMuscleGroup workoutMuscleGroup;                  // Holds lists of all different muscle group distributions available in a split
+
+    private ProgramsList completeProgramsList;                              // Holds list of all programs
+    private Program program;                                        // All program information is ultimately stored in this class
     private Workout workout;                                        // Instance of a single workout
     //private SaveLoad saveLoad;                                    // not needed
 
@@ -63,9 +68,17 @@ public class ProgramGenerator {
     ArrayList<Date> workoutDates;                                   // calculated workout dates are stored here
     Date dateCreated;                                               // program creation date, is no startDate is given, this will be used instead
     Date workoutDate;                                               // date of an individual workout
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
 
     //TODO: Correct compound/isolation exercise amounts for each split
+
+    public ProgramGenerator() {
+        completeProgramsList = new ProgramsList();
+        program = new Program();
+        programExercises = new ArrayList<>();
+        workoutDates = new ArrayList<>();
+    }
 
     /**
      * constructor of ProgramGenerator, creates a program based on user input parameters
@@ -79,7 +92,9 @@ public class ProgramGenerator {
      * @param workoutsPerWeek  number of workouts per week, determines program split and exercise distribution
      */
     public ProgramGenerator(String programName, String focus, String goal, int age, int desiredIntensity, String experience, int lengthInWeeks, int workoutsPerWeek) {
+
         this.programName = programName;
+        Log.d(TAG, "program name is: " +programName);
         this.focus = focus;
         this.goal = goal;
         this.age = age;
@@ -90,9 +105,11 @@ public class ProgramGenerator {
         this.lengthInWeeks = lengthInWeeks;
         this.workoutsPerWeek = workoutsPerWeek;
 
+        program = new Program();
         programExercises = new ArrayList<>();
         workoutDates = new ArrayList<>();
 
+/*
         Log.d(TAG, "Program generation started.");
 
         programVolume = getProgramVolumeIntensity();
@@ -118,7 +135,9 @@ public class ProgramGenerator {
 
         Log.d(TAG, "# workouts in program: " + workoutsInProgram);
 
-        megaLoop();
+        megaLoop();*/
+
+        generateProgram();
     }
 
     /**
@@ -310,6 +329,7 @@ public class ProgramGenerator {
             ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).setIsSelected(true);
             Log.d(TAG, "Priority of " + ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getName() + " set to: " + ExerciseList.getInstance().getUpperBodyExercise(exerciseIndex).getPriority());
             Log.d(TAG, programExercises.get(index).getName());
+
         }
 
     }
@@ -473,6 +493,8 @@ public class ProgramGenerator {
             }
         Log.d(TAG, "Finished adding programWorkouts! Congratulations you filthy animal!!!");
         Log.d(TAG, "Exercises created: " + programWorkouts.size());
+        //ALL GENERATED WORKOUTS ADDED TO PROGRAM OBJECT
+        program.setProgramWorkouts(programWorkouts);
         }
 
     /**
@@ -529,7 +551,7 @@ public class ProgramGenerator {
             //WORKOUT ISOLATION EXERCISES PER MUSCLE GROUP
             for (int k = 0; k < dailyIsolationExercises; k++) {
                 Log.d(TAG, "Reached fourth loop of getDailyMuscleGroupExercises. k: " +k);
-                baseExercise = programExercises.stream().filter(BaseExercise -> BaseExercise.getPriority() == 3 && !BaseExercise.getIsCompound() && !BaseExercise.getIsSelected()).findFirst().get();  // TODO: Räjähdys!!!  && BaseExercise.getTargetMuscleGroup() == targetMuscleGroup)
+                baseExercise = programExercises.stream().filter(BaseExercise -> BaseExercise.getPriority() == 3 && !BaseExercise.getIsCompound() && !BaseExercise.getIsSelected()).findFirst().get();  //   && BaseExercise.getTargetMuscleGroup() == targetMuscleGroup)
                 exerciseIndex = programExercises.indexOf(baseExercise);
                 if (baseExercise != null){
                     workout.addExercise(baseExercise);
@@ -551,23 +573,64 @@ public class ProgramGenerator {
     public void megaLoop() {
         getDailyWorkoutExercises();
     }
-}
-/*
-while(workoutsInProgram > 0) {
 
-        for (int workouts = 1; workouts <= workoutsPerWeek; workouts++) {           // CREATES AS MANY DIFFERENT WORKOUTS AS THERE ARE workoutsPerWeek
-        Log.d(TAG, "First loop reached. Looping times == workoutsPerWeek");
-        for (int workoutLists = 1; workoutLists <= (splitInfo.getWorkoutMuscleGroupsList().size()); workoutLists++) {     //this loop should be deleted????????                                  //How many different workout lists are used to determine daily workout exercises. ex. Full-body split could have just one list used in all workouts, but it could have more variance if desired.
-        Log.d(TAG, "Second loop reached. Looping times == muscle groups to be trained per session/workout");
-        for (int muscleGroups = 1; muscleGroups <= splitInfo.getWorkoutMuscleGroupsList().get(workoutLists).targetMuscleGroupsList.size(); muscleGroups++) {
-        Log.d(TAG, "Third loop reached. Looping times == there are muscle groups to be trained per session/workout.");
-        getDailyMuscleGroupExercises(splitInfo.getWorkoutMuscleGroupsList().get(workoutLists).getTargetMuscleGroup(muscleGroups),
-        numberOfCompoundExercises, numberOfIsolationExercises,
-        splitInfo.getWorkoutMuscleGroupsList().get(workoutLists).getTargetMuscleGroupList().size());
+
+    public void generateProgram () {
+
+        //ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, desiredIntensity, experience, lengthInWeeks, workoutsPerWeek);
+        //programVolume = getProgramVolumeIntensity();
+        split = getSplit();
+
+        getExerciseDistribution();
+        getCompoundExercises();
+        resetIsSelected(programExercises);                          // TODO: Make sure this works correctly. Tested #1 working as intended?
+        getIsolationExercises();
+        resetIsSelected(programExercises);
+        getWorkoutsInProgram();
+        getWorkoutDates();
+        megaLoop();
+
+        Log.d(TAG, "Program name is:" + programName);
+        Log.d(TAG, "Exercises per week: " + workoutsPerWeek);
+        Log.d(TAG, "Program length in weeks: " + lengthInWeeks);
+        Log.d(TAG, "Program intensity is:" + desiredIntensity);
+        Log.d(TAG, "int mult: " + intensityMultiplier);
+        Log.d(TAG, "Training experience:" + experience);
+        Log.d(TAG, "Age: " + age);
+        Log.d(TAG, "# workouts in program: " + workoutsInProgram);
+
+        assignWorkoutDates();
+        program.setProgramExercises(programExercises);
+        program.setProgramWorkouts(programWorkouts);
+        program.setProgramName(programName);
+        program.setProgramType(goal);
+
+    }
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public ProgramsList getCompleteProgramsList() {
+        completeProgramsList.addProgram(program);
+        return completeProgramsList;
+    }
+
+    //ASSIGNS STRING DATES FOR EACH PROGRAM WORKOUT FROM workoutDates list | WIP!!!
+    private void assignWorkoutDates() {
+        for (int index = 0; index < programWorkouts.size(); index++) {
+            Log.d(TAG, "workout dates index " + index + " is: "+ workoutDates.get(index));
+            //String date = simpleDateFormat.format(workoutDates.get(index));
+            String date = DateFormat.getDateInstance(DateFormat.SHORT).format(workoutDates.get(index));
+            programWorkouts.get(index).setWorkoutDate(date);
+            Log.d(TAG, "date of index " +index + "is " + programWorkouts.get(index).getWorkoutDate());
         }
-        }
-        }
-        }*/
+
+    }
+}
+
+
+
 
 /*// This methods take in amounts of daily exercises depending on the split. Use this method inside getDailyWorkoutExercises()
     //TODO: Sort the programExercises list beforehand, create a method for this
