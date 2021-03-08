@@ -70,7 +70,7 @@
         android:layout_marginEnd="131dp"
         android:text="TextView"
         android:textColor="#778899"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_notifications" />
 
@@ -82,7 +82,7 @@
         android:layout_marginEnd="8dp"
         android:text="TextView"
         android:textColor="#778899"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_notifications" />
 
