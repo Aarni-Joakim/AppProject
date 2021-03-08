@@ -63,20 +63,8 @@ public class ExerciseListFragment extends Fragment {
             completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
         }
 
-
-        /*Program program = new Program("Testiohjelma");
-        workout = new Workout("07.03", "Legs");
-        workout.addExercise(new BaseExercise("Hauberikääntö", TargetMuscleGroup.BICEPS, "4", "8-12"));
-        workout.addExercise(new BaseExercise("Hauberikääntö2", TargetMuscleGroup.BICEPS, "4", "8-12"));
-        program.addWorkout(workout);
-        programsList.add(program);
-        Program program2 = new Program("noob program");
-        programsList.add(program2);*/
-
         ExerciseViewAdapter exerciseViewAdapter = new ExerciseViewAdapter(getActivity(), completeProgramsList.getProgram(programIndex).getWorkout(workoutIndex).getExerciseList());
         exerciseListView.setAdapter(exerciseViewAdapter);
-        /*BaseExercise baseExercise = new BaseExercise("noob", 5, 5, 5, true, TargetMuscleGroup.BICEPS, ExerciseGroup.LOWER_BODY);
-        programExercises.add(baseExercise);*/
 
         /*exerciseListView.setOnClickListener(new View.OnClickListener() {
             @Override
