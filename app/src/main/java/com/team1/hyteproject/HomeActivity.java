@@ -21,10 +21,7 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private final String SAVEKEY = "Saved list";
-    private final String SHAPREF = "Shared Preferences";
-    private ArrayList arrayList;
-
+    private final String TAG = "HomeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,35 +46,4 @@ public class HomeActivity extends AppCompatActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.parseColor(color));
     }
-
-    /*public void saveData(ArrayList arrayList) {
-        this.arrayList = arrayList;
-        SharedPreferences sharedPreferences = getSharedPreferences(SHAPREF, MODE_PRIVATE);
-        SharedPreferences.Editor prefEditor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(arrayList);
-        prefEditor.putString(SAVEKEY, json);
-        prefEditor.apply();
-    }
-
-    public ArrayList loadData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHAPREF, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(SAVEKEY, null);
-        Type type = new TypeToken<ArrayList<BaseExercise>>() {}.getType();
-        arrayList = gson.fromJson(json, type);
-
-        if (arrayList == null) {
-            arrayList = new ArrayList();
-        }
-        return arrayList;
-    }
-
-    public void setArrayList(ArrayList arrayList) {
-        this.arrayList = arrayList;
-    }
-
-    public ArrayList getArrayList() {
-        return arrayList;
-    }*/
 }

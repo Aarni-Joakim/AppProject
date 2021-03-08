@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class CalendarController {
 
-    private final String TAG= "CalendarController";
+    private final String TAG= "Workout #1";
 
     public CalendarController() {
         Log.d(TAG, "Calendar Controller created.");

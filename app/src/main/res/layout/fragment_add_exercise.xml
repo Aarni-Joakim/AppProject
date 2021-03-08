@@ -26,11 +26,11 @@
         android:id="@+id/exerciseGroupInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#778899"
         android:spinnerMode="dialog"
         android:textAlignment="textStart"
         android:textColor="#fff"
         android:textSize="18sp"
+        android:backgroundTint="#FFF"
         app:layout_constraintBottom_toBottomOf="@+id/textViewTrainingXp"
         app:layout_constraintEnd_toStartOf="@+id/guideVertLeftProgram3"
         app:layout_constraintTop_toTopOf="@+id/textViewTrainingXp" />

@@ -21,7 +21,33 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintVertical_bias="0.25" />
+
+    <CheckBox
+        android:id="@+id/showPassword"
+        android:layout_width="135dp"
+        android:layout_height="35dp"
+        android:text="Show Password"
+        android:textColor="#FFD6D6D6"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordText"
+        app:layout_constraintVertical_bias="0.072" />
+
+    <CheckBox
+        android:id="@+id/cbRememberMe"
+        android:layout_width="135dp"
+        android:layout_height="35dp"
+        android:text="Remember Me"
+        android:textColor="#FFD6D6D6"
+        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordText"
+        app:layout_constraintVertical_bias="0.443" />
 
     <EditText
         android:id="@+id/passwordText"
@@ -29,11 +55,12 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Enter Password:"
-        android:textColor="#FFD6D6D6"
         android:inputType="textPassword"
+        android:textColor="#FFD6D6D6"
         android:textColorHint="#778899"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameText"
         app:layout_constraintVertical_bias="0.061" />
@@ -77,32 +104,6 @@
         app:layout_constraintTop_toBottomOf="@+id/passwordText"
         app:layout_constraintVertical_bias="0.575" />
 
-    <CheckBox
-        android:id="@+id/showPassword"
-        android:layout_width="135dp"
-        android:layout_height="35dp"
-        android:text="Show Password"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
-        android:textColor="#FFD6D6D6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordText"
-        app:layout_constraintVertical_bias="0.06" />
-
-    <CheckBox
-        android:id="@+id/cbRememberMe"
-        android:layout_width="135dp"
-        android:layout_height="35dp"
-        android:text="Remember Me"
-        android:textColor="#FFD6D6D6"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordText"
-        app:layout_constraintVertical_bias="0.42" />
-
 
     <ImageView
         android:id="@+id/app_logo"
@@ -135,6 +136,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvAttemptsInfo"
-        app:layout_constraintVertical_bias="0.98" />
+        app:layout_constraintVertical_bias="0.945" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
