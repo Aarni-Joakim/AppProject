@@ -1,6 +1,5 @@
 package com.team1.hyteproject.ui.program;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -9,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,30 +16,41 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.team1.hyteproject.CalendarController;
 import com.team1.hyteproject.HomeActivity;
 import com.team1.hyteproject.R;
+import com.team1.hyteproject.enums.TargetMuscleGroup;
 import com.team1.hyteproject.program.BaseExercise;
 import com.team1.hyteproject.program.Program;
-import com.team1.hyteproject.ui.ProgramView;
+import com.team1.hyteproject.program.ProgramsList;
+import com.team1.hyteproject.program.Workout;
 import com.team1.hyteproject.ui.ProgramViewAdapter;
 import com.team1.hyteproject.ui.SaveLoad;
 import com.team1.hyteproject.ui.SharedViewModel;
-import com.team1.hyteproject.ui.program.workoutList.WorkoutListFragment;
+import com.team1.hyteproject.ui.profile.User;
 
 import java.util.ArrayList;
 
 public class ProgramFragment extends Fragment {
 
-    private static final String TAG = "WorkoutFragment";
+    private static final String TAG = "ProgramFragment";
     private static final String TEST = "Test";
 
     private SharedViewModel sharedViewModel;
+    private SaveLoad saveLoad = SaveLoad.getInstance();
 
     private FloatingActionButton generateProgram;
     private FloatingActionButton createOwnWorkout;
 
     private ArrayList<Program> programs = new ArrayList<>();
     private ArrayList<BaseExercise> programExercises;
+    private ArrayList<BaseExercise> programExercises2;
+    private ArrayList<Program> programsList;
+    private ArrayList<Program> loaderCache;
+
+    private ProgramsList completeProgramsList;
+    private Program program;
+    private Workout workout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,33 +65,27 @@ public class ProgramFragment extends Fragment {
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
 
-        Program program = new Program("test program");
-        programs.add(program);
-        Program program2 = new Program("noob program");
-        programs.add(program2);
-        Program program3 = new Program("noob program2");
-        programs.add(program3);
-        Program program4 = new Program("noob program3");
-        programs.add(program4);
+        completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
 
-        //ProgramView programView = new ProgramView(programs.get(0).getProgramName());
+        if (completeProgramsList == null){
+            completeProgramsList = new ProgramsList();
+            Log.d(TAG, "complete programs list was null");
+        }
+        else {
+            Log.d(TAG, "complete programs list size: " + completeProgramsList.getProgramsList().size());
+        }
 
-        // the context and arrayList created above
-
-        // create the instance of the ListView to set the numbersViewAdapter
-
-        // set the numbersViewAdapter for ListView
-
-        ProgramViewAdapter programViewAdapter = new ProgramViewAdapter(getActivity(), programs);
+        ProgramViewAdapter programViewAdapter = new ProgramViewAdapter(getActivity(), completeProgramsList.getProgramsList());
         ListView programListView = view.findViewById(R.id.programListView);
         programListView.setAdapter(programViewAdapter);
-
 
         generateProgram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "generateProgram clicked.");
 
+                //NEEDS TO BE IN SHARED PREFS OR CRASH (FIXED)
+                saveLoad.saveProgramListObject(getActivity(), completeProgramsList);
                 Navigation.findNavController(view).navigate(R.id.action_navigation_workout_to_navigation_new_program);
             }
         });
@@ -88,17 +93,10 @@ public class ProgramFragment extends Fragment {
         createOwnWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "createOwnWorkout clicked.");
-                Log.d(TAG, "Trying to load programExercisesList.");
 
-                programExercises = new ArrayList();
-                Log.d(TAG, "Program exercises index 0: " +programExercises.size());
-                programExercises = SaveLoad.getInstance().loadDataList(getActivity(), TEST);
-                Log.d(TAG, "Program exercises index 0: " +programExercises.isEmpty());
-
-                ArrayList testList = new ArrayList();
-                testList = SaveLoad.getInstance().loadDataList(getActivity(), TEST);
-                Log.d(TAG, "testList is empty:"+testList.isEmpty());
+                Toast.makeText(getActivity(), "Feature not yet implemented.", Toast.LENGTH_SHORT).show();
+                CalendarController calendarController = new CalendarController();
+                calendarController.addEvent(getActivity());
             }
         });
 
@@ -106,11 +104,10 @@ public class ProgramFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> programListView, View view, int i, long l) {
                 Log.d("onClick", "onItemClick(" + i + ")");
-
+                saveLoad.saveListIndex(getActivity(), i, "index");
                 Navigation.findNavController(view).navigate(R.id.action_navigation_program_to_navigation_workout_list);
             }
         });
-
                 /*SharedViewModel.class.getName().observe(getViewLifecycleOwner(), new Observer<String>() {
                     @Override
                     public void onChanged(@Nullable String s) {

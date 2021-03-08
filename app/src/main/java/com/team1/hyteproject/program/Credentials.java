@@ -5,8 +5,9 @@ import java.util.Map;
 
     public class Credentials {  private HashMap<String, String> credentialMapper = new HashMap<String, String>();
 
-        public void addCredentials(String username, String password){
+        public void addCredentials(String username, String password, String age, String eMail){
             credentialMapper.put(username, password);
+            credentialMapper.put(age, eMail);
         }
 
         public boolean checkUsername(String username){

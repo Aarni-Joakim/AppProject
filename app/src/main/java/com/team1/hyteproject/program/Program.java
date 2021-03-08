@@ -1,47 +1,58 @@
 package com.team1.hyteproject.program;
 
+import android.widget.ProgressBar;
+
 import java.util.ArrayList;
 
 /**
  *Authot Aarni Pesonen
  */
 public class Program {
-    private ArrayList<Workout> workouts;
+    private ArrayList<Workout> programWorkouts;
     private ArrayList<Workout> workoutHistory;
-    private String programName;
-
     private ArrayList<BaseExercise> programExercises;
 
+    private ProgressBar progressbar;
+    private String programName;
     private String programType;              // toning, power building, muscle mass, strength
     private long creationDate;               // date the program was generated
     private long endDate;                    // predicted date of finishing
     private int programDuration;             // weeks
-    private int numberOfWorkouts;            // how many daily workouts in the program
+    private int workoutsInProgram;           // how many daily workouts in the program
+    private int workoutsCompleted;
     private int programIntensity;            // generated from individual workout intensities
     private int programGrade;                // generated from individual workout grades
     private String mockNextWorkoutDate = "07.03.2021";
 
+    /**
+     * default constructor
+     */
+    public Program() {
+        programWorkouts = new ArrayList<>();
+        workoutHistory = new ArrayList<>();
+        programExercises = new ArrayList<>();
+    }
     /**
      * constructor
      * @param programName
      */
     public Program(String programName) {
         this.programName = programName;
-        workouts = new ArrayList<>();
+        programWorkouts = new ArrayList<>();
     }
 
     /**
      * returns list of all workouts included in program
      * @return
      */
-    public ArrayList<Workout> getWorkoutList() { return workouts; }
+    public ArrayList<Workout> getWorkoutList() { return programWorkouts; }
 
     /**
      * gets specific workouts from workouts list based on index value
      * @param index
      * @return
      */
-    public Workout getWorkout(int index) { return workouts.get(index); }
+    public Workout getWorkout(int index) { return programWorkouts.get(index); }
 
     /**
      * returns a specific element of programExercises list based on given index (list includes all exercises in a program)
@@ -54,15 +65,26 @@ public class Program {
      * adds a workout object to complete list of program workouts
      * @param workout
      */
-    public void addWorkout(Workout workout) { workouts.add(workout); } // input parameters!
+    public void addWorkout(Workout workout) { programWorkouts.add(workout); } // input parameters!
 
     /**
      * removes an element from workouts list based on index
      * (to be inserted in workout history list, not yet implemented)
      * @param index
      */
-    public void removeWorkout(int index) { workouts.remove(index); }
+    public void removeWorkout(int index) { programWorkouts.remove(index); }
 
+    /**
+     * sets the list of all exercises included in the program
+     * @param arraylist
+     */
+    public void setProgramExercises (ArrayList arraylist){
+        this.programExercises = arraylist;
+    }
+
+    public void setProgramWorkouts (ArrayList arrayList) {
+        this.programWorkouts = arrayList;
+    }
     /**
      * set program name, user input
      * @param name
