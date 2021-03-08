@@ -133,7 +133,7 @@ public class Program {
      */
     public String getNextWorkoutDate() {
         return mockNextWorkoutDate;
-    }
 
+    }
     // TODO: Integrate fully with Workout class
 }

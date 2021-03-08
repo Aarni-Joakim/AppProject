@@ -42,7 +42,7 @@ public class ProgramGenerator {
     private String experience;                                      // from enum toString()
     private int desiredIntensity;                                   // from user input desiredIntensity
     private int lengthInWeeks;                                      // from user input
-    private int workoutsPerWeek;                                    // from user input
+    private int workoutsPerWeek;// from user input
     private int exerciseInProgram;                                  // total amount of exercises in program
     private boolean evenlySpacedRecovery = true;                    // TODO: not implemented, should determine of each workout week "resets" and exercises start from Monday instead of following daysToAdvance
 

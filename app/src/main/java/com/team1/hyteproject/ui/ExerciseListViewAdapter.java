@@ -47,11 +47,11 @@ public class ExerciseListViewAdapter extends ArrayAdapter<BaseExercise> {
         TextView exerciseName = ExerciseListItemView.findViewById(R.id.exerciseListNameDisplay);
         exerciseName.setText(currentNumberPosition.getName());
 
-        TextView exerciseMuscleGroup = ExerciseListItemView.findViewById(R.id.targetMuscleGroupDisplay);
-        exerciseName.setText(currentNumberPosition.getTargetMuscleGroup().toString());
+        TextView exerciseTargetMuscleGroup = ExerciseListItemView.findViewById(R.id.targetMuscleGroupDisplay);
+        exerciseTargetMuscleGroup.setText(currentNumberPosition.getTargetMuscleGroup().toString());
 
-        TextView ExerciseGroup = ExerciseListItemView.findViewById(R.id.exerciseListExerciseGroupDisplay);
-        exerciseName.setText(currentNumberPosition.getExerciseGroup().toString());
+        TextView exerciseGroup = ExerciseListItemView.findViewById(R.id.exerciseListExerciseGroupDisplay);
+        exerciseGroup.setText(currentNumberPosition.getExerciseGroup().toString());
 
 
         // then according to the position of the view assign the desired TextView 2 for the same
