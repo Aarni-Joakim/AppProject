@@ -7,6 +7,7 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -36,13 +37,15 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox showPassword;
     private ArrayList<User> users;
 
-    boolean isValid = false;
-    private int counter = 5;
+    boolean isValid = false;        //Validates the username and password
+    private int counter = 5;        //int for locking the login button
 
-    public Credentials credentials;
+    public Credentials credentials; //Credential class, logic behind the login
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor sharedPreferencesEditor;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,17 +60,9 @@ public class LoginActivity extends AppCompatActivity {
         eRememberMe = findViewById(R.id.cbRememberMe);
         showPassword = findViewById(R.id.showPassword);
 
-        //If there is no user list present, attempting to load from prefs
-        //if (users == null) {
-           // users = SaveLoad.getInstance().loadUserList(LoginActivity.this, "users");
-            //if (users !=  null)
-              //  for (int i = 0; i < users.size(); i++){
-                //    Log.d(TAG, users.get(i).getUserName());
-                //}
-        //}
-
-        //User user = new User();
-
+        /**
+         * If ShowPassword checkbox is active, changes password text type
+         */
         showPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -85,6 +80,10 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferences = getApplicationContext().getSharedPreferences("CredentialsDB", MODE_PRIVATE);
         sharedPreferencesEditor = sharedPreferences.edit();
 
+        /**
+         * If SharedPreferences has more than 1 item inside loads preferencesMap.
+         * Loads LastSaved username and password if RememberMe checkBox is active
+         */
         if(sharedPreferences != null){
 
             Map<String, ?> preferencesMap = sharedPreferences.getAll();
@@ -103,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
+        //OnClick for checkBox
         eRememberMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //Load Registration Activity
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +120,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnClickListener for login button
+         * Calls validate method
+         * Saves username and password to Saved for the RememberMe
+         * If validate returns true transfers user into HomeActivity
+         */
         eLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,8 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     } else{
 
-                        //SaveLoad testing here
-                        //SaveLoad.getInstance().saveUserObject(LoginActivity.this, User.class);
+
                         Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
 
                         sharedPreferencesEditor.putString("LastSavedUsername", inputName);
@@ -165,6 +171,12 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Validates user inputted username and password from Credentials HashMap.
+     * @param name
+     * @param password
+     * @return
+     */
     private boolean validate(String name, String password){
         return credentials.checkCredentials(name, password);
     }

@@ -30,17 +30,8 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button eRegister;
     private EditText regBday;
     private EditText regMail;
-    private SharedViewModel sharedViewModel;
-    private static final String USER = "user";
-    private static final String NAMES = "userNames";
-    private SaveLoad saveLoad = SaveLoad.getInstance();
 
-
-    private ArrayList<User> users = new ArrayList<>();
-    private ArrayList<String> userNames = new ArrayList<>();
-
-
-    public Credentials credentials;
+    public Credentials credentials; //Credentials for user input saving
     private static final String TAG = "RegAct";
 
 
@@ -53,7 +44,6 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        sharedViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
 
         eRegName = findViewById(R.id.etRegName);
         eRegPassword = findViewById(R.id.etRegPassword);
@@ -64,11 +54,10 @@ public class RegistrationActivity extends AppCompatActivity {
         credentials = new Credentials();
 
         sharedPreferences = getApplicationContext().getSharedPreferences("CredentialsDB", MODE_PRIVATE);
-
-
-
         sharedPreferencesEditor = sharedPreferences.edit();
 
+
+        //If sharedPreferences has more than 1 item load preferencesMap.
         if(sharedPreferences != null){
 
             Map<String, ?> preferencesMap = sharedPreferences.getAll();
@@ -78,8 +67,14 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         }
 
+
         eRegister.setOnClickListener(new View.OnClickListener() {
 
+            /**
+             * RegisterButton onClick
+             * Saves user input to SharedPreferences for Profile Fragment
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 String regUsername = eRegName.getText().toString();
@@ -97,7 +92,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
                 }
-
+                /**
+                 * If username is not taken saves username and password into Credentials SharedPreferences
+                 * Transfers user back to LoginActivity
+                 */
                 if(validate(regUsername, regPassword)) {
 
                     if(credentials.checkUsername(regUsername)){
@@ -125,6 +123,12 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Checks if password over needed 8 characters
+     * @param username
+     * @param password
+     * @return
+     */
     private boolean validate(String username, String password){
 
         if(username.isEmpty() || password.length() < 8){
