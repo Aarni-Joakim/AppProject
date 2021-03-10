@@ -2,6 +2,8 @@ package com.team1.hyteproject.enums;
 
 /**
  * Author Aarni Pesonen
+ * Used in program generation to help stream reader decide what exercises to pick from ExerciseList
+ * When adding exercises to exerciseList, user must set this value
  */
 public enum IsCompound {
     TRUE("Compound"),
@@ -12,7 +14,7 @@ public enum IsCompound {
 
     /**
      * store enum string value in a field
-     * @param valueAsString
+     * @param valueAsString enum value as string
      */
     private IsCompound(String valueAsString){
         this.valueAsString = valueAsString;
@@ -20,7 +22,7 @@ public enum IsCompound {
 
     /**
      * override toString() and return enum value as string
-     * @return
+     * @return enum as string
      */
     @Override public String toString(){
         return valueAsString;

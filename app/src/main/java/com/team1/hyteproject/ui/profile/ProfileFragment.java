@@ -31,9 +31,12 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.google.gson.reflect.TypeToken.get;
 
 /**
+ * Author Aarni Pesonen, Samu Wahlroos
  * Displays user info, including a picture selectable from devices memory
  * Login data is (currently) saved in shared preferences and loaded to be displayed here
+ *
  * Add profile picture functionality adapted from https://www.youtube.com/watch?v=b3BEa2drx4w
+ * bitmap approach didn't work and tried to make the function "safer" to use
  */
 public class ProfileFragment extends Fragment {
 
@@ -51,14 +54,11 @@ public class ProfileFragment extends Fragment {
     private User user;
     Uri imageUri;
 
-
     SharedPreferences sharedPreferences;
-    SharedPreferences.Editor sharedPreferencesEditor;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        sharedViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
+
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         /*sharedViewModel.getSelected().observe(getViewLifecycleOwner(), item -> {
             // Update the UI.
@@ -66,27 +66,19 @@ public class ProfileFragment extends Fragment {
         TextView userNameView = view.findViewById(R.id.userView);
         TextView eMailView = view.findViewById(R.id.eMailView);
         TextView ageView = view.findViewById(R.id.ageView);
+
+        //round user profile image display
         profileImage = view.findViewById(R.id.profile_image);
         cardView = view.findViewById(R.id.cardView);
+
         Log.d(TAG, "onCreateView: start.");
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("CredentialsDB", MODE_PRIVATE);
+        sharedPreferences = this.getActivity().getSharedPreferences("CredentialsDB", MODE_PRIVATE);
         String savedUsername = sharedPreferences.getString("savedUsername","");
         userNameView.setText(savedUsername);
         String regEMail = sharedPreferences.getString("regEMail","");
         eMailView.setText(regEMail);
         String age = sharedPreferences.getString("age","");
         ageView.setText("Birthday: " + age);
-
-        user = (User) saveLoad.loadUserObject(getActivity(), User.class);
-
-
-
-        /*sharedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
 
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +91,6 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-    //TODO
-
     /**
      * Uses an intent to open the phones gallery and allows for picture selection
      * code based on (add link)
@@ -110,7 +100,7 @@ public class ProfileFragment extends Fragment {
         startActivityForResult(gallery, PICK_IMAGE);
     }
 
-    // TODO change to protected
+    // TODO change to protected?
 
     /**
      * overrides default onActivityResult to check if picture selection from gallery has succeeded

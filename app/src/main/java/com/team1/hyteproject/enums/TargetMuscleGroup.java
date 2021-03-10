@@ -4,6 +4,8 @@ import com.team1.hyteproject.program.BaseExercise;
 
 /**
  * Author Aarni Pesonen
+ * Enum class handles target muscle group info, value conversions between enum and string
+ * also finds exercise group of exercise based on target muscle group
  */
 //used to store exercise targetMuscleGroup value
 public enum TargetMuscleGroup{
@@ -26,7 +28,7 @@ public enum TargetMuscleGroup{
 
     /**
      * store enum string value in a field
-     * @param realName
+     * @param realName enum value as string
      */
     private TargetMuscleGroup(String realName){
         this.realName = realName;
@@ -34,7 +36,7 @@ public enum TargetMuscleGroup{
 
     /**
      * override toString() and return enum value as string
-     * @return
+     * @return enum value as string
      */
     @Override public String toString(){
         return realName;
@@ -42,8 +44,8 @@ public enum TargetMuscleGroup{
 
     /**
      * return exerciseGroup string value based on target muscle group of exercise
-     * @param targetMuscleGroup
-     * @return
+     * @param targetMuscleGroup of an exercise
+     * @return exercise group based on exercises target muscle group
      */
     public String getExerciseGroup (TargetMuscleGroup targetMuscleGroup) {
         String exerciseGroup;
@@ -66,8 +68,8 @@ public enum TargetMuscleGroup{
 
     /**
      * converts a string value representation to enum value
-     * @param targetMuscleGroupToConvert
-     * @return
+     * @param targetMuscleGroupToConvert input parameter to convert
+     * @return enum value of a string
      */
     //TODO: Check if this needs toUpperCase()
     public TargetMuscleGroup stringToValue(String targetMuscleGroupToConvert) {
@@ -76,9 +78,9 @@ public enum TargetMuscleGroup{
     }
 
     /**
-     * returns target muscle group of BaseExercise object entered as a parameter
+     * returns exercise group of BaseExercise object entered as a parameter
      * @param baseExercise
-     * @return
+     * @return exercise group of BaseExercise object entered as a parameter
      */
     public TargetMuscleGroup getExerciseGroupFromObject (BaseExercise baseExercise) {
         TargetMuscleGroup targetMuscleGroup = baseExercise.getTargetMuscleGroup();

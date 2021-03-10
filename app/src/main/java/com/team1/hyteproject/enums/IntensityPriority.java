@@ -1,6 +1,9 @@
 package com.team1.hyteproject.enums;
 /**
  * Author Aarni Pesonen
+ * Exercises with higher priority are selected first by ProgramGenerator
+ * Used when adding exercises to exerciseList
+ * spinners get their values from enums
  */
 public enum IntensityPriority{
     ONE("1"),
@@ -15,7 +18,7 @@ public enum IntensityPriority{
 
     /**
      * store enum string value in a field
-     * @param valueAsString
+     * @param valueAsString enum value as string
      */
     private IntensityPriority(String valueAsString){
         this.valueAsString = valueAsString;
@@ -23,7 +26,7 @@ public enum IntensityPriority{
 
     /**
      * override toString() and return enum value as string
-     * @return
+     * @return enum value as string
      */
     @Override public String toString(){
         return valueAsString;

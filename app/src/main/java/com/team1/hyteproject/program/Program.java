@@ -5,23 +5,25 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 
 /**
- *Authot Aarni Pesonen
+ *Author Aarni Pesonen
  */
+
 public class Program {
     private ArrayList<Workout> programWorkouts;
     private ArrayList<Workout> workoutHistory;
     private ArrayList<BaseExercise> programExercises;
 
     private ProgressBar progressbar;
-    private String programName;
-    private String programType;              // toning, power building, muscle mass, strength
-    private long creationDate;               // date the program was generated
-    private long endDate;                    // predicted date of finishing
-    private int programDuration;             // weeks
-    private int workoutsInProgram;           // how many daily workouts in the program
+    private String programName;                 // user input
+    private String programType;                 // toning, power building, muscle mass, strength
+    private long creationDate;                  // date the program was generated
+    private long endDate;                       // predicted date of finishing
+    private int programDuration;                // weeks
+    private int workoutsInProgram;              // how many daily workouts in the program
     private int workoutsCompleted;
-    private int programIntensity;            // generated from individual workout intensities
-    private int programGrade;                // generated from individual workout grades
+    private int programIntensity;               // generated from individual workout intensities
+    private int programGrade;                   // generated from individual workout grades
+    //TODO: get this value from next workouts workoutDate field
     private String mockNextWorkoutDate = "07.03.2021";
 
     /**

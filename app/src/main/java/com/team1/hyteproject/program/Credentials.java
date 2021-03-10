@@ -7,10 +7,10 @@ import java.util.Map;
 
         /**
          * Adds Credentials from Registration Activity to credentialMapper HashMap.
-         * @param username
-         * @param password
-         * @param age
-         * @param eMail
+         * @param username from registration activity user input
+         * @param password from registration activity user input
+         * @param age from registration activity user input
+         * @param eMail from registration activity user input
          */
         public void addCredentials(String username, String password, String age, String eMail){
             credentialMapper.put(username, password);
@@ -19,8 +19,8 @@ import java.util.Map;
 
         /**
          * If username from LoginActivity matches, returns true.
-         * @param username
-         * @return
+         * @param username user input
+         * @return true or false whether credentialMapper contains key username
          */
         public boolean checkUsername(String username){
             return credentialMapper.containsKey(username);
@@ -28,9 +28,9 @@ import java.util.Map;
 
         /**
          * If username containsKey matches returns true and login is successful.
-         * @param username
-         * @param password
-         * @return
+         * @param username user input
+         * @param password user input
+         * @return true or false depending whether password matches that of a given username
          */
         public boolean checkCredentials(String username, String password){
 

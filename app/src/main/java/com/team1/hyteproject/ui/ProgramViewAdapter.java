@@ -20,6 +20,10 @@ import java.util.ArrayList;
 
 import static java.security.AccessController.getContext;
 
+/**
+ * Author Aarni Pesonen
+ * For displaying Program objects in programListView
+ */
 public class ProgramViewAdapter extends ArrayAdapter<Program> {
 
     public ProgramViewAdapter(@NonNull Context context, ArrayList<Program> arrayList) {
@@ -33,10 +37,12 @@ public class ProgramViewAdapter extends ArrayAdapter<Program> {
 
         View ProgramItemView = convertView;
 
+        //sets layout for view
         if (ProgramItemView == null) {
             ProgramItemView = LayoutInflater.from(getContext()).inflate(R.layout.program_list_layout, parent, false);
         }
 
+        //get item position
         Program currentNumberPosition = getItem(position);
 
         TextView programName = ProgramItemView.findViewById(R.id.programNameDisplay);
@@ -45,8 +51,8 @@ public class ProgramViewAdapter extends ArrayAdapter<Program> {
         TextView nextWorkoutDate = ProgramItemView.findViewById(R.id.nextWorkoutDateText);
         nextWorkoutDate.setText(currentNumberPosition.getNextWorkoutDate());
 
+        //not yet implemented
         ProgressBar programProgress = ProgramItemView.findViewById(R.id.programProgressBar);
-        //programProgress.
 
         return ProgramItemView;
     }

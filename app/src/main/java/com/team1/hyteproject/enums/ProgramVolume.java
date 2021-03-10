@@ -2,6 +2,7 @@ package com.team1.hyteproject.enums;
 
 /**
  * Author Aarni Pesonen
+ * When fully implemented, will affect weekly volume of exercises per muscle group
  */
 //used in determining the amount of program training volume *not yet in full use*
 public enum ProgramVolume{
@@ -16,7 +17,7 @@ public enum ProgramVolume{
 
     /**
      * store enum string value in a field
-     * @param realName
+     * @param realName enum value as string
      */
     ProgramVolume(String realName){
         this.realName = realName;
@@ -24,7 +25,7 @@ public enum ProgramVolume{
 
     /**
      * override toString() and return enum value as string
-     * @return
+     * @return enum value as string
      */
     @Override public String toString(){
         return realName;

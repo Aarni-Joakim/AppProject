@@ -14,14 +14,13 @@ import com.team1.hyteproject.R;
 import com.team1.hyteproject.program.Workout;
 
 import java.util.ArrayList;
-
+/**
+ * Author Aarni Pesonen
+ * For displaying Workout objects in workoutListView
+ */
 public class WorkoutViewAdapter extends ArrayAdapter<Workout> {
 
-    // invoke the suitable constructor of the ArrayAdapter class
     public WorkoutViewAdapter(@NonNull Context context, ArrayList<Workout> arrayList) {
-
-        // pass the context and arrayList for the super
-        // constructor of the ArrayAdapter class
         super(context, 0, arrayList);
     }
 
@@ -29,31 +28,22 @@ public class WorkoutViewAdapter extends ArrayAdapter<Workout> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        // convertView which is recyclable view
         View WorkoutItemView = convertView;
 
-        // of the recyclable view is null then inflate the custom layout for the same
+        //sets layout for view
         if (WorkoutItemView == null) {
             WorkoutItemView = LayoutInflater.from(getContext()).inflate(R.layout.program_workout_list_layout2, parent, false);
         }
 
-        // get the position of the view from the ArrayAdapter
+        //get item position
         Workout currentNumberPosition = getItem(position);
 
-        // then according to the position of the view assign the desired TextView 1 for the same
         TextView workoutDate = WorkoutItemView.findViewById(R.id.workoutDateDisplay);
         workoutDate.setText(currentNumberPosition.getWorkoutDate());
 
-        // GET FROM MUSCLE GROUP MAJORITY, CREATE A METHOD FOR DETERMINING THIS
         TextView workoutType = WorkoutItemView.findViewById(R.id.programExerciseNameDisplay);
         workoutType.setText(currentNumberPosition.getWorkoutType());
 
-        // then according to the position of the view assign the desired TextView 2 for the same
-        //TextView nextWorkoutDate = ProgramItemView.findViewById(R.id.nextWorkoutDateText);
-        //nextWorkoutDate.setText(currentNumberPosition.getNumbersInText());
-
-
-        // then return the recyclable view
         return WorkoutItemView;
     }
 }

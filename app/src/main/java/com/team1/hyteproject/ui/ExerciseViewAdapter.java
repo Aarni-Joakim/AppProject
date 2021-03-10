@@ -16,14 +16,13 @@ import com.team1.hyteproject.program.BaseExercise;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-
+/**
+ * Author Aarni Pesonen
+ * Custom adapter for displaying BaseExercise objects in programExerciseListView
+ */
 public class ExerciseViewAdapter extends ArrayAdapter<BaseExercise> {
 
-    // invoke the suitable constructor of the ArrayAdapter class
     public ExerciseViewAdapter(@NonNull Context context, ArrayList<BaseExercise> arrayList) {
-
-        // pass the context and arrayList for the super
-        // constructor of the ArrayAdapter class
         super(context, 0, arrayList);
     }
 
@@ -31,18 +30,16 @@ public class ExerciseViewAdapter extends ArrayAdapter<BaseExercise> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        // convertView which is recyclable view
         View ExerciseItemView = convertView;
 
-        // of the recyclable view is null then inflate the custom layout for the same
+        //sets layout for view
         if (ExerciseItemView == null) {
             ExerciseItemView = LayoutInflater.from(getContext()).inflate(R.layout.program_exercise_list3, parent, false);
         }
 
-        // get the position of the view from the ArrayAdapter
+        //get item position
         BaseExercise currentNumberPosition = getItem(position);
 
-        // then according to the position of the view assign the desired TextView 1 for the same
         TextView exerciseName = ExerciseItemView.findViewById(R.id.programExerciseNameDisplay);
         exerciseName.setText(currentNumberPosition.getName());
 
@@ -52,13 +49,6 @@ public class ExerciseViewAdapter extends ArrayAdapter<BaseExercise> {
         TextView exerciseReps = ExerciseItemView.findViewById(R.id.repsNumberText);
         exerciseReps.setText(currentNumberPosition.getReps());
 
-
-        // then according to the position of the view assign the desired TextView 2 for the same
-        //TextView nextWorkoutDate = ProgramItemView.findViewById(R.id.nextWorkoutDateText);
-        //nextWorkoutDate.setText(currentNumberPosition.getNumbersInText());
-
-
-        // then return the recyclable view
         return ExerciseItemView;
     }
 }

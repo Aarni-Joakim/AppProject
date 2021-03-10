@@ -12,7 +12,7 @@ public enum Goal{
 
     /**
      * store enum string value in a field
-     * @param realName
+     * @param realName enum value as string
      */
     private Goal(String realName){
         this.realName = realName;

@@ -34,22 +34,22 @@ import com.team1.hyteproject.ui.SharedViewModel;
 
 import java.util.ArrayList;
 
-
+/**
+ * Author Aarni Pesonen
+ * Allows for custom program creation based on user input
+ */
 public class CreateProgramFragment extends Fragment {
 
     private static final String TAG = "NewProgramFragment";
-    private static final String TEST = "Test";
 
-    private SharedViewModel SharedViewModel;
 
     private EditText editProgramName;
     private Button createProgram;
     private String programName;
-    private ProgramsList completeProgramsList;
-    private Program program;
+    private ProgramsList completeProgramsList;                              //holds a list of all programs in app, saved as an abstract object
+    private Program program;                                                //single program info
     private ProgramGenerator programGenerator;
     private ArrayList<Program> programsList = new ArrayList();
-    private ArrayList<BaseExercise> programExercises;
     private ArrayList<String> programLength = new ArrayList<>();
     private ArrayList<Integer> programIntensity = new ArrayList<>();
     private ArrayList<Integer> exercisesPerWeek = new ArrayList<>();
@@ -62,15 +62,11 @@ public class CreateProgramFragment extends Fragment {
     Spinner exercisesWeekSpinner;
     Spinner lengthSpinner;
 
-    private int numberOfProgramsCreated = 0;
-    //private ArrayList programExercises;
-
     // TODO: increase numberOfProgramsCreated automatically. Program name generator.
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        SharedViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
+
         View view = inflater.inflate(R.layout.fragment_new_program, container, false);
         Log.d(TAG, "onCreateView: start.");
 
@@ -81,8 +77,6 @@ public class CreateProgramFragment extends Fragment {
         editProgramName = view.findViewById(R.id.editProgramName);
         editProgramName.setGravity(Gravity.END);
 
-        createSpinnerData();
-
         trainingXpSpinner = view.findViewById(R.id.trainingXPInput);
         goalSpinner = view.findViewById(R.id.goalInput);
         intensitySpinner = view.findViewById(R.id.programIntensityInput);
@@ -90,14 +84,9 @@ public class CreateProgramFragment extends Fragment {
         exercisesWeekSpinner = view.findViewById(R.id.exercisesPerWeekInput);
         lengthSpinner = view.findViewById(R.id.programLengthInput);
 
-        trainingXpSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, Experience.values()));
-        goalSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, Goal.values()));
-        intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, programIntensity));
-        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, TargetMuscleGroup.values()));
-        exercisesWeekSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, exercisesPerWeek));
-        lengthSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, programLength));
+        createSpinnerData();
 
-//        completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
+        setSpinnerAdapters();
 
         program = new Program();
         programGenerator = new ProgramGenerator();
@@ -123,18 +112,31 @@ public class CreateProgramFragment extends Fragment {
             }
         });
 
-                SharedViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-                    @Override
-                    public void onChanged(@Nullable String s) {
-                        //textView.setText(s);
-                    }
-                });
         return view;
     }
+    //TODO: create a class for all below methods
 
+    /**
+     * sets custom adapters for spinners
+     */
+    //sets custom adapters for spinners
+    private void setSpinnerAdapters() {
+        trainingXpSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, Experience.values()));
+        goalSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, Goal.values()));
+        intensitySpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, programIntensity));
+        focusSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, TargetMuscleGroup.values()));
+        exercisesWeekSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, exercisesPerWeek));
+        lengthSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.spinner_item, programLength));
+    }
+
+    /**
+     * get input data from spinners, start program generation and save data
+     * TODO: extract single methods for each function
+     */
+    //gets data from spinners, starts program generation, saves created program as an abstract object
     private void createProgram() {
         ExerciseList exerciseList = ExerciseList.getInstance();
-        int age = SharedViewModel.getAge();
+        int age = 25;
         int workoutsPerWeek = (exercisesWeekSpinner.getSelectedItemPosition() + 1);
         int lengthInWeeks = (lengthSpinner.getSelectedItemPosition() + 4);
         int desiredIntensity = (intensitySpinner.getSelectedItemPosition() +1);
@@ -151,9 +153,13 @@ public class CreateProgramFragment extends Fragment {
         completeProgramsList.addProgram(program);
         saveLoad.saveProgramListObject(getActivity(), completeProgramsList);
 
-        numberOfProgramsCreated++;
     }
 
+    /**
+     * populates three spinners with data using loops
+     */
+    //populates spinners program intensity, exercises per week and program length
+    //first iteration only allows for 12 week long programs max
     private void createSpinnerData() {
         for (int i = 1; i < 6; i++) {
             programIntensity.add(i);

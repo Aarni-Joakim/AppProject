@@ -62,7 +62,7 @@ public class ProgramGenerator {
 
     private int daysToAdvance;                                      // how many days to advance (java)calendar until next workout
     private int exerciseIndex;                                      // used to set exercise priorities
-    private int index;                                              // redundant
+    private int index;
 
     // calendar and time keeping related variables
     ArrayList<Date> workoutDates;                                   // calculated workout dates are stored here
@@ -467,7 +467,6 @@ public class ProgramGenerator {
      * third for loop: loops once for each muscle group in a single workout session
      * inside this third loop is a method for getting all single workout session exercises per each included muscle group
      */
-    // TODO: Ultimate Challenge!
     //GETS ALL WORKOUT SPECIFIC EXERCISES
     // workoutLists is the amount of different exercises compositions in a split, that are used to determine exercises for daily workouts
     // SplitInfo class holds all unique muscle group lists (object of class SplitMuscleGroup) for each different workout split.
@@ -510,8 +509,6 @@ public class ProgramGenerator {
      * @param muscleGroupsPerDay how many muscle groups are included in a specific workout session
      */
     // This methods take in amounts of daily exercises depending on the split. Use this method inside getDailyWorkoutExercises()
-    //TODO: Sort the programExercises list beforehand, create a method for this
-    // TODO: Figure out a better way to handle isSelected?!!!
     public void getSessionExercisesPerMuscleGroup(TargetMuscleGroup targetMuscleGroup, int dailyCompoundExercises, int dailyIsolationExercises, int muscleGroupsPerDay) {
 
         numberOfIsolationExercises = 2;
@@ -521,7 +518,6 @@ public class ProgramGenerator {
 
         workout = new Workout();
         workoutExercises = new ArrayList<>();
-        //programWorkouts = new ArrayList<>();
         muscleGroupsPerDay = 1;
 
         //HOW MANY DIFFERENT MUSCLE GROUPS IN A DAILY WORKOUT SESSION
@@ -544,8 +540,6 @@ public class ProgramGenerator {
                 }
 
                 programExercises.get(exerciseIndex).setIsSelected(false);               //TODO: testing
-                //Log.d(TAG, "Priority of " + workoutExercises.get(exerciseIndex).getName() + " set to: " + workoutExercises.get(exerciseIndex).getPriority());
-                //Log.d(TAG, workoutExercises.get(index).getName());
             }
 
             //WORKOUT ISOLATION EXERCISES PER MUSCLE GROUP
@@ -557,14 +551,11 @@ public class ProgramGenerator {
                     workout.addExercise(baseExercise);
                 }
                 programExercises.get(exerciseIndex).setIsSelected(false);
-                //Log.d(TAG, "Priority of " + workoutExercises.get(exerciseIndex).getName() + " set to: " + workoutExercises.get(exerciseIndex).getPriority());
-                //Log.d(TAG, workoutExercises.get(index).getName());
 
             }
         }
         programWorkouts.add(workout);
-        workoutsInProgram--;                            //IS THERE ARE BETTER WAY TO CHECK HOW MANY PROGRAMS HAVE BEEN CREATED?
-        //resetIsSelected(programWorkouts);
+        workoutsInProgram--;
     }
 
     /**

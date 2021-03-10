@@ -1,6 +1,8 @@
 package com.team1.hyteproject.enums;
 /**
  * Author Aarni Pesonen
+ * Supposed to add exercise volume and intensity for selected muscle group
+ * Not yet implemented
  */
 public enum Focus{
     ABS("Abs"),
@@ -22,7 +24,7 @@ public enum Focus{
 
     /**
      * store enum string value in a field
-     * @param realName
+     * @param realName enum value as string
      */
     private Focus(String realName){
         this.realName = realName;
@@ -30,7 +32,7 @@ public enum Focus{
 
     /**
      * override toString() and return enum value as string
-     * @return
+     * @return enum value as string
      */
     @Override public String toString(){
         return realName;

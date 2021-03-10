@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.Date;
 
-
+/**
+ * not yet implemented
+ */
 public class SharedViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
@@ -22,7 +24,7 @@ public class SharedViewModel extends ViewModel {
 
     public SharedViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Generated workouts will be listed here.");
+        mText.setValue("fragment data sharing");
     }
 
     public int getAge(){

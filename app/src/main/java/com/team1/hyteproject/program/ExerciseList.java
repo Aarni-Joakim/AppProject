@@ -30,6 +30,7 @@ public class ExerciseList {
 
     /**
      * default contructor
+     * currently simulates loading data from a web server
      */
     private ExerciseList() {
         Log.d(TAG, "Singleton created.");
@@ -82,16 +83,6 @@ public class ExerciseList {
      */
     public ArrayList<BaseExercise> getAllCoreExercises() { return coreExercises; }
 
-    /*public void addUpperBodyExercise(String name, int recoveryDays, int exerciseIntensity, boolean isCompound, TargetMuscleGroup targetMuscleGroup) {
-        upperBodyExercises.add(new BaseExercise(name, recoveryDays, exerciseIntensity, isCompound, targetMuscleGroup));
-    }
-    public void addLowerBodyExercise(String name, int recoveryDays, int exerciseIntensity, boolean isCompound, TargetMuscleGroup targetMuscleGroup) {
-        lowerBodyExercises.add(new BaseExercise(name, recoveryDays, exerciseIntensity, isCompound, targetMuscleGroup));
-    }
-    public void addCoreExercise(String name, int recoveryDays, int exerciseIntensity, boolean isCompound, TargetMuscleGroup targetMuscleGroup) {
-        coreExercises.add(new BaseExercise(name, recoveryDays, exerciseIntensity, isCompound, targetMuscleGroup));
-    }*/
-
     /**
      * return upper body exercise at given index
      * @param index
@@ -118,23 +109,6 @@ public class ExerciseList {
     public BaseExercise getCoreExercise(int index) {
         return coreExercises.get(index);
     }
-
-    /*public void addExercise (String name, int recoveryDays, int exerciseIntensity, String isCompound, TargetMuscleGroup targetMuscleGroup) {
-        baseExercise = new BaseExercise(name, recoveryDays, exerciseIntensity, getIsCompoundBool(isCompound), targetMuscleGroup);
-        Log.d(TAG, "Added " + baseExercise.getName() + " to exercise list.");
-        Log.d(TAG, "MuscleGroup: " +baseExercise.getTargetMuscleGroup());
-        Log.d(TAG, "Intensity: " +baseExercise.getExerciseIntensity());
-        Log.d(TAG, "IsCompound: " +baseExercise.getIsCompound());
-        Log.d(TAG, "Priority: " +baseExercise.getPriority());
-        Log.d(TAG, "isRecovered:" +baseExercise.getRecovered());
-        if (targetMuscleGroup.getExerciseGroup(targetMuscleGroup) == "Upper Body") {
-            upperBodyExercises.add(baseExercise);
-        } else if (targetMuscleGroup.getExerciseGroup(targetMuscleGroup) == "Lower Body") {
-            lowerBodyExercises.add(baseExercise);
-        } else if (targetMuscleGroup.getExerciseGroup(targetMuscleGroup) == "Core") {
-            coreExercises.add(baseExercise);
-        }
-    }*/
 
     /**
      * add an exercise to complete list of exercises
@@ -167,8 +141,8 @@ public class ExerciseList {
 
     /**
      * converts a string value to isCompound bool
-     * @param isCompoundToBool
-     * @return
+     * @param isCompoundToBool string to be converted to bool
+     * @return true or false depending on input string value
      */
     public boolean getIsCompoundBool(String isCompoundToBool) {
         boolean isCompound = true;

@@ -21,13 +21,13 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class SaveLoad  {
 
-    private static final String TAG = "SaveLoad";
-    private static final String PROGRAM_TAG = "programList";
-    private static final String INDEX_TAG = "index";
-    private static final String INDEX2_TAG = "index2";
-    private static final String USER_TAG = "userData";
+    private static final String TAG = "SaveLoad";                       //For Log.d identification
+    private static final String PROGRAM_TAG = "programList";            //tag for saved programList
+    private static final String INDEX_TAG = "index";                    //tag to find program index in following listView
+    private static final String INDEX2_TAG = "index2";                  //tag to find workout index in following listView
+    private static final String USER_TAG = "userData";                  //tag to identify saved user data
     private SharedPreferences sharedPreferences;
-    private ArrayList<Program> loadedList = new ArrayList<>();
+    //private ArrayList<Program> loadedList = new ArrayList<>();
     private ArrayList<Program> programsList = new ArrayList<>();
     private ProgramsList completeProgramsList;
     private int listIndex;
@@ -40,10 +40,22 @@ public class SaveLoad  {
 
     }
 
+    /**
+     * Get shared preferences
+     * @param context activity or fragment calling this method
+     * @return shared preferences with specified "SaveLoad" tag and MODE_PRIVATE
+     */
     private static SharedPreferences getSharedPreferences(Context context) {
         return context.getSharedPreferences(TAG, MODE_PRIVATE);
     }
-    //IF index2 ISN*T USED, PASS 0
+
+    /**
+     * Saves listView indexes
+     * @param context activity or fragment calling this method
+     * @param index takes in a listView index to save
+     * @param indexTag to identify
+     */
+    //IF index2 ISN'T USED, PASS 0
     public void saveListIndex (Context context, int index, String indexTag) {
         sharedPreferences = getSharedPreferences(context);
         SharedPreferences.Editor prefEditor = sharedPreferences.edit();
@@ -52,6 +64,12 @@ public class SaveLoad  {
         Log.d(TAG, "Saving list index");
     }
 
+    /**
+     * Loads listView indexes
+     * @param context activity or fragment calling this method
+     * @param indexTag takes in a listView index to load
+     * @return loaded index
+     */
     public int loadListIndex(Context context, String indexTag) {
 
         sharedPreferences = getSharedPreferences(context);
@@ -63,42 +81,11 @@ public class SaveLoad  {
         return listIndex;
     }
 
-    public void saveDataList(Context context, ArrayList arrayList, String listName) {
-        sharedPreferences = getSharedPreferences(context);
-        SharedPreferences.Editor prefEditor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(arrayList);
-        prefEditor.putString(listName, json);
-        prefEditor.apply();
-        Log.d(TAG, "Saving");
-    }
-
-    //SAVE USER DATA AS OBJECT
-    public void saveUserObject(Context context, Object objectValue) {
-        sharedPreferences = getSharedPreferences(context);
-        SharedPreferences.Editor prefEditor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String userObject = gson.toJson(objectValue);
-        prefEditor.putString(USER_TAG, userObject);
-        prefEditor.commit();
-        Log.d(TAG, "Saving");
-    }
-
-    //LOAD USER DATA OBJECT
-    public Object loadUserObject(Context context, Class targetClass) {
-        sharedPreferences = getSharedPreferences(context);
-        Gson gson = new Gson();
-        Object userList = sharedPreferences.getString(USER_TAG, null);
-        //Type programsListType = new TypeToken<Class<ProgramsList>>() {}.getType();
-        if(userList != null)
-            userList = gson.fromJson((String)userList, targetClass);
-        else
-            Log.d(TAG, "Loaded user list was null");
-
-        Log.d(TAG, "Loading User object");
-        return userList;
-    }
-
+    /**
+     * Saves list of all programs as an abstract object
+     * @param context activity or fragment calling this method
+     * @param objectValue object to save
+     */
     //SAVE PROGRAMSLIST AS OBJECT
     public void saveProgramListObject(Context context, Object objectValue) {
         sharedPreferences = getSharedPreferences(context);
@@ -110,12 +97,18 @@ public class SaveLoad  {
         Log.d(TAG, "Saving");
     }
 
+    /**
+     * Loads list of all programs
+     * Loaded abstract object needs to be cast to specific class/object
+     * @param context activity or fragment calling this method
+     * @param targetClass class the loaded object is cast to
+     * @return loaded object
+     */
     //LOAD PROGRAMSLIST AS OBJECT
     public Object loadProgramListObject(Context context, Class targetClass) {
         sharedPreferences = getSharedPreferences(context);
         Gson gson = new Gson();
         Object programsList = sharedPreferences.getString(PROGRAM_TAG, null);
-        //Type programsListType = new TypeToken<Class<ProgramsList>>() {}.getType();
         if(programsList != null)
         programsList = gson.fromJson((String)programsList, targetClass);
         else
@@ -125,59 +118,8 @@ public class SaveLoad  {
         return programsList;
     }
 
-
-    public ArrayList loadProgramList(Context context) {
-
-        sharedPreferences = getSharedPreferences(context);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(PROGRAM_TAG, null);
-        Type type = new TypeToken<Collection<Program>>() {}.getType();
-        this.programsList = gson.fromJson(json, type);
-
-        if (programsList == null) {
-            Log.d(TAG, "Loaded programList was null");
-        }
-
-        Log.d(TAG, "Loading");
-        return loadedList;
-    }
-
-
-
-
-
-        public ArrayList loadUserList(Context context, String listName) {
-        sharedPreferences = getSharedPreferences(context);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(listName, null);
-        Type type = new TypeToken<ArrayList<User>>() {}.getType();
-        ArrayList loadedList = gson.fromJson(json, type);
-
-        if (loadedList == null) {
-            //loadedList = new ArrayList();
-            Log.d(TAG, "Loaded users list was null");
-        }
-
-        Log.d(TAG, "Loading");
-        return loadedList;
-    }
-
-    public ArrayList loadUsernameList(Context context, String listName) {
-        sharedPreferences = getSharedPreferences(context);
-        Gson gson = new Gson();
-        String json = sharedPreferences.getString(listName, null);
-        Type type = new TypeToken<ArrayList<String>>() {}.getType();
-        ArrayList loadedList = gson.fromJson(json, type);
-
-        if (loadedList == null) {
-            loadedList = new ArrayList();
-            Log.d(TAG, "Loaded username list was null");
-        }
-
-        Log.d(TAG, "Loading");
-        return loadedList;
-    }
-    public ArrayList getProgramsList() {
+    /*public ArrayList getProgramsList() {
         return programsList;
-    }
+    }*/
 }
+

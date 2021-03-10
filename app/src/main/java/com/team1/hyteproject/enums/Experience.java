@@ -2,6 +2,8 @@ package com.team1.hyteproject.enums;
 
 /**
  * Author Aarni Pesonen
+ * Users prior experience with target workout type.
+ * Can be used to determine exercise selection, volume, frequency, intensity multiplier
  */
 //static values for user experience, used in program generation
 public enum Experience{
@@ -13,7 +15,7 @@ public enum Experience{
 
     /**
      * store enum string value in a field
-     * @param realName
+     * @param realName enum value as string
      */
     private Experience(String realName){
         this.realName = realName;
@@ -21,7 +23,7 @@ public enum Experience{
 
     /**
      * override toString() and return enum value as string
-     * @return
+     * @return return enum value as string
      */
     @Override public String toString(){
         return realName;

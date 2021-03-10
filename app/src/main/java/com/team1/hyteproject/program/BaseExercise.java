@@ -35,6 +35,13 @@ public class BaseExercise {
      */
     public BaseExercise() {}
 
+    /**
+     * parameterized constructor
+     * @param name of exercise
+     * @param targetMuscleGroup of exercise
+     * @param sets to be performed in a single workout
+     * @param reps to be performed in a single set
+     */
     public BaseExercise(String name, TargetMuscleGroup targetMuscleGroup, String sets, String reps) {
         this.name = name;
         this.targetMuscleGroup = targetMuscleGroup;
@@ -206,9 +213,18 @@ public class BaseExercise {
      */
     public ArrayList getRecoveryStatistics () { return recoveryStatistics; }
 
+    /**
+     * return exercise sets value
+     * @return value of sets
+     */
     public String getSets() {
         return sets;
     }
+
+    /**
+     * return exercise reps value
+     * @return value of reps
+     */
     public String getReps() {
         return reps;
     }

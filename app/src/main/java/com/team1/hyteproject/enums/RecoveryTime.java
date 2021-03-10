@@ -2,6 +2,8 @@ package com.team1.hyteproject.enums;
 
 /**
  * Author Aarni Pesonen
+ * Static recovery time values, used when adding exercises to exerciseList
+ *
  */
 //recovery time of a given exercise
 public enum RecoveryTime{
@@ -18,7 +20,7 @@ public enum RecoveryTime{
 
     /**
      * store enum string value in a field
-     * @param valueAsString
+     * @param valueAsString enum value as string
      */
     private RecoveryTime(String valueAsString){
         this.valueAsString = valueAsString;
@@ -26,7 +28,7 @@ public enum RecoveryTime{
 
     /**
      * override toString() and return enum value as string
-     * @return
+     * @return enum value as string
      */
     @Override public String toString(){
         return valueAsString;

@@ -32,46 +32,33 @@ import java.util.Calendar;
 
 /**
  * Author Aarni Pesonen
+ * Lists all workouts inside an individual program
  */
 public class WorkoutListFragment extends Fragment {
 
     private static final String TAG = "WorkoutListFragment";
-    private static final String TEST = "Test";
 
-    private SharedViewModel sharedViewModel;
     private SaveLoad saveLoad = SaveLoad.getInstance();
     private ListView workoutListView;
     private Button testButton;
     private int programIndex;
 
     private ArrayList<Program> programsList = new ArrayList<>();
-    private ArrayList<BaseExercise> programExercises;
-    private ArrayList<Workout> workoutList;
+    /*private ArrayList<BaseExercise> programExercises;
+    private ArrayList<Workout> workoutList;*/
 
     private ProgramsList completeProgramsList;
     private Program program;
     private Workout workout;
 
-    /**
-     *
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        sharedViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
+
         View view = inflater.inflate(R.layout.fragment_workout_list2, container, false);
         Log.d(TAG, "onCreateView: start.");
 
-
-
-
-       
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
-
+        //load previous listViews program index
         programIndex = saveLoad.loadListIndex(getActivity(), "index");
 
 
@@ -81,8 +68,9 @@ public class WorkoutListFragment extends Fragment {
             completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
         }
 
-        WorkoutViewAdapter workoutViewAdapter = new WorkoutViewAdapter(getActivity(), completeProgramsList.getProgram(programIndex).getWorkoutList());
         workoutListView = view.findViewById(R.id.workoutListView);
+        //load custom listViewAdapter
+        WorkoutViewAdapter workoutViewAdapter = new WorkoutViewAdapter(getActivity(), completeProgramsList.getProgram(programIndex).getWorkoutList());
         workoutListView.setAdapter(workoutViewAdapter);
 
         workoutListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -91,12 +79,10 @@ public class WorkoutListFragment extends Fragment {
                 Log.d("onClick", "onItemClick(" + i + ")");
 
                 saveLoad.saveListIndex(getActivity(), i, "index2");
-
+                //TODO: Implement navigation class with only one method to handle all navigation?
                 Navigation.findNavController(view).navigate(R.id.action_navigation_workout_list_to_navigation_program_exercise_list);
             }
         });
-
-
 
         return view;
     }

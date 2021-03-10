@@ -31,33 +31,29 @@ import com.team1.hyteproject.ui.profile.User;
 
 import java.util.ArrayList;
 
+/**
+ * Author Aarni Pesonen
+ * Displays a list of all user generated programs
+ * Lists are stored inside ProgramsList class
+ */
 public class ProgramFragment extends Fragment {
 
     private static final String TAG = "ProgramFragment";
-    private static final String TEST = "Test";
 
-    private SharedViewModel sharedViewModel;
     private SaveLoad saveLoad = SaveLoad.getInstance();
 
     private FloatingActionButton generateProgram;
     private FloatingActionButton createOwnWorkout;
 
     private ArrayList<Program> programs = new ArrayList<>();
-    private ArrayList<BaseExercise> programExercises;
-    private ArrayList<BaseExercise> programExercises2;
-    private ArrayList<Program> programsList;
-    private ArrayList<Program> loaderCache;
-
     private ProgramsList completeProgramsList;
     private Program program;
     private Workout workout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        sharedViewModel =
-                new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(SharedViewModel.class);
+
         View view = inflater.inflate(R.layout.fragment_program1, container, false);
-        //TextView textView = view.findViewById(R.id.textViewWorkout);
         Log.d(TAG, "onCreateView: start.");
 
         generateProgram = view.findViewById(R.id.generateProgram);
@@ -65,6 +61,9 @@ public class ProgramFragment extends Fragment {
 
         ((HomeActivity)getActivity()).updateStatusBarColor("#303134");
 
+        //LOAD SAVED ABSTRACT OBJECT AND CAST IT TO ProgramsList OBJECT.
+        //Figuring this out based on documentation felt like a breakthrough moment
+        //This however broke compatibility with Nexus 5 (API 26) emulator
         completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
 
         if (completeProgramsList == null){
@@ -75,10 +74,12 @@ public class ProgramFragment extends Fragment {
             Log.d(TAG, "complete programs list size: " + completeProgramsList.getProgramsList().size());
         }
 
+        //load custom programViewAdapter
         ProgramViewAdapter programViewAdapter = new ProgramViewAdapter(getActivity(), completeProgramsList.getProgramsList());
         ListView programListView = view.findViewById(R.id.programListView);
         programListView.setAdapter(programViewAdapter);
 
+        //Navigate to CreateProgramFragment
         generateProgram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,7 +90,7 @@ public class ProgramFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_navigation_workout_to_navigation_new_program);
             }
         });
-
+        //Floating action button onClickListener
         createOwnWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,6 +100,7 @@ public class ProgramFragment extends Fragment {
             }
         });
 
+        //programsListView onItemClickListener
         programListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> programListView, View view, int i, long l) {
@@ -107,12 +109,7 @@ public class ProgramFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_navigation_program_to_navigation_workout_list);
             }
         });
-                /*SharedViewModel.class.getName().observe(getViewLifecycleOwner(), new Observer<String>() {
-                    @Override
-                    public void onChanged(@Nullable String s) {
-                        textView.setText(s);
-                    }
-                });*/
+
         return view;
     }
 }
