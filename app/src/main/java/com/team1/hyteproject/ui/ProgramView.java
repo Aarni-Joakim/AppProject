@@ -1,7 +1,7 @@
 package com.team1.hyteproject.ui;
 
 /**
- * Author Aarni Pesonen
+ * Author Aarni Pesonen, Johannes Jokinen
  * For manually displaying values in programListView
  * not yet in use
  */
