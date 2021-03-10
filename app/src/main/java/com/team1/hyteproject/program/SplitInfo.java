@@ -13,6 +13,10 @@ import java.util.ArrayList;
 
 /**
  * Author Aarni Pesonen
+ * Program split info and muscle groups contained in each split are defined here
+ * By isolating split specific info to it's own class it is possible to create variance between exercise compositions
+ * ex. in a full-body split, each included major muscle group is trained in every session, but specific exercise content variance could be defined here
+ * works in conjunction with WorkoutMuscleGroup class, storing instances of said class in a list to define what muscle groups are trained in a given workout
  */
 public class SplitInfo {
 
@@ -24,8 +28,8 @@ public class SplitInfo {
 
     /**
      * contructor takes in Split enum value and workouts per week to determine muscle groups of individual workouts included in program based on split
-     * @param split
-     * @param workoutsPerWeek
+     * @param split of the program
+     * @param workoutsPerWeek how many workouts per week are performed in the program
      */
     public SplitInfo(Split split, int workoutsPerWeek) {
         Log.d(TAG, "Creating SplitInfo instance.");
@@ -38,7 +42,8 @@ public class SplitInfo {
      * finds all muscle groups to be worked in a single session based on program split
      * feature has not been fully developed
      * different workout session splits are stored inside workoutMuscleGroups list as WorkoutMuscleGroup objects
-     * @param split
+     * in this first iteration workout muscle groups are not dynamically defined, but instead set static based on split value
+     * @param split parameter used to determine what muscle groups are trained in a workout
      */
     public void setWorkoutMuscleGroups(Split split) {
         if (split.equals(Split.FULL_BODY)) {
@@ -115,8 +120,9 @@ public class SplitInfo {
     }
 
     /**
-     * not yet implemented
-     * @param workoutMuscleGroups
+     * not yet implemented, could be used to set different muscle group compositions included in a program split
+     * @param workoutMuscleGroups class could a list of muscle groups to be trained in a single session, instead of them being
+     *                            just added in manually as above
      */
     public void setWorkoutMuscleGroupsList(ArrayList<WorkoutMuscleGroup> workoutMuscleGroups) {
         this.workoutMuscleGroups = workoutMuscleGroups;
@@ -126,7 +132,7 @@ public class SplitInfo {
     /**
      * returns the list of all different muscle group compositions included in a program split
      * used in program generation
-     * @return
+     * @return list of workouts to be trained in a single workout session
      */
     public ArrayList<WorkoutMuscleGroup> getWorkoutMuscleGroupsList() {
         return workoutMuscleGroups;
