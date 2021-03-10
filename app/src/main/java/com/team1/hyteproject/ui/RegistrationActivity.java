@@ -1,5 +1,6 @@
 package com.team1.hyteproject.ui;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +22,10 @@ import com.team1.hyteproject.ui.profile.User;
 
 import java.util.ArrayList;
 import java.util.Map;
+
+/**
+ * Author Samu Wahlroos
+ */
 
 public class RegistrationActivity extends AppCompatActivity {
 

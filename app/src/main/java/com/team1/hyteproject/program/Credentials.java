@@ -1,4 +1,7 @@
 package com.team1.hyteproject.program;
+/**
+ * Author Samu Wahlroos
+ */
 
 import java.util.HashMap;
 import java.util.Map;
