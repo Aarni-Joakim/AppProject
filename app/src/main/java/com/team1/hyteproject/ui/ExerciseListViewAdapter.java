@@ -16,7 +16,8 @@ import com.team1.hyteproject.program.BaseExercise;
 import java.util.ArrayList;
 
 /**
- * @Author Aarni Pesonen, Johannes Jokinen
+ * @Author Aarni Pesonen
+ * @Author Johannes Jokinen
  * Custom adapter for displaying all exercises in exerciseListView
  */
 public class ExerciseListViewAdapter extends ArrayAdapter<BaseExercise> {

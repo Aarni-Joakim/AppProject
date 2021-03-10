@@ -1,7 +1,8 @@
 package com.team1.hyteproject.ui;
 
 /**
- * @Author Aarni Pesonen, Johannes Jokinen
+ * @Author Aarni Pesonen
+ * @Author Johannes Jokinen
  * For manually displaying values in exerciseListView
  * not yet in use
  */
