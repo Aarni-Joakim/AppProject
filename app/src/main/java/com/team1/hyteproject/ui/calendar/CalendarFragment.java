@@ -16,8 +16,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.team1.hyteproject.R;
 
-
-
+/**
+ * @Author Aarni Pesonen
+ * Calendar related functionality
+ */
 public class CalendarFragment extends Fragment {
 
     private static final String TAG = "CalendarFragment";

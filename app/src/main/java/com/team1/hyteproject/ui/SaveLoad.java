@@ -18,7 +18,11 @@ import java.util.Collection;
 
 import static android.content.Context.MODE_PRIVATE;
 
-
+/**
+ * @Author Aarni Pesonen
+ * Class to handle saving and loading of data
+ * Saved in shared preferences in json gson format
+ */
 public class SaveLoad  {
 
     private static final String TAG = "SaveLoad";                       //For Log.d identification

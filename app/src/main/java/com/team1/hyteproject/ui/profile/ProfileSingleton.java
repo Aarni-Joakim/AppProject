@@ -2,6 +2,9 @@ package com.team1.hyteproject.ui.profile;
 
 import java.util.ArrayList;
 
+/**
+ * @Author Samu Wahlroos
+ */
 public class ProfileSingleton {
 
     private ArrayList<User> users = new ArrayList<>();

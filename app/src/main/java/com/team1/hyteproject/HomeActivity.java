@@ -20,6 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 import java.util.ArrayList;
 
 /**
+ * @Author Aarni Pesonen
  * Host-activity for the Navigation component
  */
 public class HomeActivity extends AppCompatActivity {

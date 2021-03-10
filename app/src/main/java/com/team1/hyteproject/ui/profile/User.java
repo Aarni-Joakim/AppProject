@@ -1,5 +1,9 @@
 package com.team1.hyteproject.ui.profile;
 
+/**
+ * @Author Samu Wahlroos
+ * Class to store user data
+ */
 public class User {
     private String userName;
     private String eMail;
