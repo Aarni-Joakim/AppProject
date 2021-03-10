@@ -52,6 +52,13 @@ public class ExerciseListFragment extends Fragment {
 
     private int index = 0;
 
+    /**
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         sharedViewModel =
@@ -76,6 +83,9 @@ public class ExerciseListFragment extends Fragment {
             completeProgramsList = (ProgramsList) saveLoad.loadProgramListObject(getActivity(), ProgramsList.class);
         }
 
+        /**
+         * AddCalendar button from Calendar Controller
+         */
         addCalendarbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

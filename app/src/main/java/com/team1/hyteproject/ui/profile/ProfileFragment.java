@@ -51,8 +51,6 @@ public class ProfileFragment extends Fragment {
     private User user;
     Uri imageUri;
 
-    private ArrayList users;
-    private ArrayList usernames;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor sharedPreferencesEditor;
