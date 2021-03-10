@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 /**
  * Author Aarni Pesonen
+ * First iteration of BaseExercise class stores all exercise related information
+ * Inheritance structure was originally planned for exercises, but not yet implemented
  */
 public class BaseExercise {
 
@@ -70,55 +72,56 @@ public class BaseExercise {
 
     /**
      * set the amount of sets
-     * @param sets
+     * @param sets to be performed during a workout
      */
     public void setSets (String sets) { this.sets = sets; }
 
     /**
      * set the amount of reps
-     * @param reps
+     * @param reps to be performed during each set
      */
     public void setReps (String reps) { this.reps = reps; }
 
     /**
      * set exercise preference value
-     * @param preference
+     * @param preference user preference value for exercise, not yet implemented
      */
     public void setPreference (int preference) { this.preference = preference; }
 
     /**
      * set exercise priority value
-     * @param priority
+     * @param priority priority determines which exercises will be selected first by the ProgramGenereator stream reader
      */
     public void setPriority (int priority) { this.priority = priority; }
 
     /**
      * set weight to be used (not yet implemented)
-     * @param weight
+     * @param weight not yet implemented
      */
     public void setWeight (double weight) { this.weight = weight; }
 
     /**
      * set exercise recovery days
-     * @param recoveryDays
+     * @param recoveryDays how many days does it take to recover from given exercise
      */
     public void setRecoveryDays (int recoveryDays) { this.recoveryDays = recoveryDays; }
 
     /**
      * how many days since the recovery started
-     * @param recoveryProgress
+     * @param recoveryProgress how far is the recovery progress, not yet implemented
      */
     public void setRecoveryProgress (int recoveryProgress) { this.recoveryProgress = recoveryProgress; }
 
     /**
      * is the exercise selected to programExercises? there is a method to reset the value
-     * @param isSelected
+     * @param isSelected true if stream reader has selected the exercise to a list
+     *                   if false exercise cannot be selected again until value is set to zero
      */
     public void setIsSelected(boolean isSelected) { this.isSelected = isSelected; }
 
     /**
      * bool value for recovery
-     * @param recovered
+     * @param recovered has recovery been completed yet, not yet implemented
      */
     public void setRecovered(boolean recovered) {
         this.isRecovered = recovered;
@@ -126,7 +129,7 @@ public class BaseExercise {
 
     /**
      * not yet implemented
-     * @param recoveryProgress
+     * @param recoveryProgress set recovery progress value, not yet implemented
      */
     public void setRecoveryStatistics(int recoveryProgress) {
         if(recoveryStatistics == null) {
@@ -138,7 +141,7 @@ public class BaseExercise {
     /**
      * plan is for user to be able to tag exercises and have program generator take these into account
      * not yet implemented
-     * @param tag
+     * @param tag enables user to set various tags to exercises for ProgramGenerator to use
      */
     public void addTag(String tag) {
         if (tags == null)
@@ -150,7 +153,7 @@ public class BaseExercise {
 
     /**
      * gets exercise name
-     * @return
+     * @return name of exercise
      */
     public String getName (){
         return name;
@@ -158,7 +161,7 @@ public class BaseExercise {
 
     /**
      * gets exercise priority
-     * @return
+     * @return priority value of exercise
      */
     public int getPriority (){
         return priority;
@@ -166,50 +169,50 @@ public class BaseExercise {
 
     /**
      * gets exercise main target muscle group
-     * @return
+     * @return main target muscle group of exercise
      */
     public TargetMuscleGroup getTargetMuscleGroup() { return targetMuscleGroup; }
 
     /***
      * gets exercise intensity value
-     * @return
+     * @return not yet implemented
      */
     public int getExerciseIntensity() { return exerciseIntensity; }
 
     /**
      * gets exercise type, compound: true, isolation: false
-     * @return
+     * @return true for compound, false for isolation
      */
     public boolean getIsCompound() { return isCompound; }
 
     /**
      * get is the exercise selected, checked when stream reader goes through ExerciseList singleton
      * (ExerciesList contains all exercises included in the app)
-     * @return
+     * @return true if exercise has been selected to a list by stream reader, false if unselected or reset
      */
     public boolean getIsSelected(){ return isSelected; }
 
     /**
      * get bool recovery value
-     * @return
+     * @return true if recovered, false if not
      */
     public boolean getRecovered() { return isRecovered; }
 
     /**
      * gets days since start of recovery (not yet implemented)
-     * @return
+     * @return not yet implemented
      */
     public int getRecoveryProgress() { return this.recoveryProgress; }
 
     /**
      * gets how many days of recovery is needed
-     * @return
+     * @return recovery days needed
      */
     public int getRecoveryDays() {return this.recoveryDays; }
 
     /**
      * list of past recovery statistics (not yet implemented)
-     * @return
+     * @return not yet implemented
      */
     public ArrayList getRecoveryStatistics () { return recoveryStatistics; }
 
@@ -231,7 +234,7 @@ public class BaseExercise {
 
     /**
      * overrides toString method to return exercise name (redundant?)
-     * @return
+     * @return exercise name as string
      */
     @Override
     public String toString() {
@@ -240,7 +243,7 @@ public class BaseExercise {
 
     /**
      * gets the group exercise belongs to
-     * @return
+     * @return group the exercise belongs to
      */
     public ExerciseGroup getExerciseGroup() {
         return exerciseGroup;

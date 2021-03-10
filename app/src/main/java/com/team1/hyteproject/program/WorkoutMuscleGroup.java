@@ -43,7 +43,7 @@ public class WorkoutMuscleGroup {
 
     /**
      * returns a list of muscle groups to be trained in a single session
-     * @return
+     * @return returns a list of muscle groups to be trained in a single session
      */
     public ArrayList getTargetMuscleGroupList () {
         return targetMuscleGroupsList;
@@ -52,8 +52,8 @@ public class WorkoutMuscleGroup {
     /**
      * returns an element from workout specific muscle groups list at given index
      * program generator uses this data inside one of it's loops to pick exercises for this specific group
-     * @param index
-     * @return
+     * @param index of target musclegroup
+     * @return target muscle group at given index in the list
      */
     public TargetMuscleGroup getTargetMuscleGroup(int index) {
         Log.d(TAG, "Returning targetMuscleGroupLists. Is empty:" + targetMuscleGroupsList.isEmpty());

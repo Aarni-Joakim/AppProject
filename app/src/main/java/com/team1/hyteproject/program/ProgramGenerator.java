@@ -218,7 +218,7 @@ public class ProgramGenerator {
 
     /**
      * returns ArrayList programExercises
-     * @return
+     * @return complete list of exercises included in the program
      */
     public ArrayList getProgramExercises() {
         return programExercises;
@@ -226,7 +226,7 @@ public class ProgramGenerator {
 
     /**
      * gets split value based on number of weekly workouts
-     * @return
+     * @return program split value based on number of weekly exercises
      */
     private Split getSplit() {
         Log.d(TAG, "getSplit() called.");
@@ -242,9 +242,9 @@ public class ProgramGenerator {
     }
 
     /**
-     * calculates program intesity multiplier and program volume based on prior experience level, desired intensity and user age
+     * calculates program intensity multiplier and program volume based on prior experience level, desired intensity and user age
      * returns program volume
-     * @return
+     * @return not yet implemented
      */
     //DETERMINES PROGRAM VOLUME AND INTENSITY MULTIPLIER BASED ON PRIOR USER EXPERIENCE, DESIRED PROGRAM INTENSITY AND AGE
     private ProgramVolume getProgramVolumeIntensity() {
@@ -339,7 +339,7 @@ public class ProgramGenerator {
 
     /**
      * complete list of program exercises
-     * @return
+     * @return list of exercises included in program, previously selected by stream reader
      */
     //RETURNS A COMPLETE LIST OF ALL PROGRAM EXERCISES
     public ArrayList<BaseExercise> getProgramExerciseList() {
@@ -351,7 +351,7 @@ public class ProgramGenerator {
     /**
      * resets isSelected bool value of input list elements
      * bool dictates if a selected exercise "is seen" as stream reader goes through the list of exercises
-     * @param arrayList
+     * @param arrayList reset isSelected value of BaseExercise arraylist
      */
     // TODO: Make arrayList detection more "safe". CHECK THE FUNCTION OF THIS METHOD!!!!!
     //RESETS isSelected BOOLEAN OF ALL EXERCISES IN LIST ENTERED AS PARAMETER
@@ -568,11 +568,11 @@ public class ProgramGenerator {
         getDailyWorkoutExercises();
     }
 
-
+    /**
+     * Runs the methods for program generation in the correct order
+     */
     public void generateProgram () {
 
-        //ProgramGenerator programGenerator = new ProgramGenerator(programName, focus, goal, age, desiredIntensity, experience, lengthInWeeks, workoutsPerWeek);
-        //programVolume = getProgramVolumeIntensity();
         split = getSplit();
 
         getExerciseDistribution();
@@ -605,6 +605,11 @@ public class ProgramGenerator {
         return program;
     }
 
+    /**
+     * Adds generated program to list of all programs included in the app
+     * list is if one is present in shared preference at the time of object instantiation
+     * @return complete list of programs with newest generated program added in
+     */
     public ProgramsList getCompleteProgramsList() {
         completeProgramsList.addProgram(program);
         return completeProgramsList;

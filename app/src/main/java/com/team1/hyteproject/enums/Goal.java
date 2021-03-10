@@ -20,7 +20,7 @@ public enum Goal{
 
     /**
      * override toString() and return enum value as string
-     * @return
+     * @return enum value as string
      */
     @Override public String toString(){
         return realName;

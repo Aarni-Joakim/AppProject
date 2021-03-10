@@ -24,7 +24,7 @@ public class ExerciseList {
 
     /**
      * return instance of ExerciseList singleton
-     * @return
+     * @return instance
      */
     public static ExerciseList getInstance() { return instance; }
 
@@ -67,26 +67,26 @@ public class ExerciseList {
 
     /**
      * gets list of upper body exercises
-     * @return
+     * @return upper body exercises list
      */
     public ArrayList<BaseExercise> getAllUpperBodyExercises() { return upperBodyExercises; }
 
     /**
      * gets list of lower body exercises
-     * @return
+     * @return lower body exercises list
      */
     public ArrayList<BaseExercise> getAllLowerBodyExercises() { return lowerBodyExercises; }
 
     /**
      * gets list of core exercises
-     * @return
+     * @return core exercises list
      */
     public ArrayList<BaseExercise> getAllCoreExercises() { return coreExercises; }
 
     /**
      * return upper body exercise at given index
-     * @param index
-     * @return
+     * @param index of exercise to return
+     * @return exercise at given index
      */
     public BaseExercise getUpperBodyExercise(int index) {
         return upperBodyExercises.get(index);
@@ -94,8 +94,8 @@ public class ExerciseList {
 
     /**
      * return lower body exercise at given index
-     * @param index
-     * @return
+     * @param index of exercise to return
+     * @return exercise at given index
      */
     public BaseExercise getLowerBodyExercise(int index) {
         return lowerBodyExercises.get(index);
@@ -103,8 +103,8 @@ public class ExerciseList {
 
     /**
      * return core exercise at given index
-     * @param index
-     * @return
+     * @param index of exercise to return
+     * @return exercise at given index
      */
     public BaseExercise getCoreExercise(int index) {
         return coreExercises.get(index);
