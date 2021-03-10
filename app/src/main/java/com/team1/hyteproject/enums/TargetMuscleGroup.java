@@ -3,7 +3,7 @@ package com.team1.hyteproject.enums;
 import com.team1.hyteproject.program.BaseExercise;
 
 /**
- * Author Aarni Pesonen
+ * @Author Aarni Pesonen
  * Enum class handles target muscle group info, value conversions between enum and string
  * also finds exercise group of exercise based on target muscle group
  */

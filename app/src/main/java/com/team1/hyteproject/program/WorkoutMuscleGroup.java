@@ -7,7 +7,7 @@ import com.team1.hyteproject.enums.TargetMuscleGroup;
 import java.util.ArrayList;
 
 /**
- * Author Aarni Pesonen, Johannes Jokinen
+ * @Author Aarni Pesonen, Johannes Jokinen
  * Holds lists of different muscle group divisions a program split has. Ex. there could be several different lists for a full body split with different exercise focus
  * SplitInfo holds a list containing all different muscle group compositions of a program, WorkoutMuscleGroup defines what muscle groups are included in aforementioned compositions
  */

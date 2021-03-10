@@ -1,6 +1,6 @@
 package com.team1.hyteproject.enums;
 /**
- * Author Aarni Pesonen
+ * @Author Aarni Pesonen
  */
 public enum Goal{
     MUSCLE("Muscle mass"),

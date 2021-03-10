@@ -1,6 +1,6 @@
 package com.team1.hyteproject.enums;
 /**
- * Author Aarni Pesonen
+ * @Author Aarni Pesonen
  * Exercises with higher priority are selected first by ProgramGenerator
  * Used when adding exercises to exerciseList
  * spinners get their values from enums

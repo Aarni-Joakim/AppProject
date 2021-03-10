@@ -15,7 +15,7 @@ import com.team1.hyteproject.program.Workout;
 
 import java.util.ArrayList;
 /**
- * Author Aarni Pesonen, Johannes Jokinen
+ * @Author Aarni Pesonen, Johannes Jokinen
  * For displaying Workout objects in workoutListView
  */
 public class WorkoutViewAdapter extends ArrayAdapter<Workout> {

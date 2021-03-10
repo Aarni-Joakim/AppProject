@@ -32,7 +32,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Author Aarni Pesonen, Samu Wahlroos
+ * @Author Aarni Pesonen, Samu Wahlroos
  * Lists all exercises inside an individual program workout
  */
 public class ExerciseListFragment extends Fragment {

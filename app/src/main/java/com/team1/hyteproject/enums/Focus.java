@@ -1,6 +1,6 @@
 package com.team1.hyteproject.enums;
 /**
- * Author Aarni Pesonen
+ * @Author Aarni Pesonen
  * Supposed to add exercise volume and intensity for selected muscle group
  * Not yet implemented
  */

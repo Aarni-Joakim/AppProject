@@ -1,7 +1,7 @@
 package com.team1.hyteproject.enums;
 
 /**
- * Author Aarni Pesonen
+ * @Author Aarni Pesonen
  * Used in program generation to help stream reader decide what exercises to pick from ExerciseList
  * When adding exercises to exerciseList, user must set this value
  */

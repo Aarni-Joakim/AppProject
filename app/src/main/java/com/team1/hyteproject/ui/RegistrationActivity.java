@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * Author Samu Wahlroos
+ * @Author Samu Wahlroos
  */
 
 public class RegistrationActivity extends AppCompatActivity {

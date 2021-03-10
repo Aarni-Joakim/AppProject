@@ -35,7 +35,7 @@ import com.team1.hyteproject.ui.SharedViewModel;
 import java.util.ArrayList;
 
 /**
- * Author Aarni Pesonen
+ * @Author Aarni Pesonen
  * Allows for custom program creation based on user input
  */
 public class CreateProgramFragment extends Fragment {

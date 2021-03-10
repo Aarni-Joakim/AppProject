@@ -1,7 +1,7 @@
 package com.team1.hyteproject.enums;
 
 /**
- * Author Aarni Pesonen
+ * @Author Aarni Pesonen
  * Users prior experience with target workout type.
  * Can be used to determine exercise selection, volume, frequency, intensity multiplier
  */

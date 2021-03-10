@@ -5,7 +5,7 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 
 /**
- *Author Aarni Pesonen
+ *@Author Aarni Pesonen
  */
 
 public class Program {

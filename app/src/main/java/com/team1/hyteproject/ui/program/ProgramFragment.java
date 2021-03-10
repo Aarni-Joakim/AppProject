@@ -32,7 +32,7 @@ import com.team1.hyteproject.ui.profile.User;
 import java.util.ArrayList;
 
 /**
- * Author Aarni Pesonen
+ * @Author Aarni Pesonen
  * Displays a list of all user generated programs
  * Lists are stored inside ProgramsList class
  */
