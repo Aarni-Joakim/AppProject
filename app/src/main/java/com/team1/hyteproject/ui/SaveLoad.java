@@ -19,7 +19,7 @@ import java.util.Collection;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * Class to handle saving and loading of data
  * Saved in shared preferences in json gson format
  */

@@ -1,7 +1,7 @@
 package com.team1.hyteproject.enums;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * Static recovery time values, used when adding exercises to exerciseList
  *
  */

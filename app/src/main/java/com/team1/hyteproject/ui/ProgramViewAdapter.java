@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import static java.security.AccessController.getContext;
 
 /**
- * @Author Aarni Pesonen
- * @Author Johannes Jokinen
+ * @author Aarni Pesonen
+ * @author Johannes Jokinen
  * For displaying Program objects in programListView
  */
 public class ProgramViewAdapter extends ArrayAdapter<Program> {

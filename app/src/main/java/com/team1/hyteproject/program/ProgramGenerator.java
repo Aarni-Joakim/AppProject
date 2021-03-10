@@ -15,7 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * This class handles functions related to program creation.
  * After making a few calculations based on user input, generator finds dates for all workouts based on workout split using java's calendar
  * When total number of workouts is known, two methods containing three loops each then assign exercises for each workout included in program

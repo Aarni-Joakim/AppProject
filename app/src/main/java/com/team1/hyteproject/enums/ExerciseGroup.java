@@ -1,7 +1,7 @@
 package com.team1.hyteproject.enums;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * Used to group exercises together, ex. all exercises targeting legs belong to lower body group
  * App does not yet take full advantage of this enum class.
  */

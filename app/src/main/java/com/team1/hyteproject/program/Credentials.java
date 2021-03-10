@@ -1,6 +1,6 @@
 package com.team1.hyteproject.program;
 /**
- * @Author Samu Wahlroos
+ * @author Samu Wahlroos
  */
 
 import java.util.HashMap;

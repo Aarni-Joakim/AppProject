@@ -8,8 +8,8 @@ import com.team1.hyteproject.enums.TargetMuscleGroup;
 import java.util.ArrayList;
 
 /**
- * @Author Aarni Pesonen
- * @Author Johannes Jokinen
+ * @author Aarni Pesonen
+ * @author Johannes Jokinen
  *
  * Singleton class contains the complete list of exercises
  */

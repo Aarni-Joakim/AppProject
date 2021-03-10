@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * @Author Samu Wahlroos
+ * @author Samu Wahlroos
  */
 
 public class LoginActivity extends AppCompatActivity {

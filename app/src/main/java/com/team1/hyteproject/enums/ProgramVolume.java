@@ -1,7 +1,7 @@
 package com.team1.hyteproject.enums;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * When fully implemented, will affect weekly volume of exercises per muscle group
  */
 //used in determining the amount of program training volume *not yet in full use*

@@ -24,7 +24,7 @@ import com.team1.hyteproject.ui.ExerciseListViewAdapter;
 import com.team1.hyteproject.ui.ProgramViewAdapter;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * Displays a list of all exercises included in the app
  * List is stored in ExerciseList Singleton
  */

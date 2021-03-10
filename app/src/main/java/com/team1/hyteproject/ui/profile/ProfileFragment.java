@@ -31,8 +31,8 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.google.gson.reflect.TypeToken.get;
 
 /**
- * @Author Aarni Pesonen
- * @Author Samu Wahlroos
+ * @author Aarni Pesonen
+ * @author Samu Wahlroos
  * Displays user info, including a picture selectable from devices memory
  * Login data is (currently) saved in shared preferences and loaded to be displayed here
  *

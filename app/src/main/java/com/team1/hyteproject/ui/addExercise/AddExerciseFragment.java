@@ -32,7 +32,7 @@ import com.team1.hyteproject.program.ExerciseList;
 import java.util.ArrayList;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * Adding user created exercises to exerciseList
  */
 public class AddExerciseFragment extends Fragment {

@@ -1,7 +1,7 @@
 package com.team1.hyteproject.ui.profile;
 
 /**
- * @Author Samu Wahlroos
+ * @author Samu Wahlroos
  * Class to store user data
  */
 public class User {

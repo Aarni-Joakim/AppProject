@@ -12,7 +12,7 @@ import java.util.ArrayList;
 // This class needs to be instantiated before MEGALOOPS? edit. SHOULD NOT MAKE DIFFERENCE?
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * Program split info and muscle groups contained in each split are defined here
  * By isolating split specific info to it's own class it is possible to create variance between exercise compositions
  * ex. in a full-body split, each included major muscle group is trained in every session, but specific exercise content variance could be defined here

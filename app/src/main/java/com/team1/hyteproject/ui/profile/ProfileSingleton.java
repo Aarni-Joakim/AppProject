@@ -3,7 +3,7 @@ package com.team1.hyteproject.ui.profile;
 import java.util.ArrayList;
 
 /**
- * @Author Samu Wahlroos
+ * @author Samu Wahlroos
  */
 public class ProfileSingleton {
 

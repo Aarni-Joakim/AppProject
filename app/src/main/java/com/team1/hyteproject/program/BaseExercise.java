@@ -6,7 +6,7 @@ import com.team1.hyteproject.enums.TargetMuscleGroup;
 import java.util.ArrayList;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * First iteration of BaseExercise class stores all exercise related information
  * Inheritance structure was originally planned for exercises, but not yet implemented
  */

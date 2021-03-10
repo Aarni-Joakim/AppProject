@@ -17,8 +17,8 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 /**
- * @Author Aarni Pesonen
- * @Author Johannes Jokinen
+ * @author Aarni Pesonen
+ * @author Johannes Jokinen
  * Custom adapter for displaying BaseExercise objects in programExerciseListView
  */
 public class ExerciseViewAdapter extends ArrayAdapter<BaseExercise> {

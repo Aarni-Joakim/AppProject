@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  */
 public class Workout {
 

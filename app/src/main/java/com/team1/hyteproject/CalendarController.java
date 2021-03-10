@@ -6,7 +6,7 @@ import android.provider.CalendarContract;
 import android.util.Log;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * Controls calendar function
  */
 public class CalendarController {

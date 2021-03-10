@@ -1,7 +1,7 @@
 package com.team1.hyteproject.enums;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * Static program split values determined based on exercises per week.
  * First iteration does not allow dynamic morphing between splits after program generation
  */

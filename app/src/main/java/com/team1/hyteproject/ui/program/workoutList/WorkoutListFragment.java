@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
- * @@Author Aarni Pesonen
+ * @author Aarni Pesonen
  * Lists all workouts inside an individual program
  */
 public class WorkoutListFragment extends Fragment {

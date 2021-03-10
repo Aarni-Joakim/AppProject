@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.team1.hyteproject.R;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * Calendar related functionality
  */
 public class CalendarFragment extends Fragment {

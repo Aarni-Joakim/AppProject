@@ -3,7 +3,7 @@ package com.team1.hyteproject.program;
 import java.util.ArrayList;
 
 /**
- * @Author Aarni Pesonen
+ * @author Aarni Pesonen
  * Object of this class saved to shared preferences as json string
  */
 public class ProgramsList {
