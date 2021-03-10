@@ -25,6 +25,10 @@ import com.team1.hyteproject.ui.profile.User;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * Author Samu Wahlroos
+ */
+
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
